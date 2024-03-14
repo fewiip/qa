@@ -1,0 +1,18 @@
+.loginCard {
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 10px;
+  
+  max-width: 300px;
+  width: 100%;
+}
+
+input {
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+}
