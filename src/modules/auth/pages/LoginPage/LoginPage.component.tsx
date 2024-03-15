@@ -1,16 +1,26 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../api";
 import { LoginForm } from "../../components/LoginForm";
+import { useAuthStore } from "../../stores/useAuthStore.hook";
 import styles from "./LoginPage.module.css";
 
 export const LoginPage = () => {
 
   const { login } = useAuth()
+  const { setToken } = useAuthStore()
+  const navigate = useNavigate()
 
 
   async function handleSubmit(email: string, password: string) {
-    const response = await login(email, password)
+    try {
+      const response = await login(email, password)
 
-    console.log(response)
+      setToken(response.data.token)
+
+      navigate('/lessons')
+    } catch (error) {
+      alert('usuario ou senha incorreto')
+    }
   }
 
   return <div className={styles.loginWrapper}>
@@ -20,6 +30,11 @@ export const LoginPage = () => {
       <br />
 
       <LoginForm onSubmit={handleSubmit} />
+
+      <a href="#">Criar um usuario</a> <br />
+
+      <a href="">Esqueci a minha senha</a> 
+
     </div>
   </div>
 }

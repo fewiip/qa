@@ -1,13 +1,20 @@
 import { FunctionComponent } from "react"
 import { BrowserRouter, useRoutes } from "react-router-dom"
 import { LoginPage } from "../modules/auth/pages/LoginPage"
+import { PrivateRoute } from "./PrivateRoute.component"
+import { LessonsPage } from "../modules/Lessons/Pages"
 
-// const privateRoutes = [
-//   {
-//     path: '/',
-//     element: <HomePage/>
-//   }
-// ]
+const privateRoutes = [
+  {
+    element: <PrivateRoute/>,
+    children: [
+      {
+        path: 'lessons',
+        element: <LessonsPage />
+      },
+    ]
+  }
+]
 
 const publicRoutes = [
   {
@@ -19,7 +26,8 @@ const publicRoutes = [
 const AllRoutes: FunctionComponent = () => {
   
   return useRoutes([
-    ...publicRoutes
+    ...publicRoutes,
+    ...privateRoutes
   ])
 }
 
