@@ -1,0 +1,36 @@
+import { FunctionComponent, useMemo } from "react"
+import { Card } from "../../../../shared/components/Card/Card.component"
+import ProfileColoredImage from "../../../../assets/images/profile_colored.png"
+import styles from "./LeadershipCard.module.css"
+import { User } from "../../api"
+
+interface LeadershipCardProps {
+  users: User[]
+}
+
+export const LeadershipCard: FunctionComponent<LeadershipCardProps> = (props) => {
+  const { users } = props
+
+  const firstThreeUsers = useMemo(() => {
+    // return users
+    return users.filter((_i, index) => index <= 2)
+  }, [users])
+
+
+  return <Card>
+    <div>QUADRO DE LIDERES</div>
+
+    <div>
+      {firstThreeUsers.map((user, index) => (
+        <div className={styles.userItem} key={user.firstName}>
+          <div className={styles.info}>
+            <span>{index + 1}</span>
+            <img src={ProfileColoredImage} alt="" />
+            <span>{user?.firstName} {user?.lastName}</span>
+          </div>
+          <span className={styles.score}>{user?.score} Bugs</span>
+        </div>
+      ))}
+    </div>
+  </Card>
+}

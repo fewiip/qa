@@ -7,7 +7,8 @@ export const useAuthStore = create<IAuthStore>()(
     (set, get) => ({
       token: null,
       isLoggedIn: () => Boolean(get().token?.length),
-      setToken: (payload) => set({token: payload})
+      setToken: (payload) => set({token: payload}),
+      logout: () => set({ token: null })
     }),
     {
       name: 'AUTH_STORE',
