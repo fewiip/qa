@@ -1,8 +1,17 @@
-export const LessonsPage = () => {
+import { useEffect } from "react"
+import { AppLayout } from "../../../shared/components/AppLayout"
 
-  return <div >
-    <div>
-      lessons
+export const LessonsPage = () => {
+  
+
+  // useEffect(() => {
+  //   fetchLeaderboard()
+  // }, [])
+  
+  return <AppLayout>
+    lessons content
+    <div className="" >
+
     </div>
-  </div>
+  </AppLayout>
 }

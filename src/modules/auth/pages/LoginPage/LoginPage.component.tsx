@@ -3,6 +3,7 @@ import { useAuth } from "../../api";
 import { LoginForm } from "../../components/LoginForm";
 import { useAuthStore } from "../../stores/useAuthStore.hook";
 import styles from "./LoginPage.module.css";
+import { RouteEnum } from "../../../../routes/router";
 
 export const LoginPage = () => {
 
@@ -17,7 +18,7 @@ export const LoginPage = () => {
 
       setToken(response.data.token)
 
-      navigate('/lessons')
+      navigate(RouteEnum.LESSONS)
     } catch (error) {
       alert('usuario ou senha incorreto')
     }

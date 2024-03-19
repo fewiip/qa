@@ -3,13 +3,24 @@ import { BrowserRouter, useRoutes } from "react-router-dom"
 import { LoginPage } from "../modules/auth/pages/LoginPage"
 import { PrivateRoute } from "./PrivateRoute.component"
 import { LessonsPage } from "../modules/Lessons/Pages"
+import { SignUpPage } from "../modules/auth/pages/SignUpPage"
+
+export enum RouteEnum {
+  LESSONS = '/lessons',
+  LOGIN = '/login',
+  SIGNUP = '/signup'
+}
 
 const privateRoutes = [
   {
     element: <PrivateRoute/>,
     children: [
       {
-        path: 'lessons',
+        path: '/',
+        element: <LessonsPage />
+      },
+      {
+        path: RouteEnum.LESSONS,
         element: <LessonsPage />
       },
     ]
@@ -18,8 +29,12 @@ const privateRoutes = [
 
 const publicRoutes = [
   {
-    path: '/login',
+    path: RouteEnum.LOGIN,
     element: <LoginPage />
+  },
+  {
+    path: RouteEnum.SIGNUP,
+    element: <SignUpPage />
   }
 ]
 
