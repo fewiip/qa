@@ -4,7 +4,11 @@ import { useHttp } from "../../../config/useHttp.hook"
 export type User = {
   firstName: string
   lastName: string
-  score: number
+  bug: number
+  coin: number,
+  refill: number,
+  victory: number
+  id: number
 }
 
 interface leaderBoardResponse {

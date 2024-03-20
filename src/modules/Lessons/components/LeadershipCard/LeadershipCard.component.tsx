@@ -22,13 +22,13 @@ export const LeadershipCard: FunctionComponent<LeadershipCardProps> = (props) =>
 
     <div>
       {firstThreeUsers.map((user, index) => (
-        <div className={styles.userItem} key={user.firstName}>
+        <div className={styles.userItem} key={user.id}>
           <div className={styles.info}>
             <span>{index + 1}</span>
             <img src={ProfileColoredImage} alt="" />
             <span>{user?.firstName} {user?.lastName}</span>
           </div>
-          <span className={styles.score}>{user?.score} Bugs</span>
+          <span className={styles.score}>{user?.bug} Bugs</span>
         </div>
       ))}
     </div>

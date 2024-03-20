@@ -9,6 +9,7 @@ export const SignUpPage = () => {
 
   const { signUp } = useAuth()
   const { setToken } = useAuthStore()
+  const { setUserData } = useAuthStore()
   const navigate = useNavigate()
 
 
@@ -17,6 +18,7 @@ export const SignUpPage = () => {
       const response = await signUp(payload)
 
       setToken(response.data.token)
+      setUserData(response.data.user)
 
       navigate(RouteEnum.LESSONS)
     } catch (error) {

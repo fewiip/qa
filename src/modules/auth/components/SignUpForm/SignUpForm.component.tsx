@@ -20,6 +20,8 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = (props) => {
     onSubmit({email, password, firstName, lastName})  
   }
 
+  //<Button onClick={handleSubmit}>Criar conta</Button>
+
   return <div className={styles.loginCard}>
       
       <label htmlFor="firstName">Nome</label>
@@ -34,6 +36,6 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = (props) => {
       <label htmlFor="firstName">Senha</label>
       <input placeholder='' type="password" value={password} onChange={(i) => setPassword(i.target.value)} />  
 
-      <Button onClick={handleSubmit}>Criar conta</Button>
+      <button onClick={handleSubmit}>Criar conta</button>
   </div>
 }

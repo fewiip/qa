@@ -22,14 +22,14 @@ export const StatisticsCard = () => {
           <img src={BugsBottleImage} alt="" />
         </div>
         <div className={styles.statisticsCardItem}>
-          <b>{user?.score}</b>  <br />
+          <b>{user?.bug}</b>  <br />
           Bugs
         </div>
         <div className={styles.statisticsCardItem}>
           <img src={CoinsImage} alt="" />
         </div>
         <div className={styles.statisticsCardItem}>
-          <b>75</b>  <br />
+          <b>{user?.coin}</b>  <br />
           Moedas
         </div>
       </div>
@@ -39,14 +39,14 @@ export const StatisticsCard = () => {
           <img src={SwordsImage} alt="" />
         </div>
         <div className={styles.statisticsCardItem}>
-          <b>4</b>  <br />
+          <b>{user?.victory}</b>  <br />
           Vitórias
         </div>
         <div className={styles.statisticsCardItem}>
           <img src={SprayImage} alt="" />
         </div>
         <div className={styles.statisticsCardItem}>
-          <b>2</b>  <br />
+          <b>{user?.refill}</b>  <br />
           Refis <br />
           <Button>repor 5</Button>
         </div>

@@ -6,7 +6,10 @@ export interface UserData { //mexi aqui
   lastName: string,
   email: string,
   role: string,
-  score: number,
+  bug: number,
+  coin: number,
+  refill: number,
+  victory: number
 }
 
 

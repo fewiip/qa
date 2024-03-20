@@ -1,16 +1,19 @@
-export interface UserData { //mexi aqui
+export interface UserData { 
   id: number,
   firstName: string,
   lastName: string,
   email: string,
   role: string,
-  score: number,
+  bug: number,
+  coin: number,
+  refill: number,
+  victory: number
 }
 
 export interface IAuthStore {
   token: string | null | undefined
-  user: UserData | null | undefined, //mexi aqui
-  setUserData: (payload: UserData | null) => void, //mexi aqui
+  user: UserData | null | undefined, 
+  setUserData: (payload: UserData | null) => void,
   isLoggedIn: () => boolean
   setToken: (payload: string | null) => void
   logout: () => void
