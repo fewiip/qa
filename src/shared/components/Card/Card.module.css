@@ -1,6 +1,9 @@
 .cardWrapper {
-  padding: 16px;
+  padding: 8px;
   border-radius: 16px;
   border: 1px solid lightgray;
-  width: 250px;
+  max-width: 300px;
+  width: 100%;
+  height: 100%;
 }
+

@@ -32,5 +32,11 @@ export const LeadershipCard: FunctionComponent<LeadershipCardProps> = (props) =>
         </div>
       ))}
     </div>
+
+    <div className={styles.button}>
+        Ver quadro completo
+    </div>
+    
+    
   </Card>
 }

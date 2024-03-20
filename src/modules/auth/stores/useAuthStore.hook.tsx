@@ -6,6 +6,8 @@ export const useAuthStore = create<IAuthStore>()(
   persist(
     (set, get) => ({
       token: null,
+      user: null, //mexi aqui
+      setUserData: (payload) => set({user: payload}),//mexi aqui
       isLoggedIn: () => Boolean(get().token?.length),
       setToken: (payload) => set({token: payload}),
       logout: () => set({ token: null })

@@ -31,22 +31,23 @@ export default {
 
 
 
-To do:
+#__To do:__
 
-20/03
-- Cadastro 
-- Tela principal 
-- Quadro de lideres 
-- Minha estatisticas 
-- Estatistica do usuario   
+__20/03__
+- Cadastro (feito!)
+- Tela principal (feito!)
+- Quadro de lideres (feito!)
+- Minha estatisticas (feito!)
 - Menu de navegação  
 
-
-27/03:
+__27/03:__
 - Proximas conquistas 
-- Desafio do dia
 - Lições liberadas 
 
+__03/04:__
+- Desafio do dia
 
 
-- previous mistake (permitir refazer uma questão que o aluno errou)
+
+__Ideias:__
+- previous mistake (permitir refazer uma questão que o aluno errou, do duolinguo)

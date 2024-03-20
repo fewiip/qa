@@ -9,14 +9,16 @@ export const LoginPage = () => {
 
   const { login } = useAuth()
   const { setToken } = useAuthStore()
+  const {setUserData} = useAuthStore()
   const navigate = useNavigate()
 
 
   async function handleSubmit(email: string, password: string) {
     try {
       const response = await login(email, password)
-
+      
       setToken(response.data.token)
+      setUserData(response.data.user)
 
       navigate(RouteEnum.LESSONS)
     } catch (error) {
@@ -32,7 +34,7 @@ export const LoginPage = () => {
 
       <LoginForm onSubmit={handleSubmit} />
 
-      <a href="#">Criar um usuario</a> <br />
+      <a href="signup">Criar um usuario</a> <br />
 
       <a href="">Esqueci a minha senha</a> 
 

@@ -1,5 +1,6 @@
 import { useHttp } from "../../../config/useHttp.hook"
 
+
 export type User = {
   firstName: string
   lastName: string
@@ -10,6 +11,9 @@ interface leaderBoardResponse {
   data: User[]
 }
 
+interface statisticsResponse {
+  data : User 
+}
 
 export const useLessons = () => {
 
@@ -18,6 +22,11 @@ export const useLessons = () => {
   const getLeaderBoard = (): Promise<leaderBoardResponse> => {
     return http.get('/leaderBoard')
   }
+/*
+  const getStatistics = () : Promise<statisticsResponse> => {
+    //return http.get("/statistics/" + userId)
+    return[];
+  }*/
 
   return {
     getLeaderBoard,

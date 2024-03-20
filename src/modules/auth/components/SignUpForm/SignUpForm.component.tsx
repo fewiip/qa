@@ -1,3 +1,4 @@
+import { Button } from "../../../../shared/components/Button/Button.component"
 import { SignUpProps } from "../../api"
 import styles from "./SignUpForm.module.css"
 import { FunctionComponent, useState } from "react"
@@ -20,11 +21,19 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = (props) => {
   }
 
   return <div className={styles.loginCard}>
-      <input type="text" value={firstName} onChange={(i) => setFirstName(i.target.value)} /> <br />
-      <input type="text" value={lastName} onChange={(i) => setLastName(i.target.value)} /> <br />
-      <input type="text" value={email} onChange={(i) => setEmail(i.target.value)} /> <br />
-      <input type="password" value={password} onChange={(i) => setPassword(i.target.value)} />  <br />
+      
+      <label htmlFor="firstName">Nome</label>
+      <input placeholder='' type="text" value={firstName} onChange={(i) => setFirstName(i.target.value)} /> 
+      
+      <label htmlFor="firstName">Sobrenome</label>
+      <input placeholder='' type="text" value={lastName} onChange={(i) => setLastName(i.target.value)} /> 
+      
+      <label htmlFor="firstName">E-mail</label>
+      <input placeholder='' type="text" value={email} onChange={(i) => setEmail(i.target.value)} /> 
+      
+      <label htmlFor="firstName">Senha</label>
+      <input placeholder='' type="password" value={password} onChange={(i) => setPassword(i.target.value)} />  
 
-      <button onClick={handleSubmit}>Criar conta</button>
+      <Button onClick={handleSubmit}>Criar conta</Button>
   </div>
 }

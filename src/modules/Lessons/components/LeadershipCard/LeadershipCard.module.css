@@ -20,3 +20,16 @@
 .score{
   
 }
+
+.button {
+  cursor: pointer;
+  color: orange;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+.leadershipCard {
+  
+}

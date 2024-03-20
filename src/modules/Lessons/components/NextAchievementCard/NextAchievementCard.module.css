@@ -1,0 +1,47 @@
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.image {
+  height: 100px;
+  margin-right: 16px;
+}
+
+.button {
+  cursor: pointer;
+  color: orange;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+.caption {
+  color: gray;
+  font-size: 12px;
+}
+
+.achievementTitle{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.achievementProgressBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
