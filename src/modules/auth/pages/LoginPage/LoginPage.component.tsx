@@ -3,7 +3,9 @@ import { useAuth } from "../../api";
 import { LoginForm } from "../../components/LoginForm";
 import { useAuthStore } from "../../stores/useAuthStore.hook";
 import styles from "./LoginPage.module.css";
-import { RouteEnum } from "../../../../routes/router";
+import { RouteList } from "../../../../routes/router";
+import background from "../../../../assets/images/background.png"
+import { Button } from "../../../../shared/components/Button/Button.component";
 
 export const LoginPage = () => {
 
@@ -20,23 +22,31 @@ export const LoginPage = () => {
       setToken(response.data.token)
       setUserData(response.data.user)
 
-      navigate(RouteEnum.LESSONS)
+      navigate(RouteList.LESSONS)
     } catch (error) {
       alert('usuario ou senha incorreto')
     }
   }
 
+  function handleCreateAccount() {
+    console.log(RouteList.SIGNUP)
+    navigate(RouteList.SIGNUP)
+  }
+
   return <div className={styles.loginWrapper}>
-    <div className={styles.loginCard}>
-      Login
+    {/* transformar em componente */}
+    <div className={styles.imageSide} style={{backgroundImage: `url(${background})`}}></div>
+    
+    <div className={styles.formSide}>
+      <div className={styles.floatButton}>
+        <Button onClick={handleCreateAccount}>
+          Criar conta
+        </Button>
+      </div>
       
-      <br />
-
-      <LoginForm onSubmit={handleSubmit} />
-
-      <a href="signup">Criar um usuario</a> <br />
-
-      <a href="">Esqueci a minha senha</a> 
+      <h1 className={styles.heading}>Entrar</h1>{/* transformar em componente */}
+      
+      <LoginForm onSubmit={handleSubmit} /> 
 
     </div>
   </div>

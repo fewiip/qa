@@ -38,16 +38,25 @@ __20/03__
 - Tela principal (feito!)
 - Quadro de lideres (feito!)
 - Minha estatisticas (feito!)
-- Menu de navegação  
+
 
 __27/03:__
 - Proximas conquistas 
 - Lições liberadas 
+- editor de markdown
+- visualizar as unidades 
+- começar uma tela de perfil 
+- Menu de navegação  
 
 __03/04:__
 - Desafio do dia
 
-
+endereço da API:
+http://193.123.119.217:8080/swagger-ui/index.html#/
 
 __Ideias:__
 - previous mistake (permitir refazer uma questão que o aluno errou, do duolinguo)
+
+usando os pacotes
+- react-markdown 
+- remark-breaks

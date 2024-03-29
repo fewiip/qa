@@ -10,3 +10,36 @@
     max-width: 800px;
     width: 100%;
   }
+
+  .lessonsWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+  }
+  
+  .lessonTitle{
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .lessonsLine{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .lessonsColumn{
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }

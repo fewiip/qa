@@ -3,7 +3,8 @@ import { SignUpProps, useAuth } from "../../api";
 import { SignUpForm } from "../../components/SignUpForm";
 import { useAuthStore } from "../../stores/useAuthStore.hook";
 import styles from "./SignUpPage.module.css";
-import { RouteEnum } from "../../../../routes/router";
+import { RouteList } from "../../../../routes/router";
+import background from "../../../../assets/images/background.png"
 
 export const SignUpPage = () => {
 
@@ -20,15 +21,20 @@ export const SignUpPage = () => {
       setToken(response.data.token)
       setUserData(response.data.user)
 
-      navigate(RouteEnum.LESSONS)
+      navigate(RouteList.LESSONS)
     } catch (error) {
       alert('dados incorretos')
     }
   }
 
   return <div className={styles.loginWrapper}>
-    <div className={styles.loginCard}>
-      Criar conta
+    
+    <div className={styles.imageSide} style={{backgroundImage: `url(${background})`}}></div>
+    
+    <div className={styles.formSide}>
+      <h1 className={styles.heading}>Criar sua conta</h1>{/* transformar em componente */}
+
+      
       
       <br />
 

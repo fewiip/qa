@@ -1,1 +1,2 @@
-export * from './LessonsPage.component'
+export * from './LessonsPage/LessonsPage.component'
+export * from './ChapterPage/ChapterPage.component'

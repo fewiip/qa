@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { RouteEnum } from "../../../routes/router"
+import { RouteList } from "../../../routes/router"
 import { FunctionComponent, ReactNode } from "react"
 import styles from "./NavigationBar.module.css"
 import BookColoredImage from "../../../assets/images/book_colored.png"
@@ -23,10 +23,10 @@ const NavButton: FunctionComponent<NavButtonProps> = ({ children, to, icon}) => 
 
 export const NavigationBar = () => {
   return <nav className={styles.navigationWrapper}>
-    <NavButton to={RouteEnum.LESSONS} icon={BookColoredImage}>Lições</NavButton>
-    <NavButton to={RouteEnum.LESSONS} icon={GroupGrayImage}>Turmas</NavButton>
-    <NavButton to={RouteEnum.LESSONS} icon={ArenaGrayImage}>Arena</NavButton>
-    <NavButton to={RouteEnum.LESSONS} icon={ProfileGrayImage}>Perfil</NavButton>
+    <NavButton to={RouteList.LESSONS} icon={BookColoredImage}>Lições</NavButton>
+    <NavButton to={RouteList.LESSONS} icon={GroupGrayImage}>Turmas</NavButton>
+    <NavButton to={RouteList.LESSONS} icon={ArenaGrayImage}>Arena</NavButton>
+    <NavButton to={RouteList.LESSONS} icon={ProfileGrayImage}>Perfil</NavButton>
 
   </nav>
 }

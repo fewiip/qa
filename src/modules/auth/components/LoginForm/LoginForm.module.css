@@ -1,18 +1,59 @@
 .loginCard {
   box-sizing: border-box;
-  border: 1px solid black;
-  border-radius: 8px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 10px;
-  
+  color: #B3B5BF;
   max-width: 300px;
   width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  gap: 4px;
 }
 
-input {
-    margin-top: 10px;
+
+.input {
+  background-color: #F6F6F6;
+  color: #b3b5bf;
+  border: 2px solid #ececec;
+  border-radius: 8px;
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+  font-weight: 600;
 }
 
-button {
-    margin-top: 10px;
+.input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  color: #8a8a8a;
+}
+
+
+.button {
+  border-radius: 8px;
+  background-color: #FFD54F;
+  color: white;
+  box-shadow: 0px 4px 4px 0px #feb91b;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.loginCard a {
+  font-weight: bold;
+  color: #B3B5BF;
+}
+
+.politics {
+  font-size: 12px;
+  margin-top: 16px;
 }
