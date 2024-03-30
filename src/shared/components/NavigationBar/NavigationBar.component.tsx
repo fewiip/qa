@@ -13,6 +13,13 @@ interface NavButtonProps {
   to: string
 }
 
+export enum PAGES  {
+  LESSONS,
+  CLASSES,
+  ARENA,
+  PROFILE
+}
+
 const NavButton: FunctionComponent<NavButtonProps> = ({ children, to, icon}) => {
   
   return <Link to={to} className={styles.navButton} >
@@ -21,12 +28,14 @@ const NavButton: FunctionComponent<NavButtonProps> = ({ children, to, icon}) => 
     </Link>
 }
 
+//navigate(RouteList.LESSONS)
+
 export const NavigationBar = () => {
   return <nav className={styles.navigationWrapper}>
     <NavButton to={RouteList.LESSONS} icon={BookColoredImage}>Lições</NavButton>
     <NavButton to={RouteList.LESSONS} icon={GroupGrayImage}>Turmas</NavButton>
     <NavButton to={RouteList.LESSONS} icon={ArenaGrayImage}>Arena</NavButton>
-    <NavButton to={RouteList.LESSONS} icon={ProfileGrayImage}>Perfil</NavButton>
+    <NavButton to={RouteList.PROFILE} icon={ProfileGrayImage}>Perfil</NavButton>
 
   </nav>
 }

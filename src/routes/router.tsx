@@ -2,13 +2,15 @@ import { FunctionComponent } from "react"
 import { BrowserRouter, useRoutes } from "react-router-dom"
 import { LoginPage } from "../modules/auth/pages/LoginPage"
 import { PrivateRoute } from "./PrivateRoute.component"
-import { ChapterPage, LessonsPage } from "../modules/Lessons/Pages"
+import { ChapterPage, LessonsPage, ProfilePage } from "../modules/Lessons/Pages"
 import { SignUpPage } from "../modules/auth/pages/SignUpPage"
+
 
 export const RouteList = {
   LESSONS: '/lessons',
   LOGIN: '/login',
   SIGNUP: '/signup',
+  PROFILE: '/profile',
   CHAPTER: '/chapter'
 }
 
@@ -19,6 +21,10 @@ const privateRoutes = [
       {
         path: '/',
         element: <LessonsPage />
+      },
+      {
+        path: RouteList.PROFILE,
+        element: <ProfilePage/>
       },
       {
         path: RouteList.LESSONS,
@@ -58,6 +64,3 @@ export const Router = () => {
     </BrowserRouter>
   )
 }
-
-// const array1 = ["arroz", "feijao"];
-// const array2 = [...array1];//spread 

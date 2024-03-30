@@ -4,11 +4,10 @@ import { AppLayout } from "../../../../shared/components/AppLayout"
 import { LeadershipCard } from "../../components/LeadershipCard/LeadershipCard.component"
 import styles from "./LessonsPage.module.css"
 import { Lesson, User, useLessons } from "../../api"
-import { useAuthStore } from "../../../auth/stores/useAuthStore.hook"
+//import { useAuthStore } from "../../../auth/stores/useAuthStore.hook"
 import { StatisticsCard } from "../../components/StatisticsCard/StatisticsCard.component"
 import { NextAchievementCard } from "../../components/NextAchievementCard"
-import { LessonsCard } from "../../components/LessonsCard/LessonsCard.component"
-import { ChapterButton } from "../../components/ChapterButton"
+import { LessonsCard } from "../../components/LessonsCard/LessonsCard.component" 
 
 export const LessonsPage = () => {
 
@@ -16,7 +15,7 @@ export const LessonsPage = () => {
   //const { token } = useAuthStore()
   //console.log(token);
 
-  const { user } = useAuthStore();
+  //const { user } = useAuthStore();
   //console.log(user);
   //const {getStatistics} = useLessons();
 

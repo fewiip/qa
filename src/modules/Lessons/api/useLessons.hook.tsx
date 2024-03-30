@@ -20,6 +20,12 @@ export type Lesson = {
   }[]
 }
 
+export type Chapter = {
+  id: number,
+  name: string,
+  text: string
+}
+
 interface LeaderBoardResponse {
   data: User[]
 }
@@ -30,6 +36,10 @@ interface LeaderBoardResponse {
 
 interface LessonsResponse {
   data: Lesson[]
+}
+
+interface ChapterResponse {
+  data: Chapter
 }
 
 export const useLessons = () => {
@@ -43,6 +53,18 @@ export const useLessons = () => {
   const getLessons = (): Promise<LessonsResponse> => {
     return http.get('/lesson/all')
   }
+
+  interface ChapterResponse {
+    data: {
+        id: number,
+        name: string,
+        text: string
+    }
+  }
+
+const getChapter = (chapterID: number): Promise<ChapterResponse> => {
+    return http.get('/chapter/'+chapterID)
+  }
   /*
     const getStatistics = () : Promise<statisticsResponse> => {
       //return http.get("/statistics/" + userId)
@@ -51,6 +73,7 @@ export const useLessons = () => {
 
   return {
     getLeaderBoard,
-    getLessons
+    getLessons,
+    getChapter
   }
 }
