@@ -12,7 +12,7 @@ export const RouteList = {
   SIGNUP: '/signup',
   USER: '/user',
   CHAPTER: '/chapter',
-  CHAPTER_ID: '/chapter/id/:id'
+  CHAPTER_ID: '/chapter/:id'
 }
 
 const privateRoutes = [
@@ -32,14 +32,15 @@ const privateRoutes = [
         element: <LessonsPage />
       },
       {
+        path: RouteList.CHAPTER_ID,
+        element: <ChapterPage/>
+      },
+      {
         path: RouteList.CHAPTER,
         element: <ChapterPage />
       },
 
-      {
-        path: RouteList.CHAPTER_ID,
-        Element: <ChapterPage/>
-      }
+      
     ]
   }
 ]

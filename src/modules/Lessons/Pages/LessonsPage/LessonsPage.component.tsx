@@ -11,14 +11,6 @@ import { LessonsCard } from "../../components/LessonsCard/LessonsCard.component"
 
 export const LessonsPage = () => {
 
-
-  //const { token } = useAuthStore()
-  //console.log(token);
-
-  //const { user } = useAuthStore();
-  //console.log(user);
-  //const {getStatistics} = useLessons();
-
   const { getLeaderBoard, getLessons } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);

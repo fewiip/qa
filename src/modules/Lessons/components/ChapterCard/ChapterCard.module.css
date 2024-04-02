@@ -1,0 +1,13 @@
+.cardWrapper{
+    margin-top: 20px;
+    border: 1px solid black;
+    width: 90%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+}
+
+.chapterTitle{
+    font-weight: bold;
+    text-align: center;
+}

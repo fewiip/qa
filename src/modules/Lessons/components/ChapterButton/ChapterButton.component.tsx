@@ -13,7 +13,7 @@ export function ChapterButton (props: ChapterButtonProps) {
 
     const navigate = useNavigate()
     return (
-        <div className={styles.lessonButton} onClick={() => navigate(RouteList.CHAPTER)}>
+        <div className={styles.lessonButton} onClick={() => navigate(RouteList.CHAPTER + '/' + props.idChapter)}>
             
             <div className={styles.image}>
                 <img src={ProfileColoredImage} alt="" />
