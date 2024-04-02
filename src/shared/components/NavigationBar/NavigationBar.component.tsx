@@ -35,7 +35,7 @@ export const NavigationBar = () => {
     <NavButton to={RouteList.LESSONS} icon={BookColoredImage}>Lições</NavButton>
     <NavButton to={RouteList.LESSONS} icon={GroupGrayImage}>Turmas</NavButton>
     <NavButton to={RouteList.LESSONS} icon={ArenaGrayImage}>Arena</NavButton>
-    <NavButton to={RouteList.PROFILE} icon={ProfileGrayImage}>Perfil</NavButton>
+    <NavButton to={RouteList.USER} icon={ProfileGrayImage}>Perfil</NavButton>
 
   </nav>
 }

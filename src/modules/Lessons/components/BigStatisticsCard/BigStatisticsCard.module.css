@@ -1,0 +1,64 @@
+
+
+.cardWrapper {
+  display: flex;
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid lightgray;
+  max-width: 800px;
+  width: 90%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.titulo{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.statisticsCardLine{
+    float: left;
+    width: 100%;  
+}
+
+.statisticCardInfo {
+  margin-top: 20px;
+  display: flex;
+  width: 25%;
+  min-width: 120px;
+  justify-content: center;
+  float: left;
+}
+
+.statisticsCardItem {
+    width: 60px;
+    float: left;
+}
+
+.statisticsCardItem {
+    width: 60px;
+    float: left;
+    flex-direction: column;
+}
+
+.statisticsCardItem img{
+    height: 50px;
+    
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.image {
+  width: 40px
+}

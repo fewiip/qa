@@ -47,9 +47,6 @@ export const LessonsPage = () => {
 
     <div className={styles.lessonsWrapper}>
       <LessonsCard lessons={lessons}/>
-
-      
-
     </div>
   </AppLayout>
 }

@@ -2,26 +2,26 @@ import { NavigationBar } from "../../../../shared/components/NavigationBar/Navig
 import { ChapterCard } from "../../components/ChapterCard/ChapterCard.component";
 import { useState, useEffect } from "react";
 import { Chapter, useLessons } from "../../api/useLessons.hook";
+import { useParams } from "react-router-dom"; 
 
 export const ChapterPage = () => { 
-  const teste =  {
-    id: 1,
-  name: "doskmdso",
-  text: "dsokmndos"
-  } 
+  const {id} = useParams()
+  console.log(id);
   
   const { getChapter} = useLessons();
-  const [chapter, setChapter] = useState<Chapter>(teste);
-  const chapterID = 13;
-
+  const [chapter, setChapter] = useState<Chapter>();
+ 
+  /*
   async function fetchChapter() {
-    const response = await getChapter(chapterID)
+    const response = await getChapter(parseInt(id));
     setChapter(response.data)
   }
 
   useEffect(() => {
     fetchChapter() 
   }, [])
+  <ChapterCard chapter={chapter}  />
+  */
  
   
  
@@ -29,9 +29,6 @@ export const ChapterPage = () => {
   <div>
   <NavigationBar/>
   </div>
-  
-  <ChapterCard chapter={chapter}  />
-  
-  
+  {id}
   </>
 }
