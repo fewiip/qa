@@ -1,7 +1,16 @@
 .userCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     max-width: 800px;
+    width: 90%;
+    
 }
-
+.imgAndInfo{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
 .userName{
     text-transform: capitalize;
     font-weight: bold;
@@ -10,10 +19,32 @@
     color: #828282;
 }
 
-.userAvatar img{
+.userInfo {
+    display: flex;
+    flex-direction: column;
+}
 
+.userAvatar img{
+width: 100%;
 }
 
 .userAvatar {
-    
+    width: 100px;
 }
+
+@media (max-width: 800px) {
+    .userCard {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .imgAndInfo{
+        flex-direction: column;
+        justify-content: center;
+      align-items: center;
+    }
+
+    button{
+        width: 100%;
+    }
+  }

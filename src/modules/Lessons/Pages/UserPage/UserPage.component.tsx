@@ -4,11 +4,12 @@ import { useAuthStore } from "../../../auth/stores/useAuthStore.hook"
 import { BigStatisticsCard } from "../../components/BigStatisticsCard/BigStatisticsCard.component"
 import { BigUserCard } from "../../components/BigUserCard/BigUserCard.component"
 import { BigAchievementsCard } from "../../components/BigAchievementsCard/BigAchievementsCard.component"
+import { AppLayout } from '../../../../shared/components/AppLayout';
 
 export const UserPage = () => {
     const { user } = useAuthStore();
     console.log(user);
-    return<>
+    return <AppLayout >
       <div>
         <NavigationBar />
       </div>
@@ -17,7 +18,5 @@ export const UserPage = () => {
       <BigStatisticsCard/>
       <BigAchievementsCard/>
       </div>
-       
-
-    </>
+      </AppLayout>
 }

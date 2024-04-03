@@ -16,10 +16,17 @@
   margin-top: 20px;
 }
 
+.lessonContent {
+  height: 100%;
+  padding-top: 50px;
+}
+
 
 @media (max-width: 1070px) {
   .lessonsCardsBar {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     height: fit-content;
   }
 }

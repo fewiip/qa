@@ -42,14 +42,27 @@ __20/03__
 
 __27/03:__
 - Proximas conquistas 
-- Lições liberadas 
-- editor de markdown
-- visualizar as unidades 
-- começar uma tela de perfil 
-- Menu de navegação  
+- Lições liberadas (feito!)
+- visualizar as unidades (feito!)
+- começar uma tela de perfil (feito!)
+- Menu de navegação (feito!)
 
 __03/04:__
-- Desafio do dia
+- tela do quiz (feito!)
+- Desafio do dia 
+
+__10/04:__
+- editor de quiz
+- editor de markdown 
+- tela de conclusao de conteudo 
+- tela de perfil 
+
+__17/04:__
+- mostrar dados da conta(feito!)
+- minhas estatisticas
+- troca de dados da conta 
+
+- criasse as turmas (cada turma tem que ter um codigo)
 
 endereço da API:
 http://193.123.119.217:8080/swagger-ui/index.html#/

@@ -1,13 +1,103 @@
 .cardWrapper{
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    border-radius: 16px;
     width: 90%;
     max-width: 800px;
     background-color: white;
     padding: 20px;
+
+    overflow-y: auto;
 }
 
 .chapterTitle{
     font-weight: bold;
     text-align: center;
 }
+
+.imgAndText{
+    display: flex;
+    flex-direction: row;
+}
+
+.books {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    padding-left: 16px;
+    gap: 8px;
+
+    flex-grow: 0;
+}
+
+.book{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.book img{
+    width: 80px;
+}
+
+.bookInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.bookInfo {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.chapterText {
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #888;
+    padding-right: 16px;
+    flex-grow: 1;
+}
+
+.chapterContent{
+    padding-right: 16px;
+    width: 100%;
+}
+
+.chapterText img {
+    width: 100%;
+    align-items: center;
+
+}
+
+.profImage {
+    width: 200px;
+    align-items: center;
+    height: 100%;
+}
+
+.profImage img{
+    width: 200px;
+}
+
+
+@media (max-width: 800px) {
+    .imgAndText{
+        flex-direction: column;
+    }
+
+    .imageTextWrapper{
+        flex-direction: column;
+    }
+    .books{
+        
+    }
+    
+    .chapterText{
+        border: 0px;
+    }
+  }
+

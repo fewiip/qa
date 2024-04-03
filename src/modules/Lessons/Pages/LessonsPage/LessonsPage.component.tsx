@@ -15,6 +15,8 @@ export const LessonsPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);
 
+  
+
   async function fetchLeaderboard() {
     const response = await getLeaderBoard();
     setUsers(response.data);
@@ -30,7 +32,8 @@ export const LessonsPage = () => {
     fetchLessons()
   }, [])
 
-  return <AppLayout>
+  return <AppLayout >
+    <div className={styles.lessonContent}>
     <div className={styles.lessonsCardsBar} >
       <LeadershipCard users={users} />
       <NextAchievementCard />
@@ -39,6 +42,7 @@ export const LessonsPage = () => {
 
     <div className={styles.lessonsWrapper}>
       <LessonsCard lessons={lessons}/>
+    </div>
     </div>
   </AppLayout>
 }

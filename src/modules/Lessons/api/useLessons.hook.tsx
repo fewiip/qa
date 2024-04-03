@@ -24,15 +24,26 @@ export type Chapter = {
   id: number,
   name: string,
   text: string
+  quizzes: Quiz[]
 }
+
+export type Quiz = {
+  id: number,
+  lesson_id: number,
+  name: string,
+  text: string,
+  image: string[],
+  correctAnswer: number,
+  answer: {
+    id: number,
+    text: string
+  }[]
+}
+
 
 interface LeaderBoardResponse {
   data: User[]
 }
-
-// interface statisticsResponse {
-//   data: User
-// }
 
 interface LessonsResponse {
   data: Lesson[]
@@ -40,6 +51,10 @@ interface LessonsResponse {
 
 interface ChapterResponse {
   data: Chapter
+}
+
+interface QuizResponse {
+  data: Quiz
 }
 
 export const useLessons = () => {
@@ -54,26 +69,18 @@ export const useLessons = () => {
     return http.get('/lesson/all')
   }
 
-  interface ChapterResponse {
-    data: {
-        id: number,
-        name: string,
-        text: string
-    }
+  const getChapter = (chapterID: number): Promise<ChapterResponse> => {
+    return http.get('/chapter/' + chapterID)
   }
 
-const getChapter = (chapterID: number): Promise<ChapterResponse> => {
-    return http.get('/chapter/'+chapterID)
+  const getQuiz = (quizID: number): Promise<QuizResponse> => {
+    return http.get('/quiz/' + quizID)
   }
-  /*
-    const getStatistics = () : Promise<statisticsResponse> => {
-      //return http.get("/statistics/" + userId)
-      return[];
-    }*/
 
   return {
     getLeaderBoard,
     getLessons,
-    getChapter
+    getChapter,
+    getQuiz
   }
 }
