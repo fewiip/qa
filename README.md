@@ -55,12 +55,17 @@ __10/04:__
 - editor de quiz
 - editor de markdown 
 - tela de conclusao de conteudo 
-- tela de perfil 
+- tela de perfil (feito!)
 
 __17/04:__
-- mostrar dados da conta(feito!)
+- mostrar dados da conta (feito!)
 - minhas estatisticas
 - troca de dados da conta 
+
+__24/04:__
+
+__01/05:__
+
 
 - criasse as turmas (cada turma tem que ter um codigo)
 
