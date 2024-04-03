@@ -5,6 +5,7 @@ import { PrivateRoute } from "./PrivateRoute.component"
 import { ChapterPage, LessonsPage, UserPage } from "../modules/Lessons/Pages"
 import { SignUpPage } from "../modules/auth/pages/SignUpPage"
 import { QuizPage } from "../modules/Lessons/Pages/QuizPage/QuizPage.component"
+import { EditChapterPage } from "../modules/Lessons/Pages/EditChapterPage/EditChapterPage.component"
 
 
 export const RouteList = {
@@ -14,6 +15,7 @@ export const RouteList = {
   USER: '/user',
   CHAPTER: '/chapter',
   CHAPTER_ID: '/chapter/:id',
+  CHAPEREDITOR_ID: '/edit/chapter/:id',
   QUIZ_ID: '/quiz/:id',
   CHAPTERQUIZ_ID: '/chapter/:chapterid/quiz/:quizid'
 }
@@ -41,6 +43,10 @@ const privateRoutes = [
       {
         path: RouteList.QUIZ_ID,
         element: <QuizPage />
+      },
+      {
+        path: RouteList.CHAPEREDITOR_ID,
+        element: <EditChapterPage/>
       },
       {
         path: RouteList.CHAPTERQUIZ_ID,
