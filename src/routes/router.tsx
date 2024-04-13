@@ -17,7 +17,7 @@ export const RouteList = {
   CHAPTER_ID: '/chapter/:id',
   CHAPEREDITOR_ID: '/edit/chapter/:id',
   QUIZ_ID: '/quiz/:id',
-  CHAPTERQUIZ_ID: '/chapter/:chapterid/quiz/:quizid'
+  CHAPTER_ID_QUIZ_ID: '/chapter/:chapterid/quiz/:quizid'
 }
 
 const privateRoutes = [
@@ -49,7 +49,7 @@ const privateRoutes = [
         element: <EditChapterPage/>
       },
       {
-        path: RouteList.CHAPTERQUIZ_ID,
+        path: RouteList.CHAPTER_ID_QUIZ_ID,
         element: <QuizPage />
       },
       {

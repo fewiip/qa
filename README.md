@@ -39,7 +39,6 @@ __20/03__
 - Quadro de lideres (feito!)
 - Minha estatisticas (feito!)
 
-
 __27/03:__
 - Proximas conquistas 
 - Lições liberadas (feito!)
@@ -52,8 +51,8 @@ __03/04:__
 - Desafio do dia 
 
 __10/04:__
-- editor de quiz
-- editor de markdown 
+- editor de quiz 
+- editor de markdown para as aulas (feito!)
 - tela de conclusao de conteudo 
 - tela de perfil (feito!)
 
@@ -61,6 +60,17 @@ __17/04:__
 - mostrar dados da conta (feito!)
 - minhas estatisticas
 - troca de dados da conta 
+
+- troca de senha
+
+- criar classe
+- editar classe
+
+- lessons lição
+- editar lição
+
+- lessons quiz
+- editar quiz
 
 __24/04:__
 

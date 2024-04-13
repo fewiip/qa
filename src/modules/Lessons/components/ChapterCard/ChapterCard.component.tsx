@@ -7,6 +7,7 @@ import professor1_happy from "../../../../assets/images/professor1_happy.png"
 import book1 from "../../../../assets/images/book1.jpg"
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../../shared/components/Button/Button.component';
+import MDEditor from '@uiw/react-md-editor';
 
 interface ChapterCardProps {
   chapter?: Chapter
@@ -33,7 +34,13 @@ export const ChapterCard: FunctionComponent<ChapterCardProps> = (props) => {
   ]
 
   function handleQuizClick() {
-    navigate(`/quiz/${chapter?.quizzes[0].id}`)
+    //navigate(`/quiz/${chapter?.quizzes[0].id}`)
+    navigate(`/chapter/${chapter?.id}/quiz/${chapter?.quizzes[0].id}`)
+    // chapter/:chapterid/quiz/:quizid
+  }
+
+  function handleEditClick() {
+    navigate(`/edit/chapter/${chapter?.id}`)
   }
 
   return <>
@@ -44,10 +51,11 @@ export const ChapterCard: FunctionComponent<ChapterCardProps> = (props) => {
         </div>
         <div className={styles.chapterText}>
           <div className={styles.chapterTitle}><h2>{chapter?.name}</h2></div>
-          <div className={styles.chapterContent}>
-            <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+          <div className={styles.chapterContent} data-color-mode="light">
+            {/* <ReactMarkdown remarkPlugins={[remarkBreaks]}>
               {chapter?.text}
-            </ReactMarkdown>
+            </ReactMarkdown> */}
+            <MDEditor.Markdown source={chapter?.text} style={{ whiteSpace: 'pre-wrap' }} />
           </div>
         </div>
 
@@ -63,6 +71,7 @@ export const ChapterCard: FunctionComponent<ChapterCardProps> = (props) => {
 
       <div>
         <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleQuizClick}>Desafios +10 bugs</Button>
+        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditClick}>Editar</Button>
       </div>
     </div>
   </>

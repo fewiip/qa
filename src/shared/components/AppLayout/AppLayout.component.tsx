@@ -3,7 +3,7 @@ import { NavigationBar } from "../NavigationBar/NavigationBar.component"
 import styles from './AppLayout.module.css'
 interface AppLayoutProps {
   children: ReactNode
-  variant: 'grey' | 'white'
+  variant?: 'grey' | 'white'
 }
 
 const VARIANT_COLOR = {
@@ -12,7 +12,7 @@ const VARIANT_COLOR = {
 }
 
 export const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
-  const { children, variant } = props
+  const { children, variant = "white" } = props
 
   return (
     <div className={styles.appLayoutWrapper} style={{ backgroundColor: VARIANT_COLOR[variant] }}>

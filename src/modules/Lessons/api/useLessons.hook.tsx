@@ -57,6 +57,13 @@ interface QuizResponse {
   data: Quiz
 }
 
+export interface SignUpProps {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
+
 export const useLessons = () => {
 
   const { http } = useHttp()
@@ -73,14 +80,24 @@ export const useLessons = () => {
     return http.get('/chapter/' + chapterID)
   }
 
+  const putChapter = (payload: Chapter): Promise<ChapterResponse> => {
+    return http.put('/chapter/'+payload.id, payload)
+  }
+
   const getQuiz = (quizID: number): Promise<QuizResponse> => {
     return http.get('/quiz/' + quizID)
+  }
+
+  const putQuiz = (payload: Quiz): Promise<QuizResponse> => {
+    return http.put('/quiz/'+payload.id, payload)
   }
 
   return {
     getLeaderBoard,
     getLessons,
     getChapter,
-    getQuiz
+    putChapter,
+    getQuiz,
+    putQuiz
   }
 }
