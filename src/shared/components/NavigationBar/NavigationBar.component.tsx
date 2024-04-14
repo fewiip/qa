@@ -3,12 +3,12 @@ import { RouteList } from "../../../routes/router"
 import { FunctionComponent, ReactNode } from "react"
 import styles from "./NavigationBar.module.css"
 import BookColoredImage from "../../../assets/images/book_colored.png"
-import BookGreyImage from "../../../assets/images/book_colored.png"
-import GroupColoredImage from "../../../assets/images/group_gray.png"
+import BookGreyImage from "../../../assets/images/book_gray.png"
+import GroupColoredImage from "../../../assets/images/group_colored.png"
 import GroupGreyImage from "../../../assets/images/group_gray.png"
 import ArenaColoredImage from "../../../assets/images/battle2_gray.png"
 import ArenaGreyImage from "../../../assets/images/battle2_gray.png"
-import ProfileColoredImage from "../../../assets/images/profile_gray.png"
+import ProfileColoredImage from "../../../assets/images/profile_colored.png"
 import ProfileGreyImage from "../../../assets/images/profile_gray.png"
 
 interface NavButtonProps {
@@ -35,17 +35,17 @@ const NavButton: FunctionComponent<NavButtonProps> = ({ children, to, icon}) => 
 //navigate(RouteList.LESSONS)
 
 interface NavigationBarProps {
-  variant?: 'lessons' | 'classes' | "user"
+  variant?: 'lessons' | 'classes' | 'user'
 }
 
 export const NavigationBar: FunctionComponent<NavigationBarProps> = (props) => {
-  const { variant = "lessons" } = props
-
+  const { variant = 'lessons'} = props
+  
   return <nav className={styles.navigationWrapper}>
-    <NavButton to={RouteList.LESSONS} icon={BookColoredImage}>Lições</NavButton>
-    <NavButton to={RouteList.LESSONS} icon={GroupGreyImage}>Turmas</NavButton>
+    <NavButton to={RouteList.LESSONS} icon={variant === 'lessons' ? BookColoredImage : BookGreyImage}>Lições</NavButton>
+    <NavButton to={RouteList.LESSONS} icon={variant === 'classes' ? GroupColoredImage : GroupGreyImage}>Turmas</NavButton>
     <NavButton to={RouteList.LESSONS} icon={ArenaGreyImage}>Arena</NavButton>
-    <NavButton to={RouteList.USER} icon={ProfileGreyImage}>Perfil</NavButton>
+    <NavButton to={RouteList.USER} icon={variant === 'user' ? ProfileColoredImage : ProfileGreyImage}>Perfil</NavButton>
 
   </nav>
 }

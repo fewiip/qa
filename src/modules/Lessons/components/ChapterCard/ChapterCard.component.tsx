@@ -72,10 +72,10 @@ export const ChapterCard: FunctionComponent<ChapterCardProps> = (props) => {
 
 
 
-      <div>
-        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleQuizClick}>Desafios +10 bugs</Button>
-        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditChapterClick}>Editar</Button>
-        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleCreateQuizClick}>Criar um quiz</Button>
+      <div className={styles.chapterButtons}>
+        <Button onClick={handleQuizClick}>Desafios +10 bugs</Button>
+        <Button onClick={handleEditChapterClick}>Editar</Button>
+        <Button onClick={handleCreateQuizClick}>Criar um quiz</Button>
 
       </div>
     </div>

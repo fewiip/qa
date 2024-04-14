@@ -11,7 +11,7 @@ export const UserPage = () => {
     console.log(user);
     return <AppLayout >
       <div>
-        <NavigationBar />
+        <NavigationBar variant='user'/>
       </div>
       <div className={styles.contentWrapper}>
       <BigUserCard/>

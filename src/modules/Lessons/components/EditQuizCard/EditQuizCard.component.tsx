@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import styles from './EditQuizCard.module.css'
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from '../../../../shared/components/Button/Button.component';
+import { Input } from "../../../../shared/components/Input";
 
 interface EditQuizCardProps {
     quiz: Quiz
@@ -13,11 +14,11 @@ interface EditQuizCardProps {
 }
 
 export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
-    const {chapterID} = props
-    const { quiz } = props 
+    const { chapterID } = props
+    const { quiz } = props
     const { editQuiz } = useLessons()
     const navigate = useNavigate()
-    
+
     console.log(quiz)
 
     const [quizName, setChapterName] = useState(quiz.name);
@@ -33,14 +34,14 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         try {
             quiz.name = quizName
             quiz.text = quizText || ''
-            
+
             quiz.correctAnswer = quizcorrectAnswer
             quiz.answer[0]['text'] = quizAnswer1
             quiz.answer[1]['text'] = quizAnswer2
             quiz.answer[2]['text'] = quizAnswer3
             quiz.answer[3]['text'] = quizAnswer4
             quiz.answer[4]['text'] = quizAnswer5
-            
+
 
 
             console.log(quiz)
@@ -54,51 +55,57 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
     }
 
     return <div data-color-mode="light">
-        
-            <div>
-                <input type="text" value={quizName} onChange={(i) => setChapterName(i.target.value)} />
-            </div>
 
+        <div className={styles.editQuizTitle}>
+            <Input type="text" value={quizName} onChange={(i) => setChapterName(i.target.value)} />
+        </div>
+        <div className={styles.editQuizTitle}>
             <MDEditor
                 value={quizText}
                 onChange={setChapterText}
                 height='20%'
             />
+        </div>
 
-            {/* {quiz.map(i => <div>i</div>)} */}
+        {/* {quiz.map(i => <div>i</div>)} */}
+
+        <div className={styles.editQuizAnswers}>
             <div>
                 <p>Resposta correta:</p>
-                <input type="text" value={quizcorrectAnswer}  onChange={(i) => setquizcorrectAnswer(parseInt(i.target.value))}/>
+                <Input type="text" value={quizcorrectAnswer} onChange={(i) => setquizcorrectAnswer(parseInt(i.target.value))} />
             </div>
 
             <div>
                 <p>Resposta 1:</p>
-                <input type="text" value={quizAnswer1}  onChange={(i) => setquizAnswer1(i.target.value)}/>
+                <Input type="text" value={quizAnswer1} onChange={(i) => setquizAnswer1(i.target.value)} />
             </div>
             <div>
                 <p>Resposta 2:</p>
-                <input type="text" value={quizAnswer2}  onChange={(i) => setquizAnswer2(i.target.value)}/>
+                <Input type="text" value={quizAnswer2} onChange={(i) => setquizAnswer2(i.target.value)} />
             </div>
             <div>
                 <p>Resposta 3:</p>
-                <input type="text" value={quizAnswer3} onChange={(i) => setquizAnswer3(i.target.value)} />
+                <Input type="text" value={quizAnswer3} onChange={(i) => setquizAnswer3(i.target.value)} />
             </div>
             <div>
                 <p>Resposta 4:</p>
-                <input type="text" value={quizAnswer4}  onChange={(i) => setquizAnswer4(i.target.value)}/>
+                <Input type="text" value={quizAnswer4} onChange={(i) => setquizAnswer4(i.target.value)} />
             </div>
             <div>
                 <p>Resposta 5:</p>
-                <input type="text" value={quizAnswer5}  onChange={(i) => setquizAnswer5(i.target.value)}/>
+                <Input type="text" value={quizAnswer5} onChange={(i) => setquizAnswer5(i.target.value)} />
             </div>
+        </div>
 
 
-            <div>
-                
-                <button>Adicionar questao</button>
-            </div>
+        {/* 
 
-            {/* quiz.answer.map((i) => (
+        <div>
+
+            <button>Adicionar questao</button>
+        </div>
+
+            quiz.answer.map((i) => (
 
                 <button>{i.text}</button>
                 <input type="text" value={quizAnswer1} onChange={(i) => setChapterName(i.target.value)}  />
@@ -106,11 +113,11 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
 
             ))} */}
 
-            <div>
-            <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleSubmit}>Salvar</Button>
-                
-                
-            </div>
- 
+        <div>
+            <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px' }} onClick={handleSubmit}>Salvar</Button>
+
+
+        </div>
+
     </div >
 }

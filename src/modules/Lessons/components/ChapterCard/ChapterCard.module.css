@@ -83,6 +83,10 @@
     width: 200px;
 }
 
+.chapterButtons Button{
+    margin-top: 8px;
+    margin-right: 8px;
+}
 
 @media (max-width: 800px) {
     .imgAndText{

@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { CreateChapterCard} from "../../components/CreateChapterCard/CreateChapterCard.component"
 import { Chapter, useLessons } from "../../api/useLessons.hook";
 
-import styles from './EditChapterPage.module.css'
-export const EditChapterPage = () => {
+import styles from './CreateChapterPage.module.css'
+export const CreateChapterPage = () => {
   const { lessonid } = useParams() 
   return <>
     <AppLayout variant='grey'>

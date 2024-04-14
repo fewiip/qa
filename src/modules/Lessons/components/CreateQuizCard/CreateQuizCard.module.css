@@ -1,7 +1,11 @@
+.createQuizTitle{
+    margin-bottom: 8px;
+}
 .createQuizText{
-    margin-top: 10px;
+    margin-bottom: 8pxpx;
 
 }
 .createQuizAnswers{
     width: 500px;
+    margin-bottom: 8px;
 }

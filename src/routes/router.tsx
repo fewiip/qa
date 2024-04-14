@@ -8,6 +8,7 @@ import { QuizPage } from "../modules/Lessons/Pages/QuizPage/QuizPage.component"
 import { EditChapterPage } from "../modules/Lessons/Pages/EditChapterPage/EditChapterPage.component"
 import { EditQuizPage } from "../modules/Lessons/Pages/EditQuizPage/EditQuizPage.component"
 import { CreateQuizPage } from "../modules/Lessons/Pages/CreateQuizPage/CreateQuizPage.component"
+import { CreateChapterPage } from "../modules/Lessons/Pages/CreateChapterPage/CreateChapterPage.component"
 
 
 export const RouteList = {
@@ -20,7 +21,9 @@ export const RouteList = {
   EDITORCHAPER_ID: '/edit/chapter/:id',
   CHAPTER_ID_QUIZ_ID: '/chapter/:chapterid/quiz/:quizid',
   EDITORQUIZ_ID: '/edit/chapter/:chapterid/quiz/:quizid',
-  CREATE_QUIZ: '/chapter/:chapterid/quiz/add'
+  CREATE_QUIZ: '/chapter/:chapterid/quiz/add',
+  LESSON: '/lesson',
+  CREATE_QUAPTER: '/lesson/:lessonid/chapter/add'
 }
 
 const privateRoutes = [
@@ -63,6 +66,14 @@ const privateRoutes = [
       {
         path: RouteList.CREATE_QUIZ,
         element: <CreateQuizPage />
+      },
+      {
+        path: RouteList.LESSON,
+        element: <LessonsPage />
+      },
+      {
+        path: RouteList.CREATE_QUAPTER,
+        element: <CreateChapterPage/>
       }
       
     ]
