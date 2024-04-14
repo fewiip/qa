@@ -8,7 +8,6 @@ import { AppLayout } from '../../../../shared/components/AppLayout';
 import { CenterCard } from '../../components/CenterCard/CenterCard.component';
 
 export const QuizPage = () => {
-    //CHAPTER_ID_QUIZ_ID: '/chapter/:chapterid/quiz/:quizid'
     const { quizid } = useParams()
     const { chapterid } = useParams()
 
@@ -29,7 +28,7 @@ export const QuizPage = () => {
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard>
-            {quiz && <QuizCard quiz={quiz} />}
+            {quiz && chapterid && <QuizCard quiz={quiz} chapterID={parseInt(chapterid as string)}/>}
         </CenterCard>
         </div>
         

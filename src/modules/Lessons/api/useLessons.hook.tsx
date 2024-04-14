@@ -40,6 +40,20 @@ export type Quiz = {
   }[]
 }
 
+export type QuizPOST = {
+  id: number,
+  chapter: {
+    id: number
+  }
+  name: string,
+  text: string,
+  image: string[],
+  correctAnswer: number,
+  answer: {
+    id: number,
+    text: string
+  }[]
+}
 
 interface LeaderBoardResponse {
   data: User[]
@@ -80,24 +94,34 @@ export const useLessons = () => {
     return http.get('/chapter/' + chapterID)
   }
 
-  const putChapter = (payload: Chapter): Promise<ChapterResponse> => {
+  const editChapter = (payload: Chapter): Promise<ChapterResponse> => {
     return http.put('/chapter/'+payload.id, payload)
+  }
+
+  const createChapter = (payload: Chapter): Promise<ChapterResponse> => {
+    return http.post('/chapter/add', payload)
   }
 
   const getQuiz = (quizID: number): Promise<QuizResponse> => {
     return http.get('/quiz/' + quizID)
   }
 
-  const putQuiz = (payload: Quiz): Promise<QuizResponse> => {
+  const editQuiz = (payload: Quiz): Promise<QuizResponse> => {
     return http.put('/quiz/'+payload.id, payload)
+  }
+
+  const createQuiz = (payload: QuizPOST): Promise<QuizResponse> => {
+    return http.post('/quiz/add', payload)
   }
 
   return {
     getLeaderBoard,
     getLessons,
     getChapter,
-    putChapter,
+    editChapter,
+    createChapter,
     getQuiz,
-    putQuiz
+    editQuiz,
+    createQuiz
   }
 }

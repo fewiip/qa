@@ -17,7 +17,7 @@ export const RadioGroup: FunctionComponent<RadioGroupProps> = ({ options, onChan
   return <>
     <div className={styles.radioWrapper}>
       {
-        options.map((i) => <RadioButton name={i.name} label={i.label} value={i.value} onChange={onChange}/>)
+        options.map((i) => <RadioButton name={i.name} label={i.label} value={i.value} key={i.value} onChange={onChange}/>)
       }
     </div>
   </>

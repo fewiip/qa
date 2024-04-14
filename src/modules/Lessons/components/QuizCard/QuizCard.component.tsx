@@ -8,13 +8,18 @@ import graph from "../../../../assets/images/graph.png"
 import { RadioGroup } from "../../../../shared/components/RadioGroup/RadioGroup.component";
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../../../../shared/components/Button/Button.component';
+
 
 interface QuizCardProps {
     quiz: Quiz
+    chapterID: number
 }
 
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     const { quiz } = props
+    const { chapterID } = props
+    const navigate = useNavigate()
 
     const [selectedAnswer, setSelectedAnswer] = useState()
     
@@ -39,7 +44,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     }
 
     function handleEditClick() {
-        navigate(`/edit/chapter/${chapter?.id}`)
+        navigate(`/edit/chapter/${chapterID}/quiz/${quiz?.id}`)
     }
 
 
@@ -64,20 +69,16 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
         </div>
 
         <div className={styles.answers}>
-
             <RadioGroup options={options} onChange={handleRadioChange} />
-
-            {/* quiz.answer.map((i) => (
-
-                <button>{i.text}</button>
-
-            ))} */}
-
         </div>
 
         {JSON.stringify(selectedAnswer)}
         <div>
+        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleVerify}>Verificar</Button>
             <button onClick={handleVerify}>Verificar</button>
+        </div>
+        <div>
+        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditClick}>Editar</Button>
         </div>
 
     </>

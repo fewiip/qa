@@ -3,17 +3,18 @@ import { CenterCard } from "../CenterCard/CenterCard.component";
 import { Chapter, Quiz, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import styles from './MarkdownEditorCard.module.css'
+import styles from './EditChapterCard.module.css'
 import MDEditor from "@uiw/react-md-editor";
+import { Input } from "../../../../shared/components/Input";
+import { Button } from "../../../../shared/components/Button/Button.component";
 
-
-interface MarkdownEditorCardProps {
+interface EditChapterCardProps {
     chapter: Chapter
 }
 
-export const MarkdownEditorCard: FunctionComponent<MarkdownEditorCardProps> = (props) => {
+export const EditChapterCard: FunctionComponent<EditChapterCardProps> = (props) => {
     const { chapter } = props
-    const { putChapter } = useLessons()
+    const { editChapter } = useLessons()
     const navigate = useNavigate()
 
     const  [ questoes, setQuestoes] = useState([]);
@@ -28,7 +29,7 @@ export const MarkdownEditorCard: FunctionComponent<MarkdownEditorCardProps> = (p
             chapter.text = chapterText || ''
 
             console.log(chapter)
-            const response = await putChapter(chapter)
+            const response = await editChapter(chapter)
 
 
             navigate(`/chapter/${chapter.id}`)
@@ -39,24 +40,26 @@ export const MarkdownEditorCard: FunctionComponent<MarkdownEditorCardProps> = (p
 
     return <div data-color-mode="light">
         <CenterCard>
-            <div>
-                <input type="text" value={chapterName} onChange={(i) => setChapterName(i.target.value)} />
+            <div className={styles.chapterTitle}>
+                <Input type="text" value={chapterName} onChange={(i) => setChapterName(i.target.value)} />
             </div>
 
-            <MDEditor
-                value={chapterText}
-                onChange={setChapterText}
-                height='100%'
-            />
+            <div className={styles.chapterText}>
+                <MDEditor
+                    value={chapterText}
+                    onChange={setChapterText}
+                    height='100%'
+                />
 
-            {/* {quiz.map(i => <div>i</div>)} */}
+                {/* {quiz.map(i => <div>i</div>)} */}
 
+            </div>
             
 
-            <div>
-                <button onClick={handleSubmit}>
+            <div className={styles.options}>
+                <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleSubmit}>
                     Salvar
-                </button>
+                </Button>
             </div>
         </CenterCard>
     </div >

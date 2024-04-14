@@ -39,8 +39,11 @@ export const ChapterCard: FunctionComponent<ChapterCardProps> = (props) => {
     // chapter/:chapterid/quiz/:quizid
   }
 
-  function handleEditClick() {
+  function handleEditChapterClick() {
     navigate(`/edit/chapter/${chapter?.id}`)
+  }
+  function handleCreateQuizClick() {
+    navigate(`/chapter/${chapter?.id}/quiz/add`)
   }
 
   return <>
@@ -71,7 +74,9 @@ export const ChapterCard: FunctionComponent<ChapterCardProps> = (props) => {
 
       <div>
         <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleQuizClick}>Desafios +10 bugs</Button>
-        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditClick}>Editar</Button>
+        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditChapterClick}>Editar</Button>
+        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleCreateQuizClick}>Criar um quiz</Button>
+
       </div>
     </div>
   </>

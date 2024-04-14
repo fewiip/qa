@@ -7,14 +7,14 @@ import { EditQuizCard } from '../../components/EditQuizCard/EditQuizCard.compone
 import { useState, useEffect } from "react";
 
 export const EditQuizPage = () => {
-    const { quizID } = useParams()
-    let { chapterID } = useParams()
+    const { quizid } = useParams()
+    let { chapterid } = useParams()
 
     const { getQuiz } = useLessons();
     const [quiz, setQuiz] = useState<Quiz>();
 
     async function fetchQuiz() {
-        const response = await getQuiz(parseInt(quizID as string));
+        const response = await getQuiz(parseInt(quizid as string));
         setQuiz(response.data)
     }
 
@@ -26,7 +26,7 @@ export const EditQuizPage = () => {
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard>
-            {chapterID && quiz && <EditQuizCard quiz={quiz} chapterID={parseInt(chapterID)}/>}
+            {chapterid && quiz && <EditQuizCard quiz={quiz} chapterID={parseInt(chapterid)}/>}
         </CenterCard>
         </div>
         

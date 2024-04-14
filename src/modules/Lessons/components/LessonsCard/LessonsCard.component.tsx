@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import styles from './LessonsCard.module.css'
 import { Lesson, User, useLessons } from "../../api"
 import { ChapterButton } from "../ChapterButton"
-
+import { Button } from "../../../../shared/components/Button/Button.component";
 
 interface LessonsCardProps {
     lessons: Lesson[]
@@ -10,6 +10,8 @@ interface LessonsCardProps {
 
 export const LessonsCard: FunctionComponent<LessonsCardProps> = (props) => {
     const { lessons } = props
+    
+    
 
     return (
         <>
@@ -17,10 +19,13 @@ export const LessonsCard: FunctionComponent<LessonsCardProps> = (props) => {
             <div className={styles.lessonsWrapper}>
                 
                     {lessons.map((i) => (
-                        <div className={styles.lessonsLine}>
+                        <div className={styles.lessonsLine} key={i.id}>
                         
-                            <div className={styles.lessonTitle}> <p>{i.name}</p></div>
-                            <div className={styles.lessonsColumn}>
+                            <div className={styles.lessonTitle}  > 
+                                <p>{i.name} <Button>Adicionar Lição</Button></p> 
+                                
+                            </div>
+                            <div className={styles.lessonsColumn} >
                                 {i.chapters.map(
                                     (j) => (<ChapterButton name={j.name} idChapter={j.id} key={j.id} />)
                                 )}

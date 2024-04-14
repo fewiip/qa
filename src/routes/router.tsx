@@ -6,6 +6,8 @@ import { ChapterPage, LessonsPage, UserPage } from "../modules/Lessons/Pages"
 import { SignUpPage } from "../modules/auth/pages/SignUpPage"
 import { QuizPage } from "../modules/Lessons/Pages/QuizPage/QuizPage.component"
 import { EditChapterPage } from "../modules/Lessons/Pages/EditChapterPage/EditChapterPage.component"
+import { EditQuizPage } from "../modules/Lessons/Pages/EditQuizPage/EditQuizPage.component"
+import { CreateQuizPage } from "../modules/Lessons/Pages/CreateQuizPage/CreateQuizPage.component"
 
 
 export const RouteList = {
@@ -15,9 +17,10 @@ export const RouteList = {
   USER: '/user',
   CHAPTER: '/chapter',
   CHAPTER_ID: '/chapter/:id',
-  CHAPEREDITOR_ID: '/edit/chapter/:id',
-  QUIZ_ID: '/quiz/:id',
-  CHAPTER_ID_QUIZ_ID: '/chapter/:chapterid/quiz/:quizid'
+  EDITORCHAPER_ID: '/edit/chapter/:id',
+  CHAPTER_ID_QUIZ_ID: '/chapter/:chapterid/quiz/:quizid',
+  EDITORQUIZ_ID: '/edit/chapter/:chapterid/quiz/:quizid',
+  CREATE_QUIZ: '/chapter/:chapterid/quiz/add'
 }
 
 const privateRoutes = [
@@ -41,11 +44,7 @@ const privateRoutes = [
         element: <ChapterPage/>
       },
       {
-        path: RouteList.QUIZ_ID,
-        element: <QuizPage />
-      },
-      {
-        path: RouteList.CHAPEREDITOR_ID,
+        path: RouteList.EDITORCHAPER_ID,
         element: <EditChapterPage/>
       },
       {
@@ -53,10 +52,18 @@ const privateRoutes = [
         element: <QuizPage />
       },
       {
+        path: RouteList.EDITORQUIZ_ID,
+        element: <EditQuizPage />
+      },
+      
+      {
         path: RouteList.CHAPTER,
         element: <ChapterPage />
       },
-
+      {
+        path: RouteList.CREATE_QUIZ,
+        element: <CreateQuizPage />
+      }
       
     ]
   }

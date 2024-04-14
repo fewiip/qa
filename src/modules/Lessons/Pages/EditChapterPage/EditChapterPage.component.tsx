@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom"
 import { AppLayout } from "../../../../shared/components/AppLayout"
 import { useState, useEffect } from "react";
-import { MarkdownEditorCard } from "../../components/MarkdownEditorCard/MarkdownEditorCard.component"
+import { EditChapterCard } from "../../components/EditChapterCard/EditChapterCard.component"
 import { Chapter, useLessons } from "../../api/useLessons.hook";
+
 import styles from './EditChapterPage.module.css'
 export const EditChapterPage = () => {
   const { id } = useParams()
@@ -22,7 +23,7 @@ export const EditChapterPage = () => {
   return <>
     <AppLayout variant='grey'>
       <div className={styles.contentWrapper}>
-        {chapter && <MarkdownEditorCard chapter={chapter} />}
+        {chapter && <EditChapterCard chapter={chapter} />}
       </div>
     </AppLayout>
   </>
