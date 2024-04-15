@@ -2,8 +2,9 @@ import { FunctionComponent, ReactNode } from "react"
 import { NavigationBar } from "../NavigationBar/NavigationBar.component"
 import styles from './AppLayout.module.css'
 interface AppLayoutProps {
-  children: ReactNode
+  children: ReactNode 
   variant?: 'grey' | 'white'
+  page?: 'lessons' | 'courses' | 'user' | 'arena'
 }
 
 const VARIANT_COLOR = {
@@ -11,12 +12,14 @@ const VARIANT_COLOR = {
   white: 'white' 
 }
 
+
+
 export const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
-  const { children, variant = "white" } = props
+  const { children, variant = "white", page = "lessons" } = props
 
   return (
     <div className={styles.appLayoutWrapper} style={{ backgroundColor: VARIANT_COLOR[variant] }}>
-      <NavigationBar />
+      <NavigationBar variant={page}/>
 
       <section>{children}</section>
     </div>

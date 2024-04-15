@@ -2,13 +2,18 @@ import { FunctionComponent } from "react"
 import { BrowserRouter, useRoutes } from "react-router-dom"
 import { LoginPage } from "../modules/auth/pages/LoginPage"
 import { PrivateRoute } from "./PrivateRoute.component"
-import { ChapterPage, LessonsPage, UserPage } from "../modules/Lessons/Pages"
+import { LessonPage, LessonsPage, UserPage } from "../modules/Lessons/Pages"
 import { SignUpPage } from "../modules/auth/pages/SignUpPage"
 import { QuizPage } from "../modules/Lessons/Pages/QuizPage/QuizPage.component"
-import { EditChapterPage } from "../modules/Lessons/Pages/EditChapterPage/EditChapterPage.component"
+
 import { EditQuizPage } from "../modules/Lessons/Pages/EditQuizPage/EditQuizPage.component"
 import { CreateQuizPage } from "../modules/Lessons/Pages/CreateQuizPage/CreateQuizPage.component"
-import { CreateChapterPage } from "../modules/Lessons/Pages/CreateChapterPage/CreateChapterPage.component"
+
+import { CoursesPage } from "../modules/Lessons/Pages/CoursesPage"
+import { ArenaPage } from "../modules/Lessons/Pages/ArenaPage"
+import { CreateLessonPage } from "../modules/Lessons/Pages/CreateLessonPage"
+import { EditLessonPage } from "../modules/Lessons/Pages/EditLessonPage"
+import { CreateCoursePage } from "../modules/Lessons/Pages/CreateCoursePage"
 
 
 export const RouteList = {
@@ -16,14 +21,20 @@ export const RouteList = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   USER: '/user',
+  ARENA: '/arena',
+  COURSES: '/courses',
   CHAPTER: '/chapter',
-  CHAPTER_ID: '/chapter/:id',
-  EDITORCHAPER_ID: '/edit/chapter/:id',
-  CHAPTER_ID_QUIZ_ID: '/chapter/:chapterid/quiz/:quizid',
-  EDITORQUIZ_ID: '/edit/chapter/:chapterid/quiz/:quizid',
-  CREATE_QUIZ: '/chapter/:chapterid/quiz/add',
   LESSON: '/lesson',
-  CREATE_QUAPTER: '/lesson/:lessonid/chapter/add'
+  LESSON_ID: '/lesson/:id',
+  LESSON_ID_QUIZ_ID: '/lesson/:lessonid/quiz/:quizid',
+  CREATE_COURSE: '/courses/add',
+  CREATE_CHAPTER: '',
+  CREATE_LESSON: '/chapter/:chapterid/lesson/add',
+  CREATE_QUIZ: '/lesson/:lessonid/quiz/add',
+  EDITCOURSE: '',
+  EDITCHAPTER: '',
+  EDITORLESSON_ID: '/edit/lesson/:id',
+  EDITORQUIZ_ID: '/edit/lesson/:lessonid/quiz/:quizid',
 }
 
 const privateRoutes = [
@@ -43,39 +54,54 @@ const privateRoutes = [
         element: <LessonsPage />
       },
       {
-        path: RouteList.CHAPTER_ID,
-        element: <ChapterPage/>
+        path: RouteList.LESSON_ID,
+        element: <LessonPage/>
       },
       {
-        path: RouteList.EDITORCHAPER_ID,
-        element: <EditChapterPage/>
-      },
-      {
-        path: RouteList.CHAPTER_ID_QUIZ_ID,
+        path: RouteList.LESSON_ID_QUIZ_ID,
         element: <QuizPage />
       },
       {
-        path: RouteList.EDITORQUIZ_ID,
-        element: <EditQuizPage />
+        path: RouteList.CREATE_COURSE,
+        element: < CreateCoursePage />
       },
-      
       {
-        path: RouteList.CHAPTER,
-        element: <ChapterPage />
+        path: RouteList.CREATE_LESSON,
+        element: <CreateLessonPage/>
       },
       {
         path: RouteList.CREATE_QUIZ,
         element: <CreateQuizPage />
       },
       {
+        path: RouteList.EDITORLESSON_ID,
+        element: <EditLessonPage/>
+      },
+      {
+        path: RouteList.EDITORQUIZ_ID,
+        element: <EditQuizPage />
+      },
+      
+      
+      
+      {
+        path: RouteList.LESSON,
+        element: <LessonPage />
+      },
+      
+      {
         path: RouteList.LESSON,
         element: <LessonsPage />
       },
-      {
-        path: RouteList.CREATE_QUAPTER,
-        element: <CreateChapterPage/>
-      }
       
+      {
+        path: RouteList.COURSES,
+        element: <CoursesPage/>
+      },
+      {
+        path: RouteList.ARENA,
+        element: <ArenaPage/>
+      },
     ]
   }
 ]

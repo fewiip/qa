@@ -2,6 +2,7 @@ import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import styles from './BigUserCard.module.css'
 import avatar_colored from "../../../../assets/images/avatar_colored.png"
 import { useNavigate } from 'react-router-dom';
+import { Button } from "../../../../shared/components/Button/Button.component";
 
 
 
@@ -29,8 +30,8 @@ export const BigUserCard = () => {
                 <div className={styles.userName}>{user?.firstName} {user?.lastName} </div>
                 <div className={styles.userRole}>QA Master</div>
                 <div>
-                    <button onClick={editUser}>Atualizar dados</button>
-                    <button onClick={deleteUser}>Excluir conta</button>
+                    <Button onClick={editUser}>Atualizar dados</Button>
+                    <Button onClick={deleteUser}>Excluir conta</Button>
                 </div>
             </div>
             </div>
@@ -38,7 +39,7 @@ export const BigUserCard = () => {
 
 
             <div>
-                <button>Sair</button>
+                <Button>Sair</Button>
             </div>
         </div>
     </>

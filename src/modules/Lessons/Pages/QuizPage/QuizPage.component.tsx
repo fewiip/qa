@@ -9,7 +9,7 @@ import { CenterCard } from '../../components/CenterCard/CenterCard.component';
 
 export const QuizPage = () => {
     const { quizid } = useParams()
-    const { chapterid } = useParams()
+    const { lessonid } = useParams()
 
     const { getQuiz } = useLessons();
     const [quiz, setQuiz] = useState<Quiz>();
@@ -28,7 +28,7 @@ export const QuizPage = () => {
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard>
-            {quiz && chapterid && <QuizCard quiz={quiz} chapterID={parseInt(chapterid as string)}/>}
+            {quiz && lessonid && <QuizCard quiz={quiz} lessonID={parseInt(lessonid as string)}/>}
         </CenterCard>
         </div>
         

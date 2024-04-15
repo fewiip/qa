@@ -13,12 +13,12 @@ import { Button } from '../../../../shared/components/Button/Button.component';
 
 interface QuizCardProps {
     quiz: Quiz
-    chapterID: number
+    lessonID: number
 }
 
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     const { quiz } = props
-    const { chapterID } = props
+    const { lessonID } = props
     const navigate = useNavigate()
 
     const [selectedAnswer, setSelectedAnswer] = useState()
@@ -44,7 +44,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     }
 
     function handleEditClick() {
-        navigate(`/edit/chapter/${chapterID}/quiz/${quiz?.id}`)
+        navigate(`/edit/lesson/${lessonID}/quiz/${quiz?.id}`)
     }
 
 

@@ -3,17 +3,19 @@ import { useEffect, useState } from "react"
 import { AppLayout } from "../../../../shared/components/AppLayout"
 import { LeadershipCard } from "../../components/LeadershipCard/LeadershipCard.component"
 import styles from "./LessonsPage.module.css"
-import { Lesson, User, useLessons } from "../../api"
+import { Lesson, Chapter, User, useLessons } from "../../api"
 //import { useAuthStore } from "../../../auth/stores/useAuthStore.hook"
 import { StatisticsCard } from "../../components/StatisticsCard/StatisticsCard.component"
 import { NextAchievementCard } from "../../components/NextAchievementCard"
-import { LessonsCard } from "../../components/LessonsCard/LessonsCard.component" 
+import { ChaptersCard } from "../../components/LessonsCard/LessonsCard.component"
+
+
 
 export const LessonsPage = () => {
 
-  const { getLeaderBoard, getLessons } = useLessons();
+  const { getLeaderBoard, getChapters } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
-  const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [chapters, setChapters] = useState<Chapter[]>([]);
 
   
 
@@ -23,8 +25,8 @@ export const LessonsPage = () => {
   }
 
   async function fetchLessons() {
-    const response = await getLessons()
-    setLessons(response.data)
+    const response = await getChapters()
+    setChapters(response.data)
   }
 
   useEffect(() => {
@@ -34,14 +36,14 @@ export const LessonsPage = () => {
 
   return <AppLayout >
     <div className={styles.lessonContent}>
-    <div className={styles.lessonsCardsBar} >
+    <div className={styles.chaptersCardsBar} >
       <LeadershipCard users={users} />
       <NextAchievementCard />
       <StatisticsCard />
     </div>
 
-    <div className={styles.lessonsWrapper}>
-      <LessonsCard lessons={lessons}/>
+    <div className={styles.chaptersWrapper}>
+      <ChaptersCard chapters={chapters}/>
     </div>
     </div>
   </AppLayout>

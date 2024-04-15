@@ -67,7 +67,7 @@ export const BigStatisticsCard = () => {
           <div className={styles.statisticsCardItem}>
             <b>{user?.refill}</b>  <br />
             Refis <br />
-            <Button>repor 5</Button>
+            <Button size="small">repor 5</Button>
           </div>
         </div>
 

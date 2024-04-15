@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Chapter, QuizPOST, Quiz, useLessons } from "../../api";
+import { Lesson, QuizPOST, Quiz, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './CreateQuizCard.module.css'
@@ -9,18 +9,17 @@ import { Button } from '../../../../shared/components/Button/Button.component';
 import { Input } from "../../../../shared/components/Input";
 
 interface CreateQuizCardProps {
-    //quiz: Quiz
-    chapterID: number
+    lessonID: number
 }
 
 export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) => {
-    const { chapterID } = props
+    const { lessonID } = props
 
     const { createQuiz } = useLessons()
     const navigate = useNavigate()
 
-    const [quizName, setChapterName] = useState('');
-    const [quizText, setChapterText] = useState<string | undefined>('');
+    const [quizName, setlessonName] = useState('');
+    const [quizText, setlessonText] = useState<string | undefined>('');
     const [quizcorrectAnswer, setquizcorrectAnswer] = useState(1);
     const [quizAnswer1, setquizAnswer1] = useState('');
     const [quizAnswer2, setquizAnswer2] = useState('');
@@ -30,11 +29,8 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
 
     async function handleSubmit() {
         try {
-            let quiz: QuizPOST = {
-                id: 0,
-                chapter: {
-                    id: chapterID
-                },
+            let quiz: Quiz = {
+                id: 0, 
                 name: quizName,
                 text: quizText || '',
                 image: [],
@@ -68,7 +64,7 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
             const response = await createQuiz(quiz)
             console.log(response)
 
-            navigate(`/chapter/${chapterID}/quiz/${quiz.id}`)
+            navigate(`/lesson/${lessonID}/quiz/${quiz.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errado!')
         }
@@ -77,14 +73,14 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
     return <div data-color-mode="light" className={styles.createQuizBody}>
 
         <div className={styles.createQuizTitle}>
-            <Input placeholder="Titulo" type="text" value={quizName} onChange={(i) => setChapterName(i.target.value)} />
+            <Input placeholder="Titulo" type="text" value={quizName} onChange={(i) => setlessonName(i.target.value)} />
 
         </div>
 
         <div className={styles.createQuizText}>
             <MDEditor
                 value={quizText}
-                onChange={setChapterText}
+                onChange={setlessonText}
                 height='20%'
             />
         </div>
@@ -109,7 +105,6 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
                 <Input type="text" value={quizAnswer3} onChange={(i) => setquizAnswer3(i.target.value)} />
             </div>
             <div>
-                <p>Resposta 4:</p>
                 <Input type="text" value={quizAnswer4} onChange={(i) => setquizAnswer4(i.target.value)} />
             </div>
             <div>
@@ -127,7 +122,7 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
         {/* quiz.answer.map((i) => (
 
                 <button>{i.text}</button>
-                <input type="text" value={quizAnswer1} onChange={(i) => setChapterName(i.target.value)}  />
+                <input type="text" value={quizAnswer1} onChange={(i) => setlessonName(i.target.value)}  />
                 
 
             ))} */}

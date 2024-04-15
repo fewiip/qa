@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Chapter, Quiz, useLessons } from "../../api";
+import { Lesson, Quiz, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './EditQuizCard.module.css'
@@ -10,25 +10,26 @@ import { Input } from "../../../../shared/components/Input";
 
 interface EditQuizCardProps {
     quiz: Quiz
-    chapterID: number
+    lessonID: number
 }
 
 export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
-    const { chapterID } = props
+    const { lessonID } = props
     const { quiz } = props
     const { editQuiz } = useLessons()
     const navigate = useNavigate()
 
     console.log(quiz)
 
-    const [quizName, setChapterName] = useState(quiz.name);
-    const [quizText, setChapterText] = useState<string | undefined>(quiz.text);
+    const [quizName, setlessonName] = useState(quiz.name);
+    const [quizText, setlessonText] = useState<string | undefined>(quiz.text);
     const [quizcorrectAnswer, setquizcorrectAnswer] = useState(quiz.correctAnswer);
     const [quizAnswer1, setquizAnswer1] = useState(quiz.answer[0]['text']);
     const [quizAnswer2, setquizAnswer2] = useState(quiz.answer[1]['text']);
     const [quizAnswer3, setquizAnswer3] = useState(quiz.answer[2]['text']);
     const [quizAnswer4, setquizAnswer4] = useState(quiz.answer[3]['text']);
     const [quizAnswer5, setquizAnswer5] = useState(quiz.answer[4]['text']);
+    const [quizAnswers, setQuizAnswers] = useState(quiz.answer);
 
     async function handleSubmit() {
         try {
@@ -48,7 +49,7 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
             const response = await editQuiz(quiz)
             console.log(response)
 
-            navigate(`/chapter/${chapterID}/quiz/${quiz.id}`)
+            navigate(`/lesson/${lessonID}/quiz/${quiz.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errado!')
         }
@@ -57,17 +58,25 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
     return <div data-color-mode="light">
 
         <div className={styles.editQuizTitle}>
-            <Input type="text" value={quizName} onChange={(i) => setChapterName(i.target.value)} />
+            <Input type="text" value={quizName} onChange={(i) => setlessonName(i.target.value)} />
         </div>
         <div className={styles.editQuizTitle}>
             <MDEditor
                 value={quizText}
-                onChange={setChapterText}
+                onChange={setlessonText}
                 height='20%'
             />
         </div>
 
-        {/* {quiz.map(i => <div>i</div>)} */}
+        {/*{quiz.answer.map((i) => (
+            <div>
+                <p>{i.text}</p>
+                <input type="text" value={i.text} />
+            </div>
+        ))
+        }*/}
+
+
 
         <div className={styles.editQuizAnswers}>
             <div>
@@ -105,13 +114,7 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
             <button>Adicionar questao</button>
         </div>
 
-            quiz.answer.map((i) => (
-
-                <button>{i.text}</button>
-                <input type="text" value={quizAnswer1} onChange={(i) => setChapterName(i.target.value)}  />
-                
-
-            ))} */}
+            } */}
 
         <div>
             <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px' }} onClick={handleSubmit}>Salvar</Button>

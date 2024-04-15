@@ -9,13 +9,14 @@ import { CreateQuizCard } from "../../components/CreateQuizCard/CreateQuizCard.c
 
 export const CreateQuizPage = () => {
     
-    let { chapterid } = useParams()
+    let { lessonid } = useParams()
     
 
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard>
-            {chapterid &&  <CreateQuizCard chapterID={parseInt(chapterid)}/>}
+            {lessonid &&  <CreateQuizCard lessonID={parseInt(lessonid)}/>}
+            {!lessonid && <h1>Erro!</h1> }
         </CenterCard>
         </div>
         

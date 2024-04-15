@@ -1,20 +1,20 @@
 import { FunctionComponent } from 'react'
 import styles from './LessonsCard.module.css'
-import { Lesson, User, useLessons } from "../../api"
-import { ChapterButton } from "../ChapterButton"
+import { Chapter, User, useLessons } from "../../api"
+import { LessonButton } from "../LessonButton"
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { useNavigate } from 'react-router-dom';
 
-interface LessonsCardProps {
-    lessons: Lesson[]
+interface ChaptersCardProps {
+    chapters: Chapter[]
 }
 
-export const LessonsCard: FunctionComponent<LessonsCardProps> = (props) => {
-    const { lessons } = props
+export const ChaptersCard: FunctionComponent<ChaptersCardProps> = (props) => {
+    const { chapters } = props
     const navigate = useNavigate()
     
-    function handleCreateChapterClick(lessonid: number) {
-        navigate(`/lesson/${lessonid}/chapter/add`)
+    function handleCreateChapterClick(chapterid: number) {
+        navigate(`/chapter/${chapterid}/lesson/add`) //old
     }
 
     return (
@@ -22,7 +22,7 @@ export const LessonsCard: FunctionComponent<LessonsCardProps> = (props) => {
 
             <div className={styles.lessonsWrapper}>
                 
-                    {lessons.map((i) => (
+                    {chapters.map((i) => (
                         <div className={styles.lessonsLine} key={i.id}>
                         
                             <div className={styles.lessonTitle}  > 
@@ -30,8 +30,8 @@ export const LessonsCard: FunctionComponent<LessonsCardProps> = (props) => {
                                 
                             </div>
                             <div className={styles.lessonsColumn} >
-                                {i.chapters.map(
-                                    (j) => (<ChapterButton name={j.name} idChapter={j.id} key={j.id} />)
+                                {i.lessons.map(
+                                    (j) => (<LessonButton name={j.name} lessonid={j.id} key={j.id} />)
                                 )}
                             </div>
                         </div>

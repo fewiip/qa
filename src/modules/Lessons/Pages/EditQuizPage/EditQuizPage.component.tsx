@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 export const EditQuizPage = () => {
     const { quizid } = useParams()
-    let { chapterid } = useParams()
+    let { lessonid } = useParams()
 
     const { getQuiz } = useLessons();
     const [quiz, setQuiz] = useState<Quiz>();
@@ -26,7 +26,7 @@ export const EditQuizPage = () => {
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard>
-            {chapterid && quiz && <EditQuizCard quiz={quiz} chapterID={parseInt(chapterid)}/>}
+            {lessonid && quiz && <EditQuizCard quiz={quiz} lessonID={parseInt(lessonid)}/>}
         </CenterCard>
         </div>
         

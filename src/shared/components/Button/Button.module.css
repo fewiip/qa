@@ -1,5 +1,7 @@
 .buttonWrapper {
   padding: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
   border-radius: 100px;
   border: 1px solid lightgray;
   border-bottom: 3px solid lightgray;

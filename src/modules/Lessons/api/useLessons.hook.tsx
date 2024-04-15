@@ -10,17 +10,33 @@ export type User = {
   victory: number
   id: number
 }
-export type Lesson = {
+
+export type Course = {
+  id: number,
+  name: string,
+  owner: string,
+  chapters: Chapter[]
+}
+
+export type Chapter = {
   id: number,
   name: string
-  chapters: {
+  lessons: Lesson[]
+}
+
+/*
+export type Chapter = {
+  id: number,
+  name: string
+  lessons: {
     id: number,
     name: string,
     text: string
   }[]
-}
+}*/
 
-export type Chapter = {
+
+export type Lesson = {
   id: number,
   name: string,
   text: string
@@ -29,7 +45,6 @@ export type Chapter = {
 
 export type Quiz = {
   id: number,
-  lesson_id: number,
   name: string,
   text: string,
   image: string[],
@@ -59,12 +74,16 @@ interface LeaderBoardResponse {
   data: User[]
 }
 
-interface LessonsResponse {
-  data: Lesson[]
+interface ChaptersResponse {
+  data: Chapter[]
 }
 
 interface ChapterResponse {
   data: Chapter
+}
+
+interface LessonResponse {
+  data: Lesson
 }
 
 interface QuizResponse {
@@ -86,20 +105,25 @@ export const useLessons = () => {
     return http.get('/leaderBoard')
   }
 
-  const getLessons = (): Promise<LessonsResponse> => {
-    return http.get('/lesson/all')
+  const getChapters = (): Promise<ChaptersResponse> => {
+    return http.get('/chapter/all')
   }
 
   const getChapter = (chapterID: number): Promise<ChapterResponse> => {
-    return http.get('/chapter/' + chapterID)
+    return http.get('/lesson/' + chapterID)
   }
 
-  const editChapter = (payload: Chapter): Promise<ChapterResponse> => {
-    return http.put('/chapter/'+payload.id, payload)
+  const getLesson = (lessonID: number): Promise<LessonResponse> => {
+    return http.get('/lesson/' + lessonID)
   }
 
-  const createChapter = (payload: Chapter): Promise<ChapterResponse> => {
-    return http.post('/chapter/add', payload)
+  const editLesson = (payload: Lesson): Promise<LessonResponse> => {
+    return http.put('/lesson/'+payload.id, payload)
+  }
+
+  const createLesson = (payload: Lesson, chapterid: number): Promise<LessonResponse> => {
+    // chapter/{id}/add/lessons
+    return http.post(`chapter/${chapterid}/add/lessons`, payload)
   }
 
   const getQuiz = (quizID: number): Promise<QuizResponse> => {
@@ -110,16 +134,16 @@ export const useLessons = () => {
     return http.put('/quiz/'+payload.id, payload)
   }
 
-  const createQuiz = (payload: QuizPOST): Promise<QuizResponse> => {
+  const createQuiz = (payload: Quiz, ): Promise<QuizResponse> => {
     return http.post('/quiz/add', payload)
   }
 
   return {
     getLeaderBoard,
-    getLessons,
-    getChapter,
-    editChapter,
-    createChapter,
+    getChapters,
+    getLesson,
+    editLesson,
+    createLesson,
     getQuiz,
     editQuiz,
     createQuiz

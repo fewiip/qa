@@ -1,4 +1,4 @@
-.lessonsCardsBar {
+.chaptersCardsBar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   height: 160px;
 }
 
-.lessonsWrapper {
+.chaptersWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@
 
 
 @media (max-width: 1070px) {
-  .lessonsCardsBar {
+  .chaptersCardsBar {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
