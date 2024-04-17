@@ -1,6 +1,6 @@
 import { ChangeEvent, FunctionComponent, InputHTMLAttributes, useMemo, useState } from "react"
 import styles from './QuizCard.module.css'
-import { Quiz } from "../../api"
+import { Lesson, Quiz, useLessons } from "../../api"
 import ReactMarkdown from "react-markdown"
 import remarkBreaks from "remark-breaks";
 import professor1_happy from "../../../../assets/images/professor1_happy.png"
@@ -12,19 +12,20 @@ import { Button } from '../../../../shared/components/Button/Button.component';
 
 
 interface QuizCardProps {
-    quiz: Quiz
+    quiz: Quiz, 
     lessonID: number
 }
 
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
-    const { quiz } = props
+    let { quiz } = props 
     const { lessonID } = props
-    const navigate = useNavigate()
-
-    const [selectedAnswer, setSelectedAnswer] = useState()
     
-    const correctAnswer = quiz.correctAnswer;
+    const navigate = useNavigate()
+ 
+    const [selectedAnswer, setSelectedAnswer] = useState()
 
+    const correctAnswer = quiz.correctAnswer;
+ 
     const options = useMemo(() => {
         return quiz.answer.map(i => ({
             name: 'answers',
@@ -40,14 +41,14 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
 
     function handleVerify() {
         if (!selectedAnswer) return
-        toast(parseInt(selectedAnswer) === correctAnswer ?  'resposta certa': 'resposta errada')
+        toast(parseInt(selectedAnswer) === correctAnswer ? 'resposta certa' : 'resposta errada')
     }
 
     function handleEditClick() {
         navigate(`/edit/lesson/${lessonID}/quiz/${quiz?.id}`)
     }
 
-
+ 
     return <>
 
         <div className={styles.imageTextWrapper}>
@@ -66,20 +67,20 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     {/*<img src={graph} alt="" />*/}
                 </div>
             </div>
-        </div>
-
+        </div> 
         <div className={styles.answers}>
             <RadioGroup options={options} onChange={handleRadioChange} />
         </div>
 
         {JSON.stringify(selectedAnswer)}
         <div>
-        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleVerify}>Verificar</Button>
-            
+            <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px' }} onClick={handleVerify}>Verificar</Button>
+
         </div>
         <div>
-        <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditClick}>Editar</Button>
+            <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px' }} onClick={handleEditClick}>Editar</Button>
         </div>
+        
 
     </>
 }
