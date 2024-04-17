@@ -12,6 +12,7 @@
 .cards {
     margin-left: 20px;
     width: 50%;
+    display: flex;
     flex-direction: column;
 }
 
@@ -20,47 +21,54 @@
     flex-direction: row;
 }
 
-.text img {
-    width: 150px;
-  }
-
-
+.card {
+    padding: 15px;
+    border-radius: 16px;
+    border: 1px solid lightgray;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
 .cardTitle{
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 10px;
-  }
-  
-  .card img {
+}
+
+.card img {
     width: 80px;
     height: 80px;
-  }
-  
-  .teacher {
+}
+
+.teacher {
     color: #666;
-  }
-  
-  .row{
+}
+
+.row{
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  .column {
+}
+.column {
     margin-left: 10px;
     display: flex;
     flex-direction: column;
     
-  }
-  
-  .seeMore{
+}
+
+.seeMore{
     margin-top: 10px;
     display: flex;
     flex-direction: row-reverse;
-  }
-  
-  
+}
+
+.text img {
+    width: 150px;
+}
 
 @media (max-width: 800px) {
     .content {

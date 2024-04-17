@@ -29,31 +29,25 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
 
     async function handleSubmit() {
         try {
-            let quiz: Quiz = {
-                id: 0, 
+            let quiz: QuizPOST = {
                 name: quizName,
                 text: quizText || '',
                 image: [],
                 correctAnswer: quizcorrectAnswer,
-                answer: [
+                answerRequests: [
                     {
-                        id: 1,
                         text: quizAnswer1
                     },
                     {
-                        id: 2,
                         text: quizAnswer2
                     },
                     {
-                        id: 3,
                         text: quizAnswer3
                     },
                     {
-                        id: 4,
                         text: quizAnswer4
                     },
                     {
-                        id: 5,
                         text: quizAnswer5
                     }
                 ]
@@ -61,10 +55,9 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
 
 
             console.log(quiz)
-            const response = await createQuiz(quiz)
+            const response = await createQuiz(quiz, lessonID)
             console.log(response)
-
-            navigate(`/lesson/${lessonID}/quiz/${quiz.id}`)
+            navigate(`/lesson/${lessonID}/quiz/${response.data.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errado!')
         }
@@ -105,6 +98,7 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
                 <Input type="text" value={quizAnswer3} onChange={(i) => setquizAnswer3(i.target.value)} />
             </div>
             <div>
+                <p>Resposta 4:</p>
                 <Input type="text" value={quizAnswer4} onChange={(i) => setquizAnswer4(i.target.value)} />
             </div>
             <div>
@@ -114,12 +108,14 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (props) =>
         </div>
 
 
+
+
+        {/* 
         <div>
 
             <button>Adicionar questao</button>
         </div>
-
-        {/* quiz.answer.map((i) => (
+        quiz.answer.map((i) => (
 
                 <button>{i.text}</button>
                 <input type="text" value={quizAnswer1} onChange={(i) => setlessonName(i.target.value)}  />

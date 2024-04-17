@@ -7,7 +7,7 @@ import styles from './CreateCoursePage.module.css'
 export const CreateCoursePage = () => {
     const { user } = useAuthStore();
 
-    return <AppLayout variant='white'>
+    return <AppLayout variant='white' page="courses">
       <div className={styles.contentWrapper}>
         {user && <CreateCourseCard userid={user?.id}  /> }
       </div>

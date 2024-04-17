@@ -6,5 +6,5 @@ type CardProps = {
 }
 
 export const Card: FunctionComponent<CardProps> = ({ children }) => {
-  return <div className={styles.cardWrapper}>{children}</div>
+  return <div className={styles.card}>{children}</div>
 }

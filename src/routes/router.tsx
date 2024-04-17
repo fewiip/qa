@@ -14,6 +14,8 @@ import { ArenaPage } from "../modules/Lessons/Pages/ArenaPage"
 import { CreateLessonPage } from "../modules/Lessons/Pages/CreateLessonPage"
 import { EditLessonPage } from "../modules/Lessons/Pages/EditLessonPage"
 import { CreateCoursePage } from "../modules/Lessons/Pages/CreateCoursePage"
+import { EditCoursePage } from "../modules/Lessons/Pages/EditCoursePage"
+import { SeeAllCourses } from "../modules/Lessons/Pages/SeeAllCoursesPage/SeeAllCoursesPage.component"
 
 
 export const RouteList = {
@@ -31,9 +33,10 @@ export const RouteList = {
   CREATE_CHAPTER: '',
   CREATE_LESSON: '/chapter/:chapterid/lesson/add',
   CREATE_QUIZ: '/lesson/:lessonid/quiz/add',
-  EDITCOURSE: '',
+  EDITCOURSE: '/courses/edit/:courseid',
+  SELLALLCOURSES: '/courses/all',
   EDITCHAPTER: '',
-  EDITORLESSON_ID: '/edit/lesson/:id',
+  EDITORLESSON_ID: '/lesson/edit/:id',
   EDITORQUIZ_ID: '/edit/lesson/:lessonid/quiz/:quizid',
 }
 
@@ -62,9 +65,21 @@ const privateRoutes = [
         element: <QuizPage />
       },
       {
+        path: RouteList.COURSES,
+        element: <CoursesPage/>
+      },
+      {
+        path: RouteList.SELLALLCOURSES,
+        element: < SeeAllCourses />
+      },      
+      {
         path: RouteList.CREATE_COURSE,
         element: < CreateCoursePage />
       },
+      {
+        path: RouteList.EDITCOURSE,
+        element: <EditCoursePage/>
+      }, 
       {
         path: RouteList.CREATE_LESSON,
         element: <CreateLessonPage/>
@@ -73,6 +88,7 @@ const privateRoutes = [
         path: RouteList.CREATE_QUIZ,
         element: <CreateQuizPage />
       },
+      
       {
         path: RouteList.EDITORLESSON_ID,
         element: <EditLessonPage/>
@@ -80,10 +96,7 @@ const privateRoutes = [
       {
         path: RouteList.EDITORQUIZ_ID,
         element: <EditQuizPage />
-      },
-      
-      
-      
+      },   
       {
         path: RouteList.LESSON,
         element: <LessonPage />
@@ -94,10 +107,7 @@ const privateRoutes = [
         element: <LessonsPage />
       },
       
-      {
-        path: RouteList.COURSES,
-        element: <CoursesPage/>
-      },
+      
       {
         path: RouteList.ARENA,
         element: <ArenaPage/>

@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Chapter, Lesson, Quiz, useLessons } from "../../api";
+import { Chapter, Lesson, LessonPOST, Quiz, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './CreateLessonCard.module.css'
@@ -13,12 +13,7 @@ interface CreateLessonCardProps {
 }
 
 export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (props) => {
-    const lesson:Lesson = {
-        id:0,
-        text:'',
-        name: '',
-        quizzes: []
-    }
+    
     
     
     const {chapterID} = props
@@ -34,6 +29,10 @@ export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (props
 
     async function handleSubmit() {
         try {
+            const lesson:LessonPOST = { 
+                text:'',
+                name: '', 
+            }
 
             lesson.name = lessonName
             lesson.text = lessonText || ''
@@ -41,8 +40,8 @@ export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (props
             console.log(lesson)
             const response = await createLesson(lesson, chapterID)
 
-
-            navigate('/')
+            console.log("id da resposta "+response.data.id)
+            navigate(`/lesson/${response.data.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errado!')
         }
@@ -50,11 +49,11 @@ export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (props
 
     return <div data-color-mode="light">
         <CenterCard>
-            <div className={styles.chapterTitle}>
+            <div className={styles.lessonTitle}>
                 <Input type="text" value={lessonName} onChange={(i) => setLessonName(i.target.value)} />
             </div>
 
-            <div className={styles.chapterText}>
+            <div className={styles.lessonText}>
                 <MDEditor
                     value={lessonText}
                     onChange={setLessonText}

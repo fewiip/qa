@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import ProfileColoredImage from "../../../../assets/images/bug_alpha.png"
 import styles from "./LessonButton.module.css"
 import { RouteList } from "../../../../routes/router";
-
 interface LessonButtonProps {
      lessonid: number,
      name: string,

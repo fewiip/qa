@@ -39,7 +39,7 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
   }
 
   function handleEditLessonClick() {
-    navigate(`/edit/lesson/${lesson?.id}`)
+    navigate(`/lesson/edit/${lesson?.id}`)
   }
   function handleCreateQuizClick() {
     navigate(`/lesson/${lesson?.id}/quiz/add`)

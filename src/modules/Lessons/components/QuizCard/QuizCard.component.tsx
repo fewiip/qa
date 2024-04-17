@@ -63,7 +63,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     <ReactMarkdown remarkPlugins={[remarkBreaks]}>
                         {quiz.text}
                     </ReactMarkdown>
-                    <img src={graph} alt="" />
+                    {/*<img src={graph} alt="" />*/}
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
         {JSON.stringify(selectedAnswer)}
         <div>
         <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleVerify}>Verificar</Button>
-            <button onClick={handleVerify}>Verificar</button>
+            
         </div>
         <div>
         <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px'}} onClick={handleEditClick}>Editar</Button>
