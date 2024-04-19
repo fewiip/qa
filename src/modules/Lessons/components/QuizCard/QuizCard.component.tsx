@@ -19,8 +19,8 @@ interface QuizCardProps {
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     let { quiz } = props 
     const { lessonID } = props
-    
     const navigate = useNavigate()
+    
  
     const [selectedAnswer, setSelectedAnswer] = useState()
 

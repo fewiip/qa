@@ -1,0 +1,54 @@
+
+.listItem li {
+    
+    margin: 0;
+    padding: 0;
+}
+
+.listBlock  {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.listItemCourse{
+    margin-top: -1px;
+    margin-left: 0px;
+    border: 1px solid black;
+    list-style-type: none;
+    padding: 3px;
+}
+
+.listItemChapter{
+    margin-top: -1px;
+    margin-left: 40px;
+    border: 1px solid black;
+    list-style-type: none;
+    padding: 3px;
+}
+
+.listItemLesson{
+    margin-top: -1px;
+    margin-left: 80px;
+    border: 1px solid black;
+    list-style-type: none;
+    padding: 3px;
+}
+
+.listItemQuiz{
+    margin-top: -1px;
+    margin-left: 120px;
+    border: 1px solid black;
+    list-style-type: none;
+    padding: 3px;
+}
+
+.space{
+    height: 10px;
+}

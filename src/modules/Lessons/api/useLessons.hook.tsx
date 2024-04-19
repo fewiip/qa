@@ -139,6 +139,10 @@ export const useLessons = () => {
     return http.get(`/course/${courseid}`)
   } 
 
+  const editCourse = (courseid: number): Promise<CourseResponse> => {
+    return http.put(`/course/${courseid}`);
+  }
+
   const getChapters = (): Promise<ChaptersResponse> => {
     return http.get('/chapter/all')
   }
@@ -184,6 +188,7 @@ export const useLessons = () => {
     createCourse,
     getCourses,
     getCourse,
+    editCourse,
     createChapter,
     getChapter,
     getLesson,

@@ -27,8 +27,11 @@ export const QuizPage = () => {
     }
 
     useEffect(() => {
-        fetchQuiz(), fetchlesson()
-    }, [])
+        if (quizid && lessonid) {
+            fetchQuiz()
+            fetchlesson()
+        }
+    }, [quizid, lessonid])
 
 
 

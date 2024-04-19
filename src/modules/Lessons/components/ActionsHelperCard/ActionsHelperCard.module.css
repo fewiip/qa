@@ -1,5 +1,40 @@
-.line{
+.line {
+    margin-top: 1Novo
+    CapítuloNovo
+    Capítulo0px;
     display: flex;
     flex-direction: row;
     width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+}
+
+.image {
+    margin-right: 20px;
+}
+
+.image img {
+    height: 50px;
+    width: 50px;
+}
+
+.text {
+    font-weight: bold;
 }

@@ -30,8 +30,6 @@ export const EditLessonCard: FunctionComponent<EditLessonCardProps> = (props) =>
 
             console.log(lesson)
             const response = await editLesson(lesson)
-
-
             navigate(`/lesson/${lesson.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errad!')
