@@ -23,3 +23,9 @@
     width: 100%;
 }
 
+.buttons{
+    margin-top: 20px; 
+}
+.buttons Button {
+    margin-right: 10px;
+}

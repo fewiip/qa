@@ -19,8 +19,8 @@ export type Course = {
 }
 
 export type CoursePOST = {
-  name: string, 
-  owner: number
+  name?: string, 
+  owner?: number
 }
 
 export type Chapter = {
@@ -139,12 +139,16 @@ export const useLessons = () => {
     return http.get(`/course/${courseid}`)
   } 
 
-  const editCourse = (courseid: number): Promise<CourseResponse> => {
-    return http.put(`/course/${courseid}`);
+  const editCourse = (courseid: number, payload: CoursePOST): Promise<CourseResponse> => {
+    return http.put(`/courses/${courseid}`);
   }
 
   const getChapters = (): Promise<ChaptersResponse> => {
     return http.get('/chapter/all')
+  }
+
+  const editChapter = (payload: ChapterPOST, chapterID: number): Promise<ChapterResponse> => {
+    return http.put(`/chapter/${chapterID}`, payload)
   }
 
   const createChapter = (payload: ChapterPOST, courseid: number): Promise<ChapterResponse> => {
@@ -181,6 +185,10 @@ export const useLessons = () => {
     return http.put('/quiz/'+payload.id, payload)
   }
 
+  const deleteQuiz = (quizID: number): Promise<string> => {
+    return http.put('/quiz/'+quizID)
+  }
+
 
   return {
     getLeaderBoard,
@@ -190,6 +198,7 @@ export const useLessons = () => {
     getCourse,
     editCourse,
     createChapter,
+    editChapter,
     getChapter,
     getLesson,
     editLesson,

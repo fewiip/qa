@@ -7,8 +7,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   size?: 'small' | 'big'
 }
 
-
-
 export const Button: FunctionComponent<ButtonProps> = ({children,  ...props}) => {
   const {color = "white"} = props
   const {size = "big"} = props

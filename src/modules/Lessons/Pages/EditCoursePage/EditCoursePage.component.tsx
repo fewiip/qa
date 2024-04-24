@@ -6,17 +6,16 @@ import Image from "../../../../assets/images/image.png"
 import styles from './EditCoursePage.module.css'
 import { Button } from "../../../../shared/components/Button/Button.component"
 import { Input } from "../../../../shared/components/Input"
-import { ChapterPOST, Course, useLessons } from '../../api';
+import { ChapterPOST, Course, CoursePOST, useLessons } from '../../api';
 import { useState, useEffect } from "react";
 import { EditCourseCard } from '../../components/EditCourseCard/EditCourseCard.component';
 import { ActionsHelperCard } from '../../components/ActionsHelperCard';
 
 export const EditCoursePage = () => {
     const { courseid } = useParams();
-    const { getCourse, createChapter, editCourse } = useLessons()
+    const { getCourse, editCourse } = useLessons()
     const [course, setCourse] = useState<Course>();
-    const [courseName, setCourseName] = useState(course?.name);
-    const navigate = useNavigate()
+    const [courseName, setCourseName] = useState(course?.name); 
 
     console.log('course id ' + courseid)
     console.log(course)
@@ -36,18 +35,19 @@ export const EditCoursePage = () => {
 
     async function handleEditApply () {
         try{
-            const payload = {
+            const payload:CoursePOST = {
                 name: courseName,
-                id: course?.id
+                owner: course?.id
             }
             console.log('simulando envio', payload)
-            const response = await editCourse(parseInt(courseid as string))
-            navigate(`/course/edit/${courseid}`)
+            const response = await editCourse(parseInt(courseid as string), payload)
 
+            setCourse(response.data)
         } catch(err) {
             console.error("erro: " + err )
         }
     }
+
 
     return <AppLayout variant='white' page='courses'>
         <div className={styles.contentWrapper}>
@@ -67,7 +67,7 @@ export const EditCoursePage = () => {
                 
                 <ActionsHelperCard/>
                 <EditCourseCard courseid={parseInt(courseid as string)}/>
-                <div>
+                <div className={styles.buttons}>
                     <Button onClick={handleEditApply}>
                         Salvar
                     </Button>
