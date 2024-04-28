@@ -18,29 +18,12 @@ export type Course = {
   chapters: Chapter[]
 }
 
-export type CoursePOST = {
-  name?: string, 
-  owner?: number
-}
-
 export type Chapter = {
   id: number,
   name: string
   owner: string,
   lessons: Lesson[]
 }
-
-/*
-export type Chapter = {
-  id: number,
-  name: string
-  lessons: {
-    id: number,
-    name: string,
-    text: string
-  }[]
-}*/
-
 
 export type Lesson = {
   id: number,
@@ -61,13 +44,22 @@ export type Quiz = {
   }[]
 }
 
-export type LessonPOST = { 
-  name: string,
-  text: string 
+export type subscribePOST = {
+  courseId: number[]
+}
+
+export type CoursePOST = {
+  name?: string, 
+  owner?: number
 }
 
 export type ChapterPOST = {
   name: string
+}
+
+export type LessonPOST = { 
+  name: string,
+  text: string 
 }
 
 export type QuizPOST = {
@@ -125,53 +117,80 @@ export const useLessons = () => {
     return http.get('/leaderBoard')
   }
 
-  const createCourse = (payload: CoursePOST): Promise<CourseResponse> => {
-    
-    return http.post(`/course/add`, payload)
-  } 
-
+  
   const getCourses = (): Promise<CoursesResponse> => {
     return http.get(`/course/all`)
   } 
-
+  
   const getCourse = (courseid: number): Promise<CourseResponse> => {
     
     return http.get(`/course/${courseid}`)
   } 
 
-  const editCourse = (courseid: number, payload: CoursePOST): Promise<CourseResponse> => {
-    return http.put(`/courses/${courseid}`);
+  const subscribeToCourse = (payload: subscribePOST): Promise<User> => {
+    return  http.post('')
+  } 
+  /* 
+  
+  const unSubscribeToCourse = () {
+    return  http.get('')
   }
+  
+  const isSubscribed = (): {
+    return  http.get('')
+  }
+  
+  const getSubscribedCourses = () => {
+    return  http.get('')
+  }*/
 
+  const createCourse = (payload: CoursePOST): Promise<CourseResponse> => {
+    return http.post(`/course/add`, payload)
+  } 
+  
   const getChapters = (): Promise<ChaptersResponse> => {
     return http.get('/chapter/all')
   }
+  
+  const editCourse = (courseID: number, payload: CoursePOST): Promise<CourseResponse> => {
+    return http.put(`/course/${courseID}`, payload);
+  }
 
+  const deleteCourse = (courseID: number ):Promise<string> => {
+    return http.delete('/courses/'+courseID)
+  }
+  
+  const createChapter = (payload: ChapterPOST, courseid: number): Promise<ChapterResponse> => {
+    return http.post(`/course/${courseid}/create/chapter`, payload)
+  }
+  
+  const getChapter = (chapterID: number): Promise<ChapterResponse> => {
+    return http.get('/chapter/' + chapterID)
+  }
+  
   const editChapter = (payload: ChapterPOST, chapterID: number): Promise<ChapterResponse> => {
     return http.put(`/chapter/${chapterID}`, payload)
   }
 
-  const createChapter = (payload: ChapterPOST, courseid: number): Promise<ChapterResponse> => {
-    return http.post(`/course/${courseid}/create/chapter`, payload)
-  }
-
-  const getChapter = (chapterID: number): Promise<ChapterResponse> => {
-    return http.get('/lesson/' + chapterID)
-  }
-
-  const createLesson = (payload: LessonPOST, chapterid: number): Promise<LessonResponse> => {
-    // chapter/{id}/add/lessons
-    return http.post(`chapter/${chapterid}/create/lesson`, payload)
+  const deleteChapter = (chapterID: number) : Promise<string> => {
+    return http.delete('/chapter/'+chapterID)
   }
 
   const getLesson = (lessonID: number): Promise<LessonResponse> => {
     return http.get('/lesson/' + lessonID)
   }
 
-  const editLesson = (payload: Lesson): Promise<LessonResponse> => {
-    return http.put('/lesson/'+payload.id, payload)
+  const createLesson = (payload: LessonPOST, chapterid: number): Promise<LessonResponse> => {
+    return http.post(`chapter/${chapterid}/create/lesson`, payload)
   }
 
+  const editLesson = (payload: Lesson): Promise<LessonResponse> => {
+    return http.put('/lesson/'+payload.id)
+  }
+
+  const deleteLesson = (lessonID: number): Promise<string> => {
+    return http.delete('/lesson/'+lessonID)
+  }
 
   const createQuiz = (payload: QuizPOST, lessonid: number): Promise<QuizResponse> => {
     return http.post(`lesson/${lessonid}/create/quizzes`, payload)
@@ -186,25 +205,29 @@ export const useLessons = () => {
   }
 
   const deleteQuiz = (quizID: number): Promise<string> => {
-    return http.put('/quiz/'+quizID)
+    return http.delete('/quiz/'+quizID)
   }
 
 
   return {
     getLeaderBoard,
     getChapters,
-    createCourse,
     getCourses,
+    createCourse,
     getCourse,
     editCourse,
+    deleteCourse,
     createChapter,
-    editChapter,
     getChapter,
+    editChapter,
+    deleteChapter,
+    createLesson,
     getLesson,
     editLesson,
-    createLesson,
+    deleteLesson,
     getQuiz,
     editQuiz,
-    createQuiz
+    createQuiz,
+    deleteQuiz
   }
 }

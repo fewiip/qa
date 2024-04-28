@@ -31,14 +31,11 @@ export const CreateCourseCard: FunctionComponent<CreateCourseCardProps> = (props
 
     async function handleSubmit() {
         try {
-
             course.name = courseName;
-
             console.log(course)
             const response = await createCourse(course)
             console.log(response.data.id)
-
-            navigate(`/course/${response.data.id}`)
+            navigate(`/courses/${response.data.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errado!')
         }

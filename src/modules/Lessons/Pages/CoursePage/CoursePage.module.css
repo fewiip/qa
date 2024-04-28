@@ -5,3 +5,31 @@
     justify-content: center;
 }
 
+.content{
+    display: flex;
+    flex-direction: row;
+}
+
+.img {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+}
+.img img {
+    height: 200px;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.buttons{
+    margin-top: 20px; 
+    display: flex;
+    flex-direction: row;
+
+}
+.buttons Button {
+    margin-right: 10px;
+}

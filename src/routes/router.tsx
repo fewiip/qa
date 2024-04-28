@@ -16,6 +16,7 @@ import { EditLessonPage } from "../modules/Lessons/Pages/EditLessonPage"
 import { CreateCoursePage } from "../modules/Lessons/Pages/CreateCoursePage"
 import { EditCoursePage } from "../modules/Lessons/Pages/EditCoursePage"
 import { SeeAllCourses } from "../modules/Lessons/Pages/SeeAllCoursesPage/SeeAllCoursesPage.component"
+import { CoursePage } from "../modules/Lessons/Pages/CoursePage"
 
 
 export const RouteList = {
@@ -27,6 +28,7 @@ export const RouteList = {
   COURSES: '/courses',
   CHAPTER: '/chapter',
   LESSON: '/lesson',
+  COURSE_ID: '/courses/:courseid',
   LESSON_ID: '/lesson/:id',
   LESSON_ID_QUIZ_ID: '/lesson/:lessonid/quiz/:quizid',
   CREATE_COURSE: '/courses/add',
@@ -55,6 +57,10 @@ const privateRoutes = [
       {
         path: RouteList.LESSONS,
         element: <LessonsPage />
+      },
+      {
+        path: RouteList.COURSE_ID,
+        element: < CoursePage />
       },
       {
         path: RouteList.LESSON_ID,
