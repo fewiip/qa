@@ -18,31 +18,21 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
     const { quiz } = props
     const { editQuiz } = useLessons()
     const navigate = useNavigate()
-
-    console.log(quiz)
+ 
 
     const [quizName, setlessonName] = useState(quiz.name);
     const [quizText, setlessonText] = useState<string | undefined>(quiz.text);
     const [quizcorrectAnswer, setquizcorrectAnswer] = useState(quiz.correctAnswer);
-    const [quizAnswer1, setquizAnswer1] = useState<string | undefined>(quiz.answer[0] ? quiz.answer[0]['text'] : '');
-    const [quizAnswer2, setquizAnswer2] = useState<string | undefined>(quiz.answer[1] ? quiz.answer[1]['text'] : '');
-    const [quizAnswer3, setquizAnswer3] = useState<string | undefined>(quiz.answer[2] ? quiz.answer[2]['text'] : '');
-    const [quizAnswer4, setquizAnswer4] = useState<string | undefined>(quiz.answer[3] ? quiz.answer[3]['text'] : '');
-    const [quizAnswer5, setquizAnswer5] = useState<string | undefined>(quiz.answer[4] ? quiz.answer[4]['text'] : '');
+    const [quizAnswer1, setquizAnswer1] = useState<string>(quiz.answer[0] ? quiz.answer[0]['text'] : '');
+    const [quizAnswer2, setquizAnswer2] = useState<string>(quiz.answer[1] ? quiz.answer[1]['text'] : '');
+    const [quizAnswer3, setquizAnswer3] = useState<string>(quiz.answer[2] ? quiz.answer[2]['text'] : '');
+    const [quizAnswer4, setquizAnswer4] = useState<string>(quiz.answer[3] ? quiz.answer[3]['text'] : '');
+    const [quizAnswer5, setquizAnswer5] = useState<string>(quiz.answer[4] ? quiz.answer[4]['text'] : '');
     const [quizAnswers, setQuizAnswers] = useState(quiz.answer);
 
     async function handleSubmit() {
         try {
-            quiz.name = quizName
-            quiz.text = quizText || ''
-
-            quiz.correctAnswer = quizcorrectAnswer
-            quiz.answer[0]['text'] = quizAnswer1 as string
-            quiz.answer[1]['text'] = quizAnswer2 as string
-            quiz.answer[2]['text'] = quizAnswer3 as string
-            quiz.answer[3]['text'] = quizAnswer4 as string
-            quiz.answer[4]['text'] = quizAnswer5 as string
-
+            
             const payload:QuizPOST = { 
                 name: quizName,
                 text: quizText || '',
@@ -50,19 +40,19 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
                 correctAnswer: quizcorrectAnswer,
                 answerRequests: [
                     {
-                        text: quiz.answer[0]['text']
+                        text: quizAnswer1
                     },
                     {
-                        text: quiz.answer[1]['text']
+                        text: quizAnswer2
                     },
                     {
-                        text: quiz.answer[2]['text']
+                        text: quizAnswer3
                     },
                     {
-                        text: quiz.answer[3]['text']
+                        text: quizAnswer4
                     },
                     {
-                        text: quiz.answer[4]['text']
+                        text: quizAnswer5
                     },
                 ] 
             }
@@ -73,7 +63,7 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
 
             navigate(`/lesson/${lessonID}/quiz/${quiz.id}`)
         } catch (error) {
-            toast.error('Alguma coisa deu errado!')
+            toast.error('Alguma coisa deu errado!' + error)
         }
     }
 

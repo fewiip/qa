@@ -9,6 +9,17 @@
   margin-bottom: 20px;
 }
 
+.cardWithoutPadding { 
+  border-radius: 16px;
+  border: 1px solid lightgray;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+
 
 .cardTitle{
   font-weight: bold;

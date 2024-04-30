@@ -73,19 +73,17 @@ export const QuizPage = () => {
         } else {
             return lesson.quizzes[thisQuizIndex() + 1]['id']
         }
-
     }
+    
     async function handleNextClick() {
         const response = await getQuiz(nextQuizID() );
         setQuiz(response.data)
     }
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
-        <CenterCard>
+        <CenterCard variant='withoutPadding' >
             {quiz && lesson && lessonid && <QuizCard quiz={quiz}   lessonID={parseInt(lessonid as string)} key={quiz.id}/>}
-            {!isTheLastQuiz() && <div>
-            <Button style={{ padding: '16px', borderRadius: '8px', fontSize: '12px' }} onClick={handleNextClick}>Avançar</Button>
-        </div>}
+            
         </CenterCard>
         </div>
         
