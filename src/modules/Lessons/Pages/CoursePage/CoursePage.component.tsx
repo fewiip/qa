@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
+import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterCard } from "../../components/CenterCard/CenterCard.component";
-import { Course, useLessons } from "../../api";
 import { ActionsHelperCard } from "../../components/ActionsHelperCard";
 import { EditCourseCard } from "../../components/EditCourseCard/EditCourseCard.component";
 import { Button } from "../../../../shared/components/Button/Button.component";
@@ -15,13 +16,13 @@ import Image from "../../../../assets/images/image.png";
 
 export const CoursePage = () => {
   const { courseid } = useParams();
-  const { getCourse } = useLessons();
+  const { getCourse,subscribeToCourse } = useLessons();
+  const { user } = useAuthStore();
   const navigate = useNavigate()
   const [course, setCourse] = useState<Course>();
 
   async function fetchCourse() {
     const response = await getCourse(parseInt(courseid as string));
-    console.log("pegou", response.data);
     setCourse(response.data);
   }
 
@@ -33,6 +34,27 @@ export const CoursePage = () => {
 
   function handleEditCourseClick() {
     navigate('/courses/edit/'+courseid)
+  }
+
+  function handleSeeCourseStatisticsClick(){
+    navigate('/courses/statistics/'+courseid)
+  }
+
+  async function handleSubscribe (){
+    try{
+      if(user) {
+        const payload = {
+          courseId : [
+            parseInt(courseid as string)
+          ]
+        }
+        const response = await subscribeToCourse(payload, user?.id)
+        console.log(response)
+      }
+      
+    }catch{
+
+    }
   }
 
   return (
@@ -55,10 +77,13 @@ export const CoursePage = () => {
                   <Button onClick={handleEditCourseClick}>Editar Curso</Button>
                 </div>
                 <div>
-                  <Button>Inscrever</Button>
+                  <Button onClick={handleSubscribe}>Inscrever</Button>
                 </div>
                 <div>
-                  <Button>Ver Estatisticas</Button>
+                  <Button>Deinscrever</Button>
+                </div>
+                <div>
+                  <Button onClick={handleSeeCourseStatisticsClick}>Ver Estatisticas</Button>
                 </div>
               </div>
             </div>

@@ -69,7 +69,6 @@ export type QuizPOST = {
   image: string[],
   correctAnswer: number,
   answerRequests: {
-    
     text: string
   }[]
 }
@@ -127,8 +126,8 @@ export const useLessons = () => {
     return http.get(`/course/${courseid}`)
   } 
 
-  const subscribeToCourse = (payload: subscribePOST): Promise<User> => {
-    return  http.post('')
+  const subscribeToCourse = (payload: subscribePOST, userID: number): Promise<User> => {
+    return  http.post(`/user/${userID}/subscribe/course`, payload)
   } 
   /* 
   
@@ -140,9 +139,11 @@ export const useLessons = () => {
     return  http.get('')
   }
   
-  const getSubscribedCourses = () => {
-    return  http.get('')
-  }*/
+  */
+
+  const getSubscribedCourses = (userID: number): Promise<CoursesResponse> => {
+    return  http.get(`user/${userID}/subscriptions/all`)
+  }
 
   const createCourse = (payload: CoursePOST): Promise<CourseResponse> => {
     return http.post(`/course/add`, payload)
@@ -150,6 +151,10 @@ export const useLessons = () => {
   
   const getChapters = (): Promise<ChaptersResponse> => {
     return http.get('/chapter/all')
+  }
+
+  const searchCourses = (search: string) : Promise<CoursesResponse> => {
+    return http.get('/course/?name'+search)
   }
   
   const editCourse = (courseID: number, payload: CoursePOST): Promise<CourseResponse> => {
@@ -200,8 +205,8 @@ export const useLessons = () => {
     return http.get('/quiz/' + quizID)
   }
 
-  const editQuiz = (payload: Quiz): Promise<QuizResponse> => {
-    return http.put('/quiz/'+payload.id, payload)
+  const editQuiz = (payload: QuizPOST, quizID: number): Promise<QuizResponse> => {
+    return http.put('/quiz/'+quizID, payload)
   }
 
   const deleteQuiz = (quizID: number): Promise<string> => {
@@ -213,10 +218,13 @@ export const useLessons = () => {
     getLeaderBoard,
     getChapters,
     getCourses,
+    searchCourses,
+    getSubscribedCourses,
     createCourse,
     getCourse,
     editCourse,
     deleteCourse,
+    subscribeToCourse,
     createChapter,
     getChapter,
     editChapter,

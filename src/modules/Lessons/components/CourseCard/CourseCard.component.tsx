@@ -54,14 +54,14 @@ export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
             </div>
             <ul className={styles.listBlock}>
               {course.chapters.map((i, index) => (
-                <li>
-                  <div className={styles.listItemChapter}>
+                <li key={i.id}>
+                  <div className={styles.listItemChapter} >
                     <div className={styles.line}> Capitulo {index + 1}: {i.name}</div>
                   </div>
                   <ul className={styles.listBlock}>
                     {i.lessons.map((j, index) => (
-                      <li>
-                        <div className={styles.listItemLesson}>
+                      <li key={j.id}>
+                        <div className={styles.listItemLesson} >
                           <div className={styles.line}>
                             <div>
                               <a href={`/lesson/${j.id}`}>
@@ -72,8 +72,8 @@ export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
                         </div>
                         <ul className={styles.listBlock}>
                           {j.quizzes.map((k, index) => (
-                            <li>
-                              <div className={styles.listItemQuiz}>
+                            <li key={k.id}>
+                              <div className={styles.listItemQuiz} >
                                 <a href={`/lesson/${j.id}/quiz/${k.id}`}>
                                   Desafio {index + 1}: {k.name}
                                 </a>

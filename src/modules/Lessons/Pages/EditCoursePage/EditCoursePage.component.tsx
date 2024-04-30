@@ -1,15 +1,15 @@
-import { toast } from "react-toastify";
-import { AppLayout } from "../../../../shared/components/AppLayout";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ChapterPOST, Course, CoursePOST, useLessons } from "../../api";
+import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterContent } from "../../components/CenterContent";
-import styles from "./EditCoursePage.module.css";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { Input } from "../../../../shared/components/Input";
-import { ChapterPOST, Course, CoursePOST, useLessons } from "../../api";
-import { useState, useEffect } from "react";
 import { EditCourseCard } from "../../components/EditCourseCard/EditCourseCard.component";
 import { ActionsHelperCard } from "../../components/ActionsHelperCard";
 
+import styles from "./EditCoursePage.module.css";
 import Image from "../../../../assets/images/image.png";
 import edit from "../../../../assets/images/edit.png";
 
@@ -24,7 +24,6 @@ export const EditCoursePage = () => {
 
   async function fetchCourse() {
     const response = await getCourse(parseInt(courseid as string));
-    console.log("pegou", response.data);
     setCourseName(response.data.name);
     setCourse(response.data);
   }

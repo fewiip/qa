@@ -75,6 +75,7 @@ export const EditLessonItem: FunctionComponent<EditLessonItemProps> = (
   }
   async function handleCreateQuiz() {
     setIsCreatingQuiz(false);
+    setQuizName('')
 
     try {
       let payload: QuizPOST = {
@@ -82,7 +83,23 @@ export const EditLessonItem: FunctionComponent<EditLessonItemProps> = (
         text: "",
         image: [],
         correctAnswer: 1,
-        answerRequests: []
+        answerRequests: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ]
       };
       const response = await createQuiz(payload, lesson.id);
       console.log(response.data);

@@ -1,4 +1,3 @@
-import { Button } from "../../../../shared/components/Button/Button.component";
 import { Input } from "../../../../shared/components/Input";
 import { FunctionComponent, useEffect, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
@@ -17,6 +16,7 @@ import delete1 from "../../../../assets/images/delete.png";
 import { EditQuizItem } from "./EditQuizItem";
 import { EditChapterItem } from "./EditChapterItem";
 import { EditLessonItem } from "./EditLessonItem";
+import { Button } from "../../../../shared/components/Button/Button.component";
 
 interface EditCourseCardProps {
   courseid: number;
@@ -65,8 +65,7 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
       console.log(course);
       const response = await createChapter(chapter, courseid);
       console.log(response.data.id);
-      fetchCourse();
-      //navigate(`/courses/edit/${courseid}`)
+      fetchCourse(); 
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
     }

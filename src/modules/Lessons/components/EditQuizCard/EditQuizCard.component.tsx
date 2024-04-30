@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Lesson, Quiz, useLessons } from "../../api";
+import { Lesson, Quiz, QuizPOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './EditQuizCard.module.css'
@@ -24,11 +24,11 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
     const [quizName, setlessonName] = useState(quiz.name);
     const [quizText, setlessonText] = useState<string | undefined>(quiz.text);
     const [quizcorrectAnswer, setquizcorrectAnswer] = useState(quiz.correctAnswer);
-    const [quizAnswer1, setquizAnswer1] = useState(quiz.answer[0]['text']);
-    const [quizAnswer2, setquizAnswer2] = useState(quiz.answer[1]['text']);
-    const [quizAnswer3, setquizAnswer3] = useState(quiz.answer[2]['text']);
-    const [quizAnswer4, setquizAnswer4] = useState(quiz.answer[3]['text']);
-    const [quizAnswer5, setquizAnswer5] = useState(quiz.answer[4]['text']);
+    const [quizAnswer1, setquizAnswer1] = useState<string | undefined>(quiz.answer[0] ? quiz.answer[0]['text'] : '');
+    const [quizAnswer2, setquizAnswer2] = useState<string | undefined>(quiz.answer[1] ? quiz.answer[1]['text'] : '');
+    const [quizAnswer3, setquizAnswer3] = useState<string | undefined>(quiz.answer[2] ? quiz.answer[2]['text'] : '');
+    const [quizAnswer4, setquizAnswer4] = useState<string | undefined>(quiz.answer[3] ? quiz.answer[3]['text'] : '');
+    const [quizAnswer5, setquizAnswer5] = useState<string | undefined>(quiz.answer[4] ? quiz.answer[4]['text'] : '');
     const [quizAnswers, setQuizAnswers] = useState(quiz.answer);
 
     async function handleSubmit() {
@@ -37,16 +37,38 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
             quiz.text = quizText || ''
 
             quiz.correctAnswer = quizcorrectAnswer
-            quiz.answer[0]['text'] = quizAnswer1
-            quiz.answer[1]['text'] = quizAnswer2
-            quiz.answer[2]['text'] = quizAnswer3
-            quiz.answer[3]['text'] = quizAnswer4
-            quiz.answer[4]['text'] = quizAnswer5
+            quiz.answer[0]['text'] = quizAnswer1 as string
+            quiz.answer[1]['text'] = quizAnswer2 as string
+            quiz.answer[2]['text'] = quizAnswer3 as string
+            quiz.answer[3]['text'] = quizAnswer4 as string
+            quiz.answer[4]['text'] = quizAnswer5 as string
 
+            const payload:QuizPOST = { 
+                name: quizName,
+                text: quizText || '',
+                image: [],
+                correctAnswer: quizcorrectAnswer,
+                answerRequests: [
+                    {
+                        text: quiz.answer[0]['text']
+                    },
+                    {
+                        text: quiz.answer[1]['text']
+                    },
+                    {
+                        text: quiz.answer[2]['text']
+                    },
+                    {
+                        text: quiz.answer[3]['text']
+                    },
+                    {
+                        text: quiz.answer[4]['text']
+                    },
+                ] 
+            }
 
-
-            console.log(quiz)
-            const response = await editQuiz(quiz)
+            console.log(payload)
+            const response = await editQuiz(payload, quiz.id)
             console.log(response)
 
             navigate(`/lesson/${lessonID}/quiz/${quiz.id}`)
