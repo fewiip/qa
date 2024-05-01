@@ -10,8 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../../shared/components/Button/Button.component';
 
 export const QuizPage = () => {
-    const { quizid } = useParams()
-    const { lessonid } = useParams()
+    const { quizid, lessonid} = useParams()
     const navigate = useNavigate()
     const { getQuiz, getLesson } = useLessons();
     const [quiz, setQuiz] = useState<Quiz>();
@@ -21,6 +20,7 @@ export const QuizPage = () => {
         const response = await getQuiz(parseInt(quizid as string));
         setQuiz(response.data)
     }
+
     async function fetchlesson() {
         const response = await getLesson(parseInt(lessonid as string));
         setLesson(response.data)
@@ -77,12 +77,29 @@ export const QuizPage = () => {
     
     async function handleNextClick() {
         const response = await getQuiz(nextQuizID() );
+
+        console.log(response.data, 'NEXT')
+        if(response.data.id === quiz?.id) {
+            navigate('/')
+            return
+        }
         setQuiz(response.data)
     }
+
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard variant='withoutPadding' >
-            {quiz && lesson && lessonid && <QuizCard quiz={quiz}   lessonID={parseInt(lessonid as string)} key={quiz.id}/>}
+            {
+                quiz &&
+                lesson &&
+                lessonid &&
+                    <QuizCard
+                        quiz={quiz}
+                        lessonID={parseInt(lessonid as string)}
+                        key={quiz.id}
+                        onNextQuestionClick={handleNextClick}
+                    />
+            }
             
         </CenterCard>
         </div>

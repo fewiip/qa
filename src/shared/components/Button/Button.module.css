@@ -19,3 +19,42 @@
 .buttonWrapper:hover {
   background-color: #eee;
 }
+
+.buttonGreen{
+  padding: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 100px;
+  border: 1px solid #57cc01;
+  border-bottom: 3px solid #b5ec86;
+  color: white;
+  background-color: #57cc01;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+
+  min-width: 60px;
+
+  cursor: pointer;
+}
+
+
+.buttonRed{
+  padding: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 100px;
+  border: 1px solid #ff4b4c;
+  border-bottom: 3px solid #f03838;
+  color: white;
+  background-color: #ff4b4c;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+
+  min-width: 60px;
+
+  cursor: pointer;
+}

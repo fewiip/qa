@@ -10,15 +10,19 @@ import { Lesson, Quiz, useLessons } from "../../api";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import professor1_happy from "../../../../assets/images/professor1_happy.png";
-import graph from "../../../../assets/images/graph.png";
 import { RadioGroup } from "../../../../shared/components/RadioGroup/RadioGroup.component";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../shared/components/Button/Button.component";
 
+import graph from "../../../../assets/images/graph.png";
+import correctIcon from "../../../../assets/images/correct-icon.png";
+import wrongIcon from "../../../../assets/images/wrong-icon.png";
+
 interface QuizCardProps {
   quiz: Quiz;
   lessonID: number;
+  onNextQuestionClick: () => void
 }
 
 const STATE = {
@@ -30,8 +34,7 @@ const STATE = {
 type State = keyof typeof STATE;
 
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
-  let { quiz } = props;
-  const { lessonID } = props;
+  const { lessonID, quiz, onNextQuestionClick } = props;
   const navigate = useNavigate();
 
   const [selectedAnswer, setSelectedAnswer] = useState();
@@ -45,7 +48,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     return quiz.answer.map((i, index) => ({
       name: "answers",
       label: i.text,
-      value: index, 
+      value: index,
     }));
   }, [quiz]);
 
@@ -54,16 +57,16 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
   }
 
   function handleVerify() {
-    if (!selectedAnswer) return; 
+    if (!selectedAnswer) return;
 
-    console.log(options[correctAnswer].value, selectedAnswer, 'RESPOSTAS')
+    console.log(options[correctAnswer].value, selectedAnswer, "RESPOSTAS");
 
     if (options[correctAnswer].value === parseInt(selectedAnswer) + 1) {
-        setCurrentState('correctAnswer')
-        toast( "resposta certa" );
+      setCurrentState("correctAnswer");
+      toast("resposta certa");
     } else {
-        setCurrentState('wrongAnswer')
-        toast( "resposta errada" )
+      setCurrentState("wrongAnswer");
+      toast("resposta errada");
     }
   }
 
@@ -72,8 +75,8 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
   }
 
   return (
-    <>
-    {JSON.stringify(correctAnswer)}
+    <div className={styles.quizCardWrapper}>
+      {/*JSON.stringify(correctAnswer)*/}
       <div className={styles.content}>
         <div className={styles.imageTextWrapper}>
           <div className={styles.profImage}>
@@ -96,39 +99,65 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
           <RadioGroup options={options} onChange={handleRadioChange} />
         </div>
 
-        {JSON.stringify(selectedAnswer)}
-        <div>
+        {/*JSON.stringify(selectedAnswer)*/}
+        <div className={styles.answers}>
           <Button
             style={{ padding: "16px", borderRadius: "8px", fontSize: "12px" }}
             onClick={handleVerify}
           >
             Verificar
           </Button>
-        </div>
-        <div>
           <Button
             style={{ padding: "16px", borderRadius: "8px", fontSize: "12px" }}
             onClick={handleEditClick}
           >
             Editar
           </Button>
-        </div>
+        </div> 
       </div>
 
-      {currentState === STATE.wrongAnswer && <div className={styles.colorBoxRed}>
-        <div className={styles.content}>
-            Errado!
-        </div> 
-      </div>}
+      {currentState === STATE.wrongAnswer && (
+        <div className={styles.colorBoxRed}>
+           <div className={styles.content}>
+            <div className={styles.rowWrap}>
+              <div className={styles.row}>
+                <div>
+                  <img src={wrongIcon} alt="" />
+                </div>
+                <div className={styles.answerText}>
+                  <h1>Ops! Resposta incorreta!</h1>
+                  <p>A resposta correta é: </p>
+                </div>
+              </div>
+              <div>
 
-      {currentState === STATE.correctAnswer && <div className={styles.colorBoxGreen}>
-        <div className={styles.content}>
-        Correto!
-        <Button>
-            Avançar
-        </Button>
-        </div> 
-      </div>}
-    </>
+              <Button color="red">Continuar</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {currentState === STATE.correctAnswer && (
+        <div className={styles.colorBoxGreen}>
+          <div className={styles.content}>
+            <div className={styles.rowWrap}>
+              <div className={styles.row}>
+                <div>
+                  <img src={correctIcon} alt="" />
+                </div>
+                <div className={styles.answerText}>
+                  <h1  className={styles.titleMessage}>Correto!</h1>
+                  <p>A resposta correta é: </p>
+                </div>
+              </div>
+              <div>
+                <Button color="green" onClick={onNextQuestionClick}>Continuar</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
