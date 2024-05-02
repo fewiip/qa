@@ -58,19 +58,19 @@ __10/04:__
 
 __17/04:__
 - mostrar dados da conta (feito!)
-- minhas estatisticas
+- minhas estatisticas (feito!)
 - troca de dados da conta 
 
 - troca de senha
 
-- criar classe
-- editar classe
+- criar classe (feito!)
+- editar classe (feito!)
 
-- lessons lição
-- editar lição
+- criar lição (feito!)
+- editar lição (feito!)
 
-- lessons quiz
-- editar quiz
+- criar quiz (feito!)
+- editar quiz (feito!)
 
 __24/04:__
 
@@ -85,6 +85,7 @@ http://193.123.119.217:8080/swagger-ui/index.html#/
 __Ideias:__
 - previous mistake (permitir refazer uma questão que o aluno errou, do duolinguo)
 
-usando os pacotes
+__usando os pacotes__
 - react-markdown 
 - remark-breaks
+- lottie-react

@@ -14,6 +14,8 @@ import { RadioGroup } from "../../../../shared/components/RadioGroup/RadioGroup.
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../shared/components/Button/Button.component";
+import Lottie from 'lottie-react'
+import animation2 from "../../../../assets/animations/animation2.json"
 
 import graph from "../../../../assets/images/graph.png";
 import correctIcon from "../../../../assets/images/correct-icon.png";
@@ -71,7 +73,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
   }
 
   function handleEditClick() {
-    navigate(`/edit/lesson/${lessonID}/quiz/${quiz?.id}`);
+    navigate(`/edit/lesson/finished/${lessonID}/quiz/${quiz?.id}`);
   }
 
   return (
@@ -152,6 +154,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                 </div>
               </div>
               <div>
+                
                 <Button color="green" onClick={onNextQuestionClick}>Continuar</Button>
               </div>
             </div>

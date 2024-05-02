@@ -26,7 +26,8 @@ export const ChaptersCard: FunctionComponent<ChaptersCardProps> = (props) => {
                         <div className={styles.lessonsLine} key={i.id}>
                         
                             <div className={styles.lessonTitle}  > 
-                                <p>{i.name} <Button size='small' onClick={() => handleCreateChapterClick(i.id)}>Adicionar Lição</Button></p> 
+                                <p>{i.name} </p> 
+                                {/*<Button size='small' onClick={() => handleCreateChapterClick(i.id)}>Adicionar Lição</Button>*/}
                                 
                             </div>
                             <div className={styles.lessonsColumn} >

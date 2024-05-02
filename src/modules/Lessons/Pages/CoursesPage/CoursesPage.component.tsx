@@ -10,12 +10,20 @@ import { useNavigate } from "react-router-dom";
 import team5_coloed from "../../../../assets/images/team5_coloed.png"
 import group2_colored from "../../../../assets/images/group2_colored.png"
 import team1_colored from "../../../../assets/images/team1_colored.png"
-
+import searchIcon from "../../../../assets/images/search.png"
+import { useState } from 'react';
 
 export const CoursesPage = () => {
+    const [search, setSearch] = useState('')
+
+
     const navigate = useNavigate()
     function handleClick() {
         navigate('/courses/add')
+    }
+    
+    function handleSearch () {
+        navigate('/courses/search/'+search)
     }
 
     return <AppLayout page='courses' variant='white'>
@@ -74,8 +82,8 @@ export const CoursesPage = () => {
                         </Card>
                         <Card>
                             <div className={styles.cardTitle}>Buscar turmas</div>
-                            <div>
-                                <Input></Input>
+                            <div className={styles.input} >
+                                <Input icon={searchIcon} onIconClick={handleSearch} value={search} onChange={(i) => setSearch(i.target.value)}></Input>
                             </div>
                             <div className={styles.seeMore}> <a href="/courses/all"> Ver todas</a></div>
                         </Card>

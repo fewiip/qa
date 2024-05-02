@@ -15,3 +15,8 @@
     flex-direction: column;
     width: 100%;
 }
+
+.text p{
+    margin-top: 8px;
+    margin-bottom: 0px;
+}

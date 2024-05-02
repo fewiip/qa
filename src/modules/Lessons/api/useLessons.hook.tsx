@@ -14,7 +14,9 @@ export type User = {
 export type Course = {
   id: number,
   name: string,
-  owner: string,
+  owner: number,
+  ownerName: string,
+  ownerLastName: string, 
   chapters: Chapter[]
 }
 
@@ -154,7 +156,8 @@ export const useLessons = () => {
   }
 
   const searchCourses = (search: string) : Promise<CoursesResponse> => {
-    return http.get('/course/?name'+search)
+    return http.get('/course/?name='+search)
+    //http://193.123.119.217:8080/api/v1/course/?name=Teste
   }
   
   const editCourse = (courseID: number, payload: CoursePOST): Promise<CourseResponse> => {

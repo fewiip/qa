@@ -19,6 +19,8 @@ import { SeeAllCourses } from "../modules/Lessons/Pages/SeeAllCoursesPage/SeeAll
 import { CoursePage } from "../modules/Lessons/Pages/CoursePage"
 import { CourseStatisticsPage } from "../modules/Lessons/Pages/CourseStatisticsPage"
 import { SubscriptionsPage } from "../modules/Lessons/Pages/SubscriptionsPage"
+import { FinishedQuizPage } from "../modules/Lessons/Pages/FinishedQuizPage"
+import { SearchCoursesPage } from "../modules/Lessons/Pages/SearchCoursesPage"
 
 
 export const RouteList = {
@@ -35,6 +37,7 @@ export const RouteList = {
   LESSON_ID: '/lesson/:id',
   LESSON_ID_QUIZ_ID: '/lesson/:lessonid/quiz/:quizid',
   CREATE_COURSE: '/courses/add',
+  SEARCH_COURSE: '/courses/search/:search',
   CREATE_CHAPTER: '',
   CREATE_LESSON: '/chapter/:chapterid/lesson/add',
   CREATE_QUIZ: '/lesson/:lessonid/quiz/add',
@@ -44,6 +47,7 @@ export const RouteList = {
   EDITCHAPTER: '',
   EDITORLESSON_ID: '/lesson/edit/:id',
   EDITORQUIZ_ID: '/edit/lesson/:lessonid/quiz/:quizid',
+  LESSON_FINISHED: '/lesson/finished/:lessonid/'
 }
 
 const privateRoutes = [
@@ -98,6 +102,11 @@ const privateRoutes = [
         path: RouteList.EDITCOURSE,
         element: <EditCoursePage/>
       }, 
+      
+      {
+        path: RouteList.SEARCH_COURSE,
+        element: <SearchCoursesPage/>
+      }, 
       {
         path: RouteList.CREATE_LESSON,
         element: <CreateLessonPage/>
@@ -121,6 +130,10 @@ const privateRoutes = [
       {
         path: RouteList.LESSON,
         element: <LessonsPage />
+      },
+      {
+        path: RouteList.LESSON_FINISHED,
+        element: <FinishedQuizPage/>
       },
       {
         path: RouteList.ARENA,

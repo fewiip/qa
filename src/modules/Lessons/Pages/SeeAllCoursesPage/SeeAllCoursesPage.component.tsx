@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Card } from "../../../../shared/components/Card/Card.component";
 import { Button } from "../../../../shared/components/Button/Button.component";
+import { CourseItem } from "../../components/CourseItem";
 
 export const SeeAllCourses = () => {
     const { getCourses } = useLessons();
@@ -30,6 +31,10 @@ export const SeeAllCourses = () => {
     useEffect(() => {
         fetchCourses()
     }, [])
+
+    function seeCourse(courseID: number){
+        navigate('/courses/'+courseID)
+    }
     return <>
         <AppLayout page="courses" variant="white">
             <div className={styles.contentWrapper}>
@@ -37,12 +42,8 @@ export const SeeAllCourses = () => {
                     {
                         courses?.map(
                             (i) => ( 
-                            <Card>
-                                <div className={styles.cardTitle}> {i.name} </div>
-                                <div className={styles.teacher}> {i.owner}</div>
-                                <Button>Solicitar entrar</Button>
-                                <div><a href={`/courses/edit/${i.id}`}>Ver turma</a></div>
-                            </Card> )
+                                <CourseItem course={i}/>
+                             )
                         )
                     }
                 </CenterContent>

@@ -35,6 +35,11 @@
     width: 80px;
     height: 80px;
   }
+
+  .input img {
+    height: 30px;
+    width: 30px;
+  }
   
   .teacher {
     color: #666;

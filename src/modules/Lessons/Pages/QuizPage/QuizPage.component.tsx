@@ -80,7 +80,7 @@ export const QuizPage = () => {
 
         console.log(response.data, 'NEXT')
         if(response.data.id === quiz?.id) {
-            navigate('/')
+            navigate('/lesson/finished/'+lessonid)
             return
         }
         setQuiz(response.data)
