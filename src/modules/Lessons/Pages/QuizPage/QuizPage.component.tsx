@@ -78,9 +78,8 @@ export const QuizPage = () => {
     async function handleNextClick() {
         const response = await getQuiz(nextQuizID() );
 
-        console.log(response.data, 'NEXT')
         if(response.data.id === quiz?.id) {
-            navigate('/lesson/finished/'+lessonid)
+            navigate('/')
             return
         }
         setQuiz(response.data)

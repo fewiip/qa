@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Lesson, Quiz, useLessons } from "../../api";
+import { Lesson, LessonPOST, Quiz, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './EditLessonCard.module.css'
@@ -17,19 +17,22 @@ export const EditLessonCard: FunctionComponent<EditLessonCardProps> = (props) =>
     const { editLesson } = useLessons()
     const navigate = useNavigate()
 
-    const  [ questoes, setQuestoes] = useState([]);
+    const  [ questoes, setQuestoes] = useState([]); 
 
     const [lessonName, setlessonName] = useState(lesson?.name);
     const [lessonText, setlessonText] = useState<string | undefined>(lesson?.text);
 
 
     async function handleSubmit() {
-        try {
-            lesson.name = lessonName
-            lesson.text = lessonText || ''
+        try { 
+
+            const payload:LessonPOST = {
+                name: lessonName,
+                text: lessonText || ''
+            }
 
             console.log(lesson)
-            const response = await editLesson(lesson)
+            const response = await editLesson(payload, lesson.id)
             navigate(`/lesson/${lesson.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errad!')

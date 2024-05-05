@@ -73,7 +73,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
   }
 
   function handleEditClick() {
-    navigate(`/edit/lesson/finished/${lessonID}/quiz/${quiz?.id}`);
+    navigate(`/edit/lesson/${lessonID}/quiz/${quiz?.id}`);
   }
 
   return (

@@ -192,8 +192,8 @@ export const useLessons = () => {
     return http.post(`chapter/${chapterid}/create/lesson`, payload)
   }
 
-  const editLesson = (payload: Lesson): Promise<LessonResponse> => {
-    return http.put('/lesson/'+payload.id)
+  const editLesson = (payload: LessonPOST, lessonID: number): Promise<LessonResponse> => {
+    return http.put('/lesson/'+lessonID, payload)
   }
 
   const deleteLesson = (lessonID: number): Promise<string> => {
