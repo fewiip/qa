@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
-
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { CenterContent } from "../../components/CenterContent";
 import { CourseCard } from "../../components/CourseCard/CourseCard.component";
