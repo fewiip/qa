@@ -1,38 +1,23 @@
-import { Button } from "../../../../shared/components/Button/Button.component";
-import { Input } from "../../../../shared/components/Input";
 import { FunctionComponent, useEffect, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { ChapterPOST, Course, useLessons } from "../../api";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import styles from "./CourseCard.module.css";
-import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
-
-import add1 from "../../../../assets/images/add1.png";
-import add3 from "../../../../assets/images/add3.png";
-import add4 from "../../../../assets/images/add4.png";
-import edit from "../../../../assets/images/edit.png";
-import delete1 from "../../../../assets/images/delete.png";
-
+import { Course, useLessons } from "../../api";
+import { toast } from "react-toastify"; 
+import styles from "./CourseCard.module.css"; 
+ 
 interface CourseCardProps {
   courseid: number;
 }
 export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
-  const { user } = useAuthStore();
   const { courseid } = props;
-  const { getCourse, createChapter } = useLessons();
-  const [course, setCourse] = useState<Course>();
-  const [chapterName, setChapterName] = useState("");
-  let message = "tudo ok";
-  const navigate = useNavigate();
+  const { getCourse } = useLessons();
+  const [course, setCourse] = useState<Course>();  
 
   async function fetchCourse() {
     try {
       const response = await getCourse(courseid);
       setCourse(response.data);
     } catch {
-      toast.error("Alguma coisa deu errad!");
-      message = "ID não encontrado";
+      toast.error("Alguma coisa deu errad!"); 
     }
   }
 

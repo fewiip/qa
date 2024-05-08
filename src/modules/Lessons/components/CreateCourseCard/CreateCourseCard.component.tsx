@@ -1,13 +1,11 @@
-import { FunctionComponent, useState } from "react";
-import { CenterCard } from "../CenterCard/CenterCard.component";
+import { FunctionComponent, useState } from "react"; 
 import styles from './CreateCourseCard.module.css'
 import { CenterContent } from "../CenterContent/CenterContent.component";
 import { Input } from "../../../../shared/components/Input";
 import { Button } from "../../../../shared/components/Button/Button.component";
-import { Course, CoursePOST, useLessons } from "../../api";
+import { CoursePOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-import { ActionsHelperCard } from "../ActionsHelperCard/ActionsHelperCard.component";
+import { toast } from 'react-toastify'; 
 import Image from "../../../../assets/images/image_greyscale.png"
 
 interface CreateCourseCardProps {

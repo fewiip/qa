@@ -1,4 +1,3 @@
-import { Card } from "../../../../shared/components/Card/Card.component"
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import BugsBottleImage from "../../../../assets/images/jar_colored.png"
 import SwordsImage from "../../../../assets/images/battle2_colored.png"

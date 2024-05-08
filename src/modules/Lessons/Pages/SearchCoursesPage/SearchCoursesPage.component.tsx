@@ -3,11 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
-import { Button } from "../../../../shared/components/Button/Button.component";
-import { Card } from "../../../../shared/components/Card/Card.component";
 import { CenterContent } from '../../components/CenterContent/CenterContent.component';
 import styles from './SearchCoursesPage.module.css'
 import { CourseItem } from "../../components/CourseItem";
+/*import { Button } from "../../../../shared/components/Button/Button.component";
+import { Card } from "../../../../shared/components/Card/Card.component";*/
 
 export const SearchCoursesPage = () => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { Input } from "../../../../shared/components/Input"
 import styles from "./LoginForm.module.css"
-import { FunctionComponent, InputHTMLAttributes, useState } from "react"
+import { FunctionComponent, useState } from "react"
 
 interface LoginFormProps {
   onSubmit: (email: string, password: string) => void

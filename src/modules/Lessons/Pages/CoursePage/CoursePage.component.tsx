@@ -3,32 +3,45 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
-import { CenterCard } from "../../components/CenterCard/CenterCard.component";
-import { ActionsHelperCard } from "../../components/ActionsHelperCard";
-import { EditCourseCard } from "../../components/EditCourseCard/EditCourseCard.component";
+
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { CenterContent } from "../../components/CenterContent";
 import { CourseCard } from "../../components/CourseCard/CourseCard.component";
 
 import styles from "./CoursePage.module.css";
 import Image from "../../../../assets/images/image.png";
+import { toast } from "react-toastify";
 
 
 export const CoursePage = () => {
   const { courseid } = useParams();
-  const { getCourse,subscribeToCourse } = useLessons();
+  const { getCourse,subscribeToCourse, isSubscribed } = useLessons();
   const { user } = useAuthStore();
   const navigate = useNavigate()
   const [course, setCourse] = useState<Course>();
+  const [subscription, setSubscription] = useState(false)
 
   async function fetchCourse() {
     const response = await getCourse(parseInt(courseid as string));
     setCourse(response.data);
   }
 
+  async function fetchSubscription() {
+    if(user && courseid){
+      try{
+        const response = await isSubscribed(user?.id, parseInt(courseid))
+        setSubscription(true)
+      }catch(error){
+        setSubscription(false)
+      }
+    }
+    setSubscription(false)
+  }
+
   useEffect(() => {
     if (courseid) {
       fetchCourse();
+      fetchSubscription();
     }
   }, [courseid]);
 
@@ -40,20 +53,34 @@ export const CoursePage = () => {
     navigate('/courses/statistics/'+courseid)
   }
 
-  async function handleSubscribe (){
+  async function handleSubscribe () {
     try{
       if(user) {
         const payload = {
-          courseId : [
-            parseInt(courseid as string)
-          ]
+          courseId : parseInt(courseid as string) 
         }
-        const response = await subscribeToCourse(payload, user?.id)
-        console.log(response)
+        const response = await subscribeToCourse(payload, user?.id) 
+        setSubscription(true)
       }
       
-    }catch{
+    }catch(error){
+      toast.error("Alguma coisa deu errado!"); 
+      console.log(error)
+    }
+  }
 
+  async function handleUnsubscribe () {
+    try{
+      if(user){
+        const payload = {
+          courseId : parseInt(courseid as string) 
+        }
+        const response = await subscribeToCourse(payload, user?.id) 
+        setSubscription(false)
+      }
+    }catch(error){
+      toast.error("Alguma coisa deu errado!"); 
+      console.log(error)
     }
   }
 
@@ -76,12 +103,12 @@ export const CoursePage = () => {
                 <div>
                   <Button onClick={handleEditCourseClick}>Editar Curso</Button>
                 </div>
-                <div>
+                {!subscription && <div>
                   <Button onClick={handleSubscribe}>Inscrever</Button>
-                </div>
-                <div>
-                  <Button>Deinscrever</Button>
-                </div>
+                </div>}
+                {subscription && <div>
+                  <Button onClick={handleUnsubscribe}>Deinscrever</Button>
+                </div>}
                 <div>
                   <Button onClick={handleSeeCourseStatisticsClick}>Ver Estatisticas</Button>
                 </div>

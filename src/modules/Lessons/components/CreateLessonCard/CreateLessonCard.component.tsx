@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Chapter, Lesson, LessonPOST, Quiz, useLessons } from "../../api";
+import { LessonPOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './CreateLessonCard.module.css'

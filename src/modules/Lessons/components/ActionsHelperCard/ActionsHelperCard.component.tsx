@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
 import styles from './ActionsHelperCard.module.css'
 import add1 from "../../../../assets/images/add1.png"
@@ -8,7 +8,7 @@ import edit from "../../../../assets/images/edit.png"
 import delete1 from "../../../../assets/images/delete.png"
 
 
-export const ActionsHelperCard: FunctionComponent = (props) => {
+export const ActionsHelperCard: FunctionComponent = () => {
     return <>
         <CenterCard>
             <div className={styles.title}>Ações</div>

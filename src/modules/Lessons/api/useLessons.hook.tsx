@@ -47,7 +47,7 @@ export type Quiz = {
 }
 
 export type subscribePOST = {
-  courseId: number[]
+  courseId: number
 }
 
 export type CoursePOST = {
@@ -117,30 +117,39 @@ export const useLessons = () => {
   const getLeaderBoard = (): Promise<LeaderBoardResponse> => {
     return http.get('/leaderBoard')
   }
-
   
   const getCourses = (): Promise<CoursesResponse> => {
     return http.get(`/course/all`)
   } 
   
-  const getCourse = (courseid: number): Promise<CourseResponse> => {
-    
+  const getCourse = (courseid: number): Promise<CourseResponse> => { 
     return http.get(`/course/${courseid}`)
   } 
 
-  const subscribeToCourse = (payload: subscribePOST, userID: number): Promise<User> => {
-    return  http.post(`/user/${userID}/subscribe/course`, payload)
+  const getCoursesByOwner = (courseID: number): Promise<CourseResponse> => { 
+    return http.get(`/course/${courseID}`)
   } 
+
+  const getCourseSubscribers = (courseID: number): Promise<User> => {
+    return http.get(`/course/${courseID}/users`)
+  }
+  
+  const subscribeToCourse = (payload: subscribePOST, userID: number): Promise<User> => {
+    return  http.post(`/user/${userID}/course/subscribe`, payload)
+  } 
+  
+  const unSubscribeToCourse = (payload: subscribePOST, userID: number): Promise<User> => {
+    return  http.post(`/user/${userID}/course/unSubscribe`, payload)
+  }
+  
+  const isSubscribed = (userID: number, courseID: number): Promise<string> =>  {
+    return  http.get(`/user/${userID}/course/${courseID}/subscription`)
+  }
+
   /* 
-  
-  const unSubscribeToCourse = () {
-    return  http.get('')
-  }
-  
-  const isSubscribed = (): {
-    return  http.get('')
-  }
-  
+  const isCourseOwner = (courseid: number): Promise<CourseResponse> => { 
+    return http.get(`/course/${courseid}`)
+  } 
   */
 
   const getSubscribedCourses = (userID: number): Promise<CoursesResponse> => {
@@ -228,6 +237,9 @@ export const useLessons = () => {
     editCourse,
     deleteCourse,
     subscribeToCourse,
+    unSubscribeToCourse,
+    getCoursesByOwner,
+    isSubscribed,
     createChapter,
     getChapter,
     editChapter,

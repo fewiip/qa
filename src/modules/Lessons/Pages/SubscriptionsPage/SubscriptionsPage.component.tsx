@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react"; 
 import { toast } from "react-toastify";
 import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
@@ -10,9 +9,8 @@ import styles from "./SubscriptionsPage.module.css";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 
 export const SubscriptionsPage = () => {
-  const { getCourses, getSubscribedCourses } = useLessons();
-  const [courses, setCourses] = useState<Course[]>();
-  const navigate = useNavigate();
+  const {   getSubscribedCourses } = useLessons();
+  const [courses, setCourses] = useState<Course[]>(); 
   const { user } = useAuthStore();
 
   async function fetchCourses() {
