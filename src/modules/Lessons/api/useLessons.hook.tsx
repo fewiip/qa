@@ -184,9 +184,9 @@ export const useLessons = () => {
     return http.get('/chapter/all')
   }
 
+  //http://193.123.119.217:8080/api/v1/course/?name=Teste
   const searchCourses = (search: string) : Promise<CoursesResponse> => {
     return http.get('/course/?name='+search)
-    //http://193.123.119.217:8080/api/v1/course/?name=Teste
   }
   
   const editCourse = (courseID: number, payload: CoursePOST): Promise<CourseResponse> => {
