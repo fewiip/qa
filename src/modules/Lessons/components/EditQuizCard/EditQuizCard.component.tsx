@@ -39,7 +39,7 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
   const [quizAnswer5, setquizAnswer5] = useState<string>(
     quiz.answer[4] ? quiz.answer[4]["text"] : ""
   );
-  const [quizAnswers, setQuizAnswers] = useState(quiz.answer);
+  //const [quizAnswers, setQuizAnswers] = useState(quiz.answer);
 
   async function handleSubmit() {
     try {

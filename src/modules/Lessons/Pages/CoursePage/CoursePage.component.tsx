@@ -94,6 +94,7 @@ export const CoursePage = () => {
           courseId : parseInt(courseid as string) 
         }
         const response = await unSubscribeToCourse(payload, user?.id) 
+        console.log(response)
         setSubscription(false)
       }
     }catch(error){

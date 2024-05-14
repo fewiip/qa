@@ -3,9 +3,7 @@ import { Lesson, QuizPOST, useLessons } from "../../../api";
 import styles from "./EditLessonItem.module.css";
 import { EditQuizItem } from "../EditQuizItem";
 import { toast } from "react-toastify";
-
-import add1 from "../../../../../assets/images/add1.png";
-import add3 from "../../../../../assets/images/add3.png";
+ 
 import add4 from "../../../../../assets/images/add4.png";
 import edit from "../../../../../assets/images/edit.png";
 import delete1 from "../../../../../assets/images/delete.png";
@@ -47,8 +45,14 @@ export const EditLessonItem: FunctionComponent<EditLessonItemProps> = (
 
     try {
       lessonProps.name = lessonName;
-      const response = await editLesson(lessonProps);
-      setLesson(response.data);
+      setLesson(lessonProps);
+
+      const payload = { 
+          name: lessonProps.name,
+          text: lesson.text  
+      }
+      const response = await editLesson(payload, lesson.id);
+      console.log(response)
     } catch (error) {
       toast.error('Alguma coisa deu errado!')
   }
@@ -59,6 +63,7 @@ export const EditLessonItem: FunctionComponent<EditLessonItemProps> = (
   async function handleDeleteLesson() {
     try{
       const response = await deleteLesson(lesson.id)
+      console.log(response)
       fetchChapter()
     }catch (error) {
       toast.error('Alguma coisa deu errado!')

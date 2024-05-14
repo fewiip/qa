@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react"; 
 import { toast } from "react-toastify";
-import { Course, Subscription, useLessons } from "../../api";
-import { AppLayout } from "../../../../shared/components/AppLayout";
-import { Button } from "../../../../shared/components/Button/Button.component";
-import { Card } from "../../../../shared/components/Card/Card.component";
+import {  Subscription, useLessons } from "../../api";
+import { AppLayout } from "../../../../shared/components/AppLayout"; 
 import { CenterContent } from "../../components/CenterContent/CenterContent.component";
 import styles from "./SubscriptionsPage.module.css";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
@@ -11,8 +9,7 @@ import { CourseItem } from "../../components/CourseItem";
 
 export const SubscriptionsPage = () => {
   const { getSubscribedCourses } = useLessons();
-  const [subscriptions, setSubscriptions] = useState<Subscription[]>();
-  const [courses, setCourses] = useState<Course[]>(); 
+  const [subscriptions, setSubscriptions] = useState<Subscription[]>(); 
   const { user } = useAuthStore();
 
   async function fetchCourses() {

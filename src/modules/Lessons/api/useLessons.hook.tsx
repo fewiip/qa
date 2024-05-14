@@ -72,7 +72,6 @@ export type LessonPOST = {
 }
 
 export type QuizPOST = {
-  
   name: string,
   text: string,
   image: string[],
@@ -81,8 +80,6 @@ export type QuizPOST = {
     text: string
   }[]
 }
-
-
 
 interface LeaderBoardResponse {
   data: User[]
@@ -110,9 +107,7 @@ interface LessonResponse {
 
 interface QuizResponse {
   data: Quiz
-}
-
-
+} 
 
 interface SubscriptionResponse {
   data: Subscription[]
@@ -128,9 +123,7 @@ interface isOwner {
   data: {
     isOwner:boolean
   }
-}
-
-
+} 
 
 export interface SignUpProps {
   firstName: string
@@ -259,6 +252,7 @@ export const useLessons = () => {
     getCourses,
     searchCourses,
     getSubscribedCourses,
+    getCourseSubscribers,
     createCourse,
     getCourse,
     editCourse,

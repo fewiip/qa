@@ -5,7 +5,7 @@ interface SubscriberStatisticsCardProps {
 
 }
 
-export const SubscriberStatisticsCard:FunctionComponent<SubscriberStatisticsCardProps> = (props) => {
+export const SubscriberStatisticsCard:FunctionComponent<SubscriberStatisticsCardProps> = () => {
     return <>
         <CenterCard>
             abluble

@@ -1,13 +1,11 @@
 import styles from './QuizPage.module.css'
 import { Lesson, Quiz, useLessons } from "../../api"
 import { QuizCard } from "../../components/QuizCard/QuizCard.component"
-import { NavigationBar } from "../../../../shared/components/NavigationBar/NavigationBar.component"
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { AppLayout } from '../../../../shared/components/AppLayout';
 import { CenterCard } from '../../components/CenterCard/CenterCard.component';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../../../../shared/components/Button/Button.component';
+import { useNavigate } from 'react-router-dom'; 
 
 export const QuizPage = () => {
     const { quizid, lessonid} = useParams()

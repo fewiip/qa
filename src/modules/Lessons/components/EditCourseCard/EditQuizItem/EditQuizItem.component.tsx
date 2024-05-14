@@ -3,10 +3,7 @@ import { Quiz, useLessons } from "../../../api";
 import styles from './EditQuizItem.module.css'
 import { Input } from "../../../../../shared/components/Input";
 import { Button } from "../../../../../shared/components/Button/Button.component";
-
-import add1 from "../../../../../assets/images/add1.png";
-import add3 from "../../../../../assets/images/add3.png";
-import add4 from "../../../../../assets/images/add4.png";
+ 
 import edit from "../../../../../assets/images/edit.png";
 import delete1 from "../../../../../assets/images/delete.png";
 import { toast } from "react-toastify";
@@ -34,6 +31,7 @@ export const EditQuizItem: FunctionComponent<EditQuizItemProps> = (props) => {
     async function handleDeleteQuiz(){
       try{
         const response = await deleteQuiz(quiz.id)
+        console.log(response)
         fetchLesson()
       }catch (error) {
         toast.error('Alguma coisa deu errado!')
@@ -43,11 +41,19 @@ export const EditQuizItem: FunctionComponent<EditQuizItemProps> = (props) => {
 
     async function handleSaveClick(){
       setIsEditing(false)
-
       try{
         quizProps.name = quizName;
         setQuiz(quizProps)
-        const response = await editQuiz(quiz)
+
+        const payload = {
+          name: quiz.name,
+          text: quiz.text,
+          image: quiz.image,
+          correctAnswer: quiz.correctAnswer,
+          answerRequests: quiz.answer
+        }
+        const response = await editQuiz(payload, quiz.id)
+        console.log(response)
       }catch (error) {
         toast.error('Alguma coisa deu errado!')
     }

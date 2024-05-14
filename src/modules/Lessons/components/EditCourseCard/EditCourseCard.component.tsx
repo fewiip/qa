@@ -2,27 +2,17 @@ import { Input } from "../../../../shared/components/Input";
 import { FunctionComponent, useEffect, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
 import { ChapterPOST, Course, useLessons } from "../../api";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import styles from "./EditCourseCard.module.css";
-import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
+import { toast } from "react-toastify"; 
+import styles from "./EditCourseCard.module.css"; 
 
-import add1 from "../../../../assets/images/add1.png";
-import add3 from "../../../../assets/images/add3.png";
-import add4 from "../../../../assets/images/add4.png";
-import edit from "../../../../assets/images/edit.png";
-import delete1 from "../../../../assets/images/delete.png";
-
-import { EditQuizItem } from "./EditQuizItem";
-import { EditChapterItem } from "./EditChapterItem";
-import { EditLessonItem } from "./EditLessonItem";
+import add1 from "../../../../assets/images/add1.png"; 
+import { EditChapterItem } from "./EditChapterItem"; 
 import { Button } from "../../../../shared/components/Button/Button.component";
 
 interface EditCourseCardProps {
   courseid: number;
 }
 export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) => {
-  const { user } = useAuthStore();
   const { courseid } = props;
   const { getCourse, createChapter } = useLessons();
   const [course, setCourse] = useState<Course>();
@@ -30,8 +20,6 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
 
   const [isCreatingChapter, setIsCreatingChapter] = useState(false);
 
-  let message = "tudo ok";
-  const navigate = useNavigate();
 
   async function fetchCourse() {
     try {
@@ -39,7 +27,6 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
       setCourse(response.data);
     } catch {
       toast.error("Alguma coisa deu errad!");
-      message = "ID não encontrado";
     }
   }
 

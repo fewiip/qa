@@ -1,9 +1,7 @@
 import { FunctionComponent } from 'react'
 import styles from './LessonsCard.module.css'
-import { Chapter, User, useLessons } from "../../api"
-import { LessonButton } from "../LessonButton"
-import { Button } from "../../../../shared/components/Button/Button.component";
-import { useNavigate } from 'react-router-dom';
+import { Chapter  } from "../../api"
+import { LessonButton } from "../LessonButton"  
 
 interface ChaptersCardProps {
     chapters: Chapter[]
@@ -11,11 +9,12 @@ interface ChaptersCardProps {
 
 export const ChaptersCard: FunctionComponent<ChaptersCardProps> = (props) => {
     const { chapters } = props
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
     
+    /*
     function handleCreateChapterClick(chapterid: number) {
-        navigate(`/chapter/${chapterid}/lesson/add`) //old
-    }
+        navigate(`/chapter/${chapterid}/lesson/add`)  
+    }*/
 
     return (
         <>
@@ -26,9 +25,7 @@ export const ChaptersCard: FunctionComponent<ChaptersCardProps> = (props) => {
                         <div className={styles.lessonsLine} key={i.id}>
                         
                             <div className={styles.lessonTitle}  > 
-                                <p>{i.name} </p> 
-                                {/*<Button size='small' onClick={() => handleCreateChapterClick(i.id)}>Adicionar Lição</Button>*/}
-                                
+                                <p>{i.name} </p>  
                             </div>
                             <div className={styles.lessonsColumn} >
                                 {i.lessons.map(

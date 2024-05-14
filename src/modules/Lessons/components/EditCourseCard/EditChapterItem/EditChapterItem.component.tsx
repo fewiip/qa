@@ -1,15 +1,11 @@
 import { FunctionComponent, useState } from "react";
-import { Chapter, ChapterPOST, LessonPOST, useLessons } from "../../../api";
-import { useAuthStore } from "../../../../auth/stores/useAuthStore.hook";
-import { useNavigate } from "react-router-dom";
+import { Chapter, ChapterPOST, LessonPOST, useLessons } from "../../../api"; 
 import { Input } from "../../../../../shared/components/Input";
 import { Button } from "../../../../../shared/components/Button/Button.component";
 import { toast } from "react-toastify";
 import styles from "./EditChapterItem.module.css";
-
-import add1 from "../../../../../assets/images/add1.png";
-import add3 from "../../../../../assets/images/add3.png";
-import add4 from "../../../../../assets/images/add4.png";
+ 
+import add3 from "../../../../../assets/images/add3.png"; 
 import edit from "../../../../../assets/images/edit.png";
 import delete1 from "../../../../../assets/images/delete.png";
 import { EditLessonItem } from "../EditLessonItem";
@@ -24,8 +20,7 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
   props
 ) => {
   const { chapterProps, fetchCourse, index } = props;
-  const { getChapter, editChapter, deleteChapter, createLesson,  } = useLessons();
-  const navigate = useNavigate();
+  const { getChapter, editChapter, deleteChapter, createLesson,  } = useLessons(); 
   const [chapter, setChapter] = useState<Chapter>(chapterProps);
   const [chapterName, setChapterName] = useState(chapter.name);
   const [lessonName, setLessonName] = useState("");
@@ -62,7 +57,7 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
 
   async function handleDeleteChapter() {
     try{
-      const response = await deleteChapter(chapter.id)
+      await deleteChapter(chapter.id)
       fetchCourse()
     }catch (error) {
       toast.error('Alguma coisa deu errado!')

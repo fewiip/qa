@@ -1,6 +1,5 @@
-import { FunctionComponent, useState } from "react";
-import { CenterCard } from "../CenterCard/CenterCard.component";
-import { Lesson, QuizPOST, Quiz, useLessons } from "../../api";
+import { FunctionComponent, useState } from "react"; 
+import { QuizPOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import styles from './CreateQuizCard.module.css'

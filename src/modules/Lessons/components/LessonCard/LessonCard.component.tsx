@@ -1,6 +1,4 @@
 import styles from './LessonCard.module.css'
-import ReactMarkdown from "react-markdown"
-import remarkBreaks from "remark-breaks";
 import { FunctionComponent } from "react"
 import { Lesson } from "../../api";
 import professor1_happy from "../../../../assets/images/professor1_happy.png"
