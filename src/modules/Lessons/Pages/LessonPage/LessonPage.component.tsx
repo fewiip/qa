@@ -3,15 +3,13 @@ import { useState, useEffect } from "react";
 import { Lesson, useLessons } from "../../api/useLessons.hook";
 import { useParams } from "react-router-dom";
 import styles from './LessonPage.module.css'
-import { AppLayout } from "../../../../shared/components/AppLayout";
-import { QuizCard } from "../../components/QuizCard/QuizCard.component";
+import { AppLayout } from "../../../../shared/components/AppLayout"; 
 
 export const LessonPage = () => {
   const { id } = useParams()
 
   const { getLesson } = useLessons();
-  const [lesson, setLesson] = useState<Lesson>();
-  const [isQuiz, setIsQuiz] = useState(false)
+  const [lesson, setLesson] = useState<Lesson>(); 
 
   async function fetchLesson() {
     const response = await getLesson(parseInt(id as string));

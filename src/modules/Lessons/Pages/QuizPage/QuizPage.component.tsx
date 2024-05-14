@@ -33,8 +33,7 @@ export const QuizPage = () => {
         }
     }, [quizid, lessonid])
 
-
-
+    /*
     function isTheLastQuiz() {
         if(!lesson) {
             return false
@@ -43,9 +42,7 @@ export const QuizPage = () => {
             if ((lesson?.quizzes[0]['id'] + quizzesSize) == quiz?.id) {
                 return true
             }
-        
-        
-    }
+    }*/
     function thisQuizIndex() {
         let i = 0
         if(!lesson) {
@@ -79,7 +76,7 @@ export const QuizPage = () => {
         const response = await getQuiz(nextQuizID() );
 
         if(response.data.id === quiz?.id) {
-            navigate('/')
+            navigate('/lesson/finished/'+lessonid)
             return
         }
         setQuiz(response.data)

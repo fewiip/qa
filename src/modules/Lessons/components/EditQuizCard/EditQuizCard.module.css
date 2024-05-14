@@ -9,3 +9,17 @@
     width: 500px;
     margin-bottom: 8px;
 }
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.space{
+    height: 10px;
+}
+
+
+.horizontalSpace{
+    width: 30px;
+}

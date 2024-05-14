@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { ChapterPOST, Course, CoursePOST, useLessons } from "../../api";
+import { useNavigate, useParams } from "react-router-dom"; 
+import {  Course, CoursePOST, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterContent } from "../../components/CenterContent";
 import { Button } from "../../../../shared/components/Button/Button.component";

@@ -21,6 +21,7 @@ import { CourseStatisticsPage } from "../modules/Lessons/Pages/CourseStatisticsP
 import { SubscriptionsPage } from "../modules/Lessons/Pages/SubscriptionsPage"
 import { FinishedQuizPage } from "../modules/Lessons/Pages/FinishedQuizPage"
 import { SearchCoursesPage } from "../modules/Lessons/Pages/SearchCoursesPage"
+import { EditUserPage } from "../modules/Lessons/Pages/EditUserPage"
 
 
 export const RouteList = {
@@ -47,7 +48,8 @@ export const RouteList = {
   EDITCHAPTER: '',
   EDITORLESSON_ID: '/lesson/edit/:id',
   EDITORQUIZ_ID: '/edit/lesson/:lessonid/quiz/:quizid',
-  LESSON_FINISHED: '/lesson/finished/:lessonid/'
+  LESSON_FINISHED: '/lesson/finished/:lessonid/',
+  EDIT_USER: '/user/edit'
 }
 
 const privateRoutes = [
@@ -123,6 +125,10 @@ const privateRoutes = [
         path: RouteList.EDITORQUIZ_ID,
         element: <EditQuizPage />
       },   
+      {
+        path: RouteList.EDIT_USER,
+        element: <EditUserPage />
+      }, 
       {
         path: RouteList.LESSON,
         element: <LessonPage />

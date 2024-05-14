@@ -1,16 +1,15 @@
 import { AppLayout } from '../../../../shared/components/AppLayout';
 import { Button } from '../../../../shared/components/Button/Button.component';
 import { Card } from '../../../../shared/components/Card/Card.component';
-import { Input } from '../../../../shared/components/Input';
-import { CenterCard } from '../../components/CenterCard/CenterCard.component';
+import { Input } from '../../../../shared/components/Input'; 
 import { CenterContent } from '../../components/CenterContent/CenterContent.component';
 import styles from './CoursesPage.module.css'
 import { useNavigate } from "react-router-dom";
 
-import team5_coloed from "../../../../assets/images/team5_coloed.png"
+//import team5_coloed from "../../../../assets/images/team5_coloed.png"
 import group2_colored from "../../../../assets/images/group2_colored.png"
 import team1_colored from "../../../../assets/images/team1_colored.png"
-import searchIcon from "../../../../assets/images/search.png"
+import searchIcon from "../../../../assets/images/search2.png"
 import { useState } from 'react';
 
 export const CoursesPage = () => {
@@ -23,7 +22,9 @@ export const CoursesPage = () => {
     }
     
     function handleSearch () {
-        navigate('/courses/search/'+search)
+        if(search.length){
+            navigate('/courses/search/'+search)
+        }
     }
 
     return <AppLayout page='courses' variant='white'>
@@ -65,7 +66,7 @@ export const CoursesPage = () => {
                         <Card>
                             <div className={styles.cardTitle}>Minhas Turmas</div>
                             <Button>Criar Turma</Button>
-                            <div className={styles.seeMore}>Ver todas</div>
+                            <div className={styles.seeMore}>Ver minhas turmas</div>
                         </Card>
                         <Card>
                             <div className={styles.cardTitle}>Turmas em que eu estou inscrito</div>
@@ -78,14 +79,14 @@ export const CoursesPage = () => {
                                     <Button>Acessar</Button>
                                 </div>
                             </div>
-                            <div className={styles.seeMore}>Ver todas</div>
+                            <div className={styles.seeMore}><a href="/courses/subscriptions">Ver inscrições</a> </div>
                         </Card>
                         <Card>
                             <div className={styles.cardTitle}>Buscar turmas</div>
                             <div className={styles.input} >
                                 <Input icon={searchIcon} onIconClick={handleSearch} value={search} onChange={(i) => setSearch(i.target.value)}></Input>
                             </div>
-                            <div className={styles.seeMore}> <a href="/courses/all"> Ver todas</a></div>
+                            <div className={styles.seeMore}> <a href="/courses/all">Ver todas as turmas</a></div>
                         </Card>
                     </div>
                 </div>

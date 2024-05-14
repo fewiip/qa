@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"; 
 import { toast } from "react-toastify";
-import { Course, useLessons } from "../../api";
+import { Course, Subscription, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { Card } from "../../../../shared/components/Card/Card.component";
 import { CenterContent } from "../../components/CenterContent/CenterContent.component";
 import styles from "./SubscriptionsPage.module.css";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
+import { CourseItem } from "../../components/CourseItem";
 
 export const SubscriptionsPage = () => {
-  const {   getSubscribedCourses } = useLessons();
+  const { getSubscribedCourses } = useLessons();
+  const [subscriptions, setSubscriptions] = useState<Subscription[]>();
   const [courses, setCourses] = useState<Course[]>(); 
   const { user } = useAuthStore();
 
@@ -18,7 +20,7 @@ export const SubscriptionsPage = () => {
       if (user) {
         console.log('user id:  ' + user.id)
         const response = await getSubscribedCourses(user?.id);
-        setCourses(response.data);
+        setSubscriptions(response.data); 
       }
     } catch {
       toast.error("Alguma coisa deu errad!");
@@ -34,16 +36,13 @@ export const SubscriptionsPage = () => {
       <AppLayout page="courses" variant="white">
         <div className={styles.contentWrapper}>
           <CenterContent>
-            {courses?.map((i) => (
-              <Card>
-                <div className={styles.cardTitle}> {i.name} </div>
-                <div className={styles.teacher}> {i.owner}</div>
-                <Button>Solicitar entrar</Button>
-                <div>
-                  <a href={`/courses/edit/${i.id}`}>Ver turma</a>
-                </div>
-              </Card>
-            ))}
+          {
+                        subscriptions?.map(
+                            (i) => ( 
+                                <CourseItem course={i.course}/>
+                             )
+                        )
+                    }
           </CenterContent>
         </div>
       </AppLayout>

@@ -14,33 +14,50 @@ import { toast } from "react-toastify";
 
 export const CoursePage = () => {
   const { courseid } = useParams();
-  const { getCourse,subscribeToCourse, isSubscribed } = useLessons();
+  const { getCourse, subscribeToCourse, unSubscribeToCourse, isSubscribed, isCourseOwner } = useLessons();
   const { user } = useAuthStore();
   const navigate = useNavigate()
   const [course, setCourse] = useState<Course>();
   const [subscription, setSubscription] = useState(false)
+  const [ownership, setOwnership] = useState(false)
 
   async function fetchCourse() {
     const response = await getCourse(parseInt(courseid as string));
     setCourse(response.data);
   }
 
+  async function fetchOwnership() {
+    setOwnership(false) 
+    if(user && courseid){
+      try{
+        const response = await isCourseOwner(user?.id, parseInt(courseid))
+        setOwnership(response.data.isOwner)
+        console.log(response)
+      }catch(error){
+        setOwnership(false)
+      }
+    }
+  }
+
   async function fetchSubscription() {
+    setSubscription(false)
+    console.log(`userID: ${user?.id} ;courseID: ${courseid}`)
     if(user && courseid){
       try{
         const response = await isSubscribed(user?.id, parseInt(courseid))
-        setSubscription(true)
+        setSubscription(response.data.isSubscribed)
+        console.log(response)
       }catch(error){
         setSubscription(false)
       }
     }
-    setSubscription(false)
   }
 
   useEffect(() => {
     if (courseid) {
       fetchCourse();
       fetchSubscription();
+      fetchOwnership();
     }
   }, [courseid]);
 
@@ -58,7 +75,9 @@ export const CoursePage = () => {
         const payload = {
           courseId : parseInt(courseid as string) 
         }
+        console.log(`userID: ${user.id}`)
         const response = await subscribeToCourse(payload, user?.id) 
+        console.log(response)
         setSubscription(true)
       }
       
@@ -74,7 +93,7 @@ export const CoursePage = () => {
         const payload = {
           courseId : parseInt(courseid as string) 
         }
-        const response = await subscribeToCourse(payload, user?.id) 
+        const response = await unSubscribeToCourse(payload, user?.id) 
         setSubscription(false)
       }
     }catch(error){
@@ -92,25 +111,35 @@ export const CoursePage = () => {
               <img src={Image} alt="" />
             </div>
             <div className={styles.text}>
-              <div>Turma: </div>
+              
               <div>
                 <h2>
                 {course && course.name}
                 </h2>
                 </div>
-              <div className={styles.buttons}>
                 <div>
-                  <Button onClick={handleEditCourseClick}>Editar Curso</Button>
+                  <b>Por:</b>  {course && (course.ownerName + " " + course.ownerLastName)}
                 </div>
+                <div><b>Descrição:</b> </div>
+              <div> 
+                {course && course.description} 
+                </div>
+              <div className={styles.buttons}>
+                {ownership && <div>
+                  <Button onClick={handleEditCourseClick}>Editar Curso</Button>
+                </div>}
+                
                 {!subscription && <div>
                   <Button onClick={handleSubscribe}>Inscrever</Button>
                 </div>}
+                
                 {subscription && <div>
                   <Button onClick={handleUnsubscribe}>Deinscrever</Button>
                 </div>}
+                {ownership &&
                 <div>
                   <Button onClick={handleSeeCourseStatisticsClick}>Ver Estatisticas</Button>
-                </div>
+                </div>}
               </div>
             </div>
           </div>

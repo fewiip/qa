@@ -11,12 +11,19 @@ export type User = {
   id: number
 }
 
+export type Subscription = {
+  course: Course,
+  grade: number,
+  id: number
+}
+
 export type Course = {
   id: number,
   name: string,
   owner: number,
   ownerName: string,
   ownerLastName: string, 
+  description: string,
   chapters: Chapter[]
 }
 
@@ -75,6 +82,8 @@ export type QuizPOST = {
   }[]
 }
 
+
+
 interface LeaderBoardResponse {
   data: User[]
 }
@@ -102,6 +111,26 @@ interface LessonResponse {
 interface QuizResponse {
   data: Quiz
 }
+
+
+
+interface SubscriptionResponse {
+  data: Subscription[]
+}
+
+interface isSubscribed {
+  data: {
+    isSubscribed:boolean
+  }
+}
+
+interface isOwner {
+  data: {
+    isOwner:boolean
+  }
+}
+
+
 
 export interface SignUpProps {
   firstName: string
@@ -142,17 +171,15 @@ export const useLessons = () => {
     return  http.post(`/user/${userID}/course/unSubscribe`, payload)
   }
   
-  const isSubscribed = (userID: number, courseID: number): Promise<string> =>  {
-    return  http.get(`/user/${userID}/course/${courseID}/subscription`)
+  const isSubscribed = (userID: number, courseID: number): Promise<isSubscribed> =>  {
+    return http.get(`/user/${userID}/course/${courseID}/subscription`)
   }
+ 
+  const isCourseOwner = (userID: number, courseID: number): Promise<isOwner> => { 
+    return http.get(`/user/${userID}/course/${courseID}/ownership`)
+  }  
 
-  /* 
-  const isCourseOwner = (courseid: number): Promise<CourseResponse> => { 
-    return http.get(`/course/${courseid}`)
-  } 
-  */
-
-  const getSubscribedCourses = (userID: number): Promise<CoursesResponse> => {
+  const getSubscribedCourses = (userID: number): Promise<SubscriptionResponse> => {
     return  http.get(`user/${userID}/subscriptions/all`)
   }
 
@@ -240,6 +267,7 @@ export const useLessons = () => {
     unSubscribeToCourse,
     getCoursesByOwner,
     isSubscribed,
+    isCourseOwner,
     createChapter,
     getChapter,
     editChapter,

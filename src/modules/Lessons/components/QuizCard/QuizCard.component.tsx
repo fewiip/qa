@@ -1,23 +1,18 @@
 import {
-  ChangeEvent,
-  FunctionComponent,
-  InputHTMLAttributes,
+  FunctionComponent, 
   useMemo,
   useState,
 } from "react";
 import styles from "./QuizCard.module.css";
-import { Lesson, Quiz, useLessons } from "../../api";
+import {  Quiz   } from "../../api";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import professor1_happy from "../../../../assets/images/professor1_happy.png";
 import { RadioGroup } from "../../../../shared/components/RadioGroup/RadioGroup.component";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../../shared/components/Button/Button.component";
-import Lottie from 'lottie-react'
-import animation2 from "../../../../assets/animations/animation2.json"
+import { Button } from "../../../../shared/components/Button/Button.component"; 
 
-import graph from "../../../../assets/images/graph.png";
 import correctIcon from "../../../../assets/images/correct-icon.png";
 import wrongIcon from "../../../../assets/images/wrong-icon.png";
 
@@ -63,7 +58,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
 
     console.log(options[correctAnswer].value, selectedAnswer, "RESPOSTAS");
 
-    if (options[correctAnswer].value === parseInt(selectedAnswer) + 1) {
+    if (options[correctAnswer].value === parseInt(selectedAnswer) ) {
       setCurrentState("correctAnswer");
       toast("resposta certa");
     } else {
