@@ -1,0 +1,32 @@
+.chaptersCardsBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  
+    height: 160px;
+  }
+  
+  .chaptersWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  
+    margin-top: 20px;
+  }
+  
+  .lessonContent {
+    height: 100%;
+    padding-top: 50px;
+  }
+  
+  
+  @media (max-width: 1070px) {
+    .chaptersCardsBar {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      height: fit-content;
+    }
+  }

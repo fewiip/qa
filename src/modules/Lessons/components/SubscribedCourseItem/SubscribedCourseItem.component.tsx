@@ -1,24 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import { FunctionComponent } from "react";
-import { Course } from "../../api";
-import { Card } from "../../../../shared/components/Card/Card.component";
-import styles from "./CourseItem.module.css";
+import { FunctionComponent } from "react"; 
+import { Card } from "../../../../shared/components/Card/Card.component"; 
 import { Button } from "../../../../shared/components/Button/Button.component";
 import team1_colored from "../../../../assets/images/team1_colored.png"
-
-interface CourseItemProps {
-  course: Course;
+ 
+import { Course } from "../../api";
+import styles from './SubscribedCoursesItem.module.css'
+interface SubscribedCoursesItemProps {
+    course: Course;
 }
 
-export const CourseItem: FunctionComponent<CourseItemProps> = (props) => {
-  const { course } = props;
-  const navigate = useNavigate();
+export const SubscribedCoursesItem: FunctionComponent<SubscribedCoursesItemProps> = (props) => {
+    const { course } = props;
+    const navigate = useNavigate();
+  
+    function seeCourse(courseID: number) {
+      navigate("/courses/" + courseID + "/lessons");
+    }
+  
 
-  function seeCourse(courseID: number) {
-    navigate("/courses/" + courseID);
-  } 
-
-  return (
+    return <>
     <Card>
       <div className={styles.cardTitle}>
         <b>{course.name}</b>
@@ -35,5 +36,5 @@ export const CourseItem: FunctionComponent<CourseItemProps> = (props) => {
         </div>
       </div>
     </Card>
-  );
-};
+    </>
+}

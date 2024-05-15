@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Subscription, useLessons } from "../../api";
+import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterContent } from "../../components/CenterContent/CenterContent.component";
-import styles from "./SubscriptionsPage.module.css";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
-import { SubscribedCoursesItem } from "../../components/SubscribedCourseItem";
-
+import { CourseItem } from "../../components/CourseItem";
 import group2_colored from "../../../../assets/images/group2_colored.png";
 
-export const SubscriptionsPage = () => {
-  const { getSubscribedCourses } = useLessons();
-  const [subscriptions, setSubscriptions] = useState<Subscription[]>();
+import styles from "./CreatedCoursesPage.module.css";
+
+export const CreatedCoursesPage = () => {
+  const { getCoursesByOwner } = useLessons();
+  const [courses, setCourses] = useState<Course[]>();
   const { user } = useAuthStore();
 
   async function fetchCourses() {
     try {
       if (user) {
-        console.log("user id:  " + user.id);
-        const response = await getSubscribedCourses(user?.id);
-        setSubscriptions(response.data);
+        const response = await getCoursesByOwner(user.id);
+        setCourses(response.data);
       }
     } catch {
       toast.error("Alguma coisa deu errad!");
@@ -30,12 +29,13 @@ export const SubscriptionsPage = () => {
     fetchCourses();
   }, []);
 
+  //getCoursesByOwner
   return (
     <>
       <AppLayout page="courses" variant="white">
         <div className={styles.contentWrapper}>
           <CenterContent>
-            <div className={styles.content}>
+          <div className={styles.content}>
               <div className={styles.text}>
                 <center>
                   <h1>Turmas</h1>
@@ -67,11 +67,12 @@ export const SubscriptionsPage = () => {
                 </ul>
               </div>
               <div className={styles.cards}>
-                {subscriptions?.map((i) => (
-                  <SubscribedCoursesItem course={i.course} />
-                ))}
+              {courses?.map((i) => (
+              <CourseItem course={i} />
+            ))}
               </div>
             </div>
+            
           </CenterContent>
         </div>
       </AppLayout>

@@ -13,13 +13,13 @@ export const EditUserPage = () => {
       <div className={styles.contentWrapper}>
         <CenterCard>
           <div>
-            <a href="">Editar Nome</a>
+            <a href="/user/name/edit">Editar Nome</a>
           </div>
           <div>
-            <a href="">Editar Email</a>
+            <a href="/user/email/edit">Editar Email</a>
           </div>
           <div>
-            <a href="">Editar Senha</a>
+            <a href="/user/email/edit">Editar Senha</a>
           </div>
         </CenterCard>
       </div>

@@ -1,0 +1,35 @@
+.userItem  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+      
+  }
+  
+  .userItem img {
+      height: 30px;
+      width: 30px;
+      
+  }
+  
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .score{
+    
+  }
+  
+  .button {
+    cursor: pointer;
+    color: orange;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: auto;
+    text-transform: uppercase;
+  }
+  
+  .leadershipCard {
+    
+  }

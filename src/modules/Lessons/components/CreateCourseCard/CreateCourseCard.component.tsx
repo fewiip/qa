@@ -7,6 +7,7 @@ import { CoursePOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'; 
 import Image from "../../../../assets/images/image_greyscale.png"
+import { TextArea } from "../../../../shared/components/TextArea";
 
 interface CreateCourseCardProps {
     userid: number,
@@ -17,11 +18,9 @@ export const CreateCourseCard: FunctionComponent<CreateCourseCardProps> = (props
     const navigate = useNavigate()
     const { createCourse } = useLessons()
     const [courseName, setcourseName] = useState('');
+    const [courseDescription, setcourseDescription] = useState('');
 
-    const course: CoursePOST = {
-        name: '',
-        owner: userid
-    }
+    
 
     function handleCancel() {
         navigate('/')
@@ -29,9 +28,13 @@ export const CreateCourseCard: FunctionComponent<CreateCourseCardProps> = (props
 
     async function handleSubmit() {
         try {
-            course.name = courseName;
-            console.log(course)
-            const response = await createCourse(course)
+            const payload: CoursePOST = {
+                name: courseName,
+                owner: userid,
+                description: courseDescription
+            } 
+            console.log(payload)
+            const response = await createCourse(payload)
             console.log(response.data.id)
             navigate(`/courses/${response.data.id}`)
         } catch (error) {
@@ -51,6 +54,8 @@ export const CreateCourseCard: FunctionComponent<CreateCourseCardProps> = (props
                         <p>Turma:</p>
                         <Input placeholder="Nome da Turma"  value={courseName} onChange={(i) => setcourseName(i.target.value)}/>
                         <p>Descrição:</p>
+                        {/*<TextArea placeholder="Descrição da Turma" />*/}
+                        <textarea name="" id="" placeholder="Descrição da Turma" value={courseDescription} onChange={(i) => setcourseDescription(i.target.value)} ></textarea>
                     </div>
                 </div>
 

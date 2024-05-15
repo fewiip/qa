@@ -11,15 +11,21 @@ import styles from "./CoursePage.module.css";
 import Image from "../../../../assets/images/image.png";
 import { toast } from "react-toastify";
 
-
 export const CoursePage = () => {
   const { courseid } = useParams();
-  const { getCourse, subscribeToCourse, unSubscribeToCourse, isSubscribed, isCourseOwner } = useLessons();
+  const {
+    getCourse,
+    subscribeToCourse,
+    unSubscribeToCourse,
+    isSubscribed,
+    isCourseOwner,
+    deleteCourse
+  } = useLessons();
   const { user } = useAuthStore();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [course, setCourse] = useState<Course>();
-  const [subscription, setSubscription] = useState(false)
-  const [ownership, setOwnership] = useState(false)
+  const [subscription, setSubscription] = useState(false);
+  const [ownership, setOwnership] = useState(false);
 
   async function fetchCourse() {
     const response = await getCourse(parseInt(courseid as string));
@@ -27,28 +33,28 @@ export const CoursePage = () => {
   }
 
   async function fetchOwnership() {
-    setOwnership(false) 
-    if(user && courseid){
-      try{
-        const response = await isCourseOwner(user?.id, parseInt(courseid))
-        setOwnership(response.data.isOwner)
-        console.log(response)
-      }catch(error){
-        setOwnership(false)
+    setOwnership(false);
+    if (user && courseid) {
+      try {
+        const response = await isCourseOwner(user?.id, parseInt(courseid));
+        setOwnership(response.data.isOwner);
+        console.log(response);
+      } catch (error) {
+        setOwnership(false);
       }
     }
   }
 
   async function fetchSubscription() {
-    setSubscription(false)
-    console.log(`userID: ${user?.id} ;courseID: ${courseid}`)
-    if(user && courseid){
-      try{
-        const response = await isSubscribed(user?.id, parseInt(courseid))
-        setSubscription(response.data.isSubscribed)
-        console.log(response)
-      }catch(error){
-        setSubscription(false)
+    setSubscription(false);
+    console.log(`userID: ${user?.id} ;courseID: ${courseid}`);
+    if (user && courseid) {
+      try {
+        const response = await isSubscribed(user?.id, parseInt(courseid));
+        setSubscription(response.data.isSubscribed);
+        console.log(response);
+      } catch (error) {
+        setSubscription(false);
       }
     }
   }
@@ -62,44 +68,53 @@ export const CoursePage = () => {
   }, [courseid]);
 
   function handleEditCourseClick() {
-    navigate('/courses/edit/'+courseid)
+    navigate("/courses/edit/" + courseid);
   }
 
-  function handleSeeCourseStatisticsClick(){
-    navigate('/courses/statistics/'+courseid)
+  async function handleRemoveCourseClick() {
+    try {
+      const response = await deleteCourse(parseInt(courseid as string)); 
+      console.log(response);
+    } catch (error) {
+      setSubscription(false);
+    }
+    navigate("/courses/ownership/");
   }
 
-  async function handleSubscribe () {
-    try{
-      if(user) {
+  function handleSeeCourseStatisticsClick() {
+    navigate("/courses/statistics/" + courseid);
+  }
+
+  async function handleSubscribe() {
+    try {
+      if (user) {
         const payload = {
-          courseId : parseInt(courseid as string) 
-        }
-        console.log(`userID: ${user.id}`)
-        const response = await subscribeToCourse(payload, user?.id) 
-        console.log(response)
-        setSubscription(true)
+          courseId: parseInt(courseid as string),
+        };
+        console.log(`userID: ${user.id}`);
+        const response = await subscribeToCourse(payload, user?.id);
+        console.log(response);
+        setSubscription(true);
       }
-      
-    }catch(error){
-      toast.error("Alguma coisa deu errado!"); 
-      console.log(error)
+    } catch (error) {
+      toast.error("Alguma coisa deu errado!");
+      console.log(error);
     }
   }
 
-  async function handleUnsubscribe () {
-    try{
-      if(user){
+  async function handleUnsubscribe() {
+    try {
+      if (user) {
         const payload = {
-          courseId : parseInt(courseid as string) 
-        }
-        const response = await unSubscribeToCourse(payload, user?.id) 
-        console.log(response)
-        setSubscription(false)
+          courseId: parseInt(courseid as string),
+        };
+        const response = await unSubscribeToCourse(payload, user?.id);
+        console.log(response);
+        setSubscription(false);
       }
-    }catch(error){
-      toast.error("Alguma coisa deu errado!"); 
-      console.log(error)
+    } catch (error) {
+      toast.error("Alguma coisa deu errado!");
+      console.log(error);
     }
   }
 
@@ -112,35 +127,47 @@ export const CoursePage = () => {
               <img src={Image} alt="" />
             </div>
             <div className={styles.text}>
-              
               <div>
-                <h2>
-                {course && course.name}
-                </h2>
-                </div>
-                <div>
-                  <b>Por:</b>  {course && (course.ownerName + " " + course.ownerLastName)}
-                </div>
-                <div><b>Descrição:</b> </div>
-              <div> 
-                {course && course.description} 
-                </div>
+                <h2>{course && course.name}</h2>
+              </div>
+              <div>
+                <b>Por:</b>{" "}
+                {course && course.ownerName + " " + course.ownerLastName}
+              </div>
+              <div>
+                <b>Descrição:</b>{" "}
+              </div>
+              <div>{course && course.description}</div>
               <div className={styles.buttons}>
-                {ownership && <div>
-                  <Button onClick={handleEditCourseClick}>Editar Curso</Button>
-                </div>}
-                
-                {!subscription && <div>
-                  <Button onClick={handleSubscribe}>Inscrever</Button>
-                </div>}
-                
-                {subscription && <div>
-                  <Button onClick={handleUnsubscribe}>Deinscrever</Button>
-                </div>}
-                {ownership &&
-                <div>
-                  <Button onClick={handleSeeCourseStatisticsClick}>Ver Estatisticas</Button>
-                </div>}
+                {ownership && (
+                  <div>
+                    <Button onClick={handleEditCourseClick}>
+                      Editar Curso
+                    </Button>
+                    <Button onClick={handleRemoveCourseClick}>
+                      Excluir Curso
+                    </Button>
+                  </div>
+                )}
+
+                {!subscription && (
+                  <div>
+                    <Button onClick={handleSubscribe}>Inscrever</Button>
+                  </div>
+                )}
+
+                {subscription && (
+                  <div>
+                    <Button onClick={handleUnsubscribe}>Deinscrever</Button>
+                  </div>
+                )}
+                {ownership && (
+                  <div>
+                    <Button onClick={handleSeeCourseStatisticsClick}>
+                      Ver Estatisticas
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

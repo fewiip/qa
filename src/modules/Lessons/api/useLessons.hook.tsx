@@ -59,7 +59,8 @@ export type subscribePOST = {
 
 export type CoursePOST = {
   name?: string, 
-  owner?: number
+  owner?: number,
+  description?: string, 
 }
 
 export type ChapterPOST = {
@@ -139,6 +140,10 @@ export const useLessons = () => {
   const getLeaderBoard = (): Promise<LeaderBoardResponse> => {
     return http.get('/leaderBoard')
   }
+
+  const getCourseLeaderBoard = (courseID: number): Promise<LeaderBoardResponse> => {
+    return http.get(`/leaderBoard/${courseID}`)
+  }
   
   const getCourses = (): Promise<CoursesResponse> => {
     return http.get(`/course/all`)
@@ -148,8 +153,8 @@ export const useLessons = () => {
     return http.get(`/course/${courseid}`)
   } 
 
-  const getCoursesByOwner = (courseID: number): Promise<CourseResponse> => { 
-    return http.get(`/course/${courseID}`)
+  const getCoursesByOwner = (userID: number): Promise<CoursesResponse> => { 
+    return http.get(`/user/${userID}/course/ownership`)
   } 
 
   const getCourseSubscribers = (courseID: number): Promise<User> => {
@@ -194,7 +199,7 @@ export const useLessons = () => {
   }
 
   const deleteCourse = (courseID: number ):Promise<string> => {
-    return http.delete('/courses/'+courseID)
+    return http.delete('/course/'+courseID)
   }
   
   const createChapter = (payload: ChapterPOST, courseid: number): Promise<ChapterResponse> => {
@@ -248,6 +253,7 @@ export const useLessons = () => {
 
   return {
     getLeaderBoard,
+    getCourseLeaderBoard,
     getChapters,
     getCourses,
     searchCourses,

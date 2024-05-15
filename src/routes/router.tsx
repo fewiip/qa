@@ -22,6 +22,11 @@ import { SubscriptionsPage } from "../modules/Lessons/Pages/SubscriptionsPage"
 import { FinishedQuizPage } from "../modules/Lessons/Pages/FinishedQuizPage"
 import { SearchCoursesPage } from "../modules/Lessons/Pages/SearchCoursesPage"
 import { EditUserPage } from "../modules/Lessons/Pages/EditUserPage"
+import { CreatedCoursesPage } from "../modules/Lessons/Pages/CreatedCoursesPage"
+import { CourseLessonsPage } from "../modules/Lessons/Pages/CourseLessonsPage"
+import { EditUserNamePage } from "../modules/Lessons/Pages/EditUserNamePage"
+import { EditUserEmailPage } from "../modules/Lessons/Pages/EditUserEmailPage"
+import { EditUserPasswordPage } from "../modules/Lessons/Pages/EditUserPasswordPage"
 
 
 export const RouteList = {
@@ -39,17 +44,22 @@ export const RouteList = {
   LESSON_ID_QUIZ_ID: '/lesson/:lessonid/quiz/:quizid',
   CREATE_COURSE: '/courses/add',
   SEARCH_COURSE: '/courses/search/:search',
+  COURSE_OWNERSHIP: '/courses/ownership',
   CREATE_CHAPTER: '',
   CREATE_LESSON: '/chapter/:chapterid/lesson/add',
   CREATE_QUIZ: '/lesson/:lessonid/quiz/add',
   EDITCOURSE: '/courses/edit/:courseid',
   SELLALLCOURSES: '/courses/all',
+  COURSE_LESSONS: '/courses/:courseid/lessons',
   SUBSCRIPTIONS: '/courses/subscriptions',
   EDITCHAPTER: '',
   EDITORLESSON_ID: '/lesson/edit/:id',
   EDITORQUIZ_ID: '/edit/lesson/:lessonid/quiz/:quizid',
   LESSON_FINISHED: '/lesson/finished/:lessonid/',
-  EDIT_USER: '/user/edit'
+  EDIT_USER: '/user/edit',
+  EDIT_USER_NAME: '/user/name/edit',
+  EDIT_USER_PASSWORD: '/user/password/edit',
+  EDIT_USER_EMAIL: '/user/email/edit',
 }
 
 const privateRoutes = [
@@ -93,6 +103,10 @@ const privateRoutes = [
         element: < SeeAllCourses />
       },      
       {
+        path: RouteList.COURSE_OWNERSHIP,
+        element: < CreatedCoursesPage />
+      }, 
+      {
         path: RouteList.SUBSCRIPTIONS,
         element: < SubscriptionsPage />
       }, 
@@ -100,6 +114,11 @@ const privateRoutes = [
         path: RouteList.CREATE_COURSE,
         element: < CreateCoursePage />
       },
+
+      {
+        path: RouteList.COURSE_LESSONS,
+        element: < CourseLessonsPage />
+      }, 
       {
         path: RouteList.EDITCOURSE,
         element: <EditCoursePage/>
@@ -129,6 +148,19 @@ const privateRoutes = [
         path: RouteList.EDIT_USER,
         element: <EditUserPage />
       }, 
+      {
+        path: RouteList.EDIT_USER_NAME,
+        element: <EditUserNamePage />
+      }, 
+      {
+        path: RouteList.EDIT_USER_EMAIL,
+        element: <EditUserEmailPage />
+      }, 
+      {
+        path: RouteList.EDIT_USER_PASSWORD,
+        element: <EditUserPasswordPage />
+      }, 
+
       {
         path: RouteList.LESSON,
         element: <LessonPage />
