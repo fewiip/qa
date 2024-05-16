@@ -9,7 +9,7 @@ import { CourseItem } from "../../components/CourseItem";
 import { Card } from "../../../../shared/components/Card/Card.component";
 import { Button } from "../../../../shared/components/Button/Button.component";*/
 
-import group2_colored from "../../../../assets/images/group2_colored.png";
+import team2_colored from "../../../../assets/images/team2_colored.png";
 
 export const SeeAllCourses = () => {
   const { getCourses } = useLessons();
@@ -42,8 +42,8 @@ export const SeeAllCourses = () => {
           <div className={styles.content}>
               <div className={styles.text}>
                 <center>
-                  <h1>Turmas</h1>
-                  <img src={group2_colored} alt="" />
+                  <h1>TURMAS ABERTAS</h1>
+                  <img src={team2_colored} alt="" />
                   <p>Aprenda e ensine o quanto você quiser!</p>
                 </center>
 

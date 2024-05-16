@@ -19,7 +19,7 @@ export const CoursePage = () => {
     unSubscribeToCourse,
     isSubscribed,
     isCourseOwner,
-    deleteCourse
+    deleteCourse,
   } = useLessons();
   const { user } = useAuthStore();
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ export const CoursePage = () => {
 
   async function handleRemoveCourseClick() {
     try {
-      const response = await deleteCourse(parseInt(courseid as string)); 
+      const response = await deleteCourse(parseInt(courseid as string));
       console.log(response);
     } catch (error) {
       setSubscription(false);
@@ -95,11 +95,16 @@ export const CoursePage = () => {
         const response = await subscribeToCourse(payload, user?.id);
         console.log(response);
         setSubscription(true);
+        navigate("/courses/" + courseid + "/lessons");
       }
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
       console.log(error);
     }
+  }
+
+  function SeeLessons() {
+    navigate("/courses/" + courseid + "/lessons");
   }
 
   async function handleUnsubscribe() {
@@ -155,6 +160,11 @@ export const CoursePage = () => {
                     <Button onClick={handleSubscribe}>Inscrever</Button>
                   </div>
                 )}
+                {/*
+                <div>
+                  <Button onClick={SeeLessons}>Visualizar</Button>
+                </div>
+                */}
 
                 {subscription && (
                   <div>

@@ -97,6 +97,12 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         <MDEditor value={quizText} onChange={setlessonText} height="20%" />
       </div>
       <div className={styles.space}></div>
+      <Tip>Use a linguagem de markdown para escrever o corpo do quiz</Tip>
+
+      <Tip>
+        Você tem que escolher qual será a resposta correta, o botão ao lado das
+        respostas
+      </Tip>
       <div>
         <b>Respostas:</b>
       </div>
@@ -108,12 +114,6 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         ))
         }*/}
 
-      <Tip>Use a linguagem de markdown para escrever o corpo do quiz</Tip>
-
-      <Tip>
-        Você tem que escolher qual será a resposta correta, o botão ao lado das
-        respostas
-      </Tip>
 
       <div className={styles.editQuizAnswers}>
         {/*

@@ -30,7 +30,7 @@ export const CourseItem: FunctionComponent<CourseItemProps> = (props) => {
       <div className={styles.teacher}>
         Por: {course.ownerName} {course.ownerLastName}
       </div>
-      <div className={styles.teacher}>{course.description} </div>
+      <div >{course.description} </div>
       <Button onClick={() => seeCourse(course.id)}>Ver turma</Button>
         </div>
       </div>

@@ -2,6 +2,7 @@
   padding: 15px;
   border-radius: 16px;
   border: 1px solid lightgray;
+  border-bottom: 3px solid lightgray;
   max-width: 400px;
   width: 100%;
   display: flex;

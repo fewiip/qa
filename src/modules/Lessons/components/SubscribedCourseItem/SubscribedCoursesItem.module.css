@@ -7,4 +7,29 @@
   margin-left: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+.line img{
+  width: 150px;
+  height: 150px;
+}
+
+.line{
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+}
+
+
+.teacher {
+  color: #666;
+}
+
+.cardTitle {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.space{
+  height: 10px;
 }

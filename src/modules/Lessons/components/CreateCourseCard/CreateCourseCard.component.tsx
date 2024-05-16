@@ -7,7 +7,7 @@ import { CoursePOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'; 
 import Image from "../../../../assets/images/image_greyscale.png"
-import { TextArea } from "../../../../shared/components/TextArea";
+
 
 interface CreateCourseCardProps {
     userid: number,

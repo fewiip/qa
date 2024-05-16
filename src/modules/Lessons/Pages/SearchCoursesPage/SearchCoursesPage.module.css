@@ -66,8 +66,12 @@
     flex-direction: row-reverse;
 }
 
-.text img {
+.textimg {
     width: 150px;
+    height: 150px;
+}
+.space {
+    height: 20px;
 }
 
 @media (max-width: 800px) {

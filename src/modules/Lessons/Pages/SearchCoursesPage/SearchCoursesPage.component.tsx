@@ -4,11 +4,13 @@ import { toast } from "react-toastify";
 import { Course, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterContent } from '../../components/CenterContent/CenterContent.component';
-import styles from './SearchCoursesPage.module.css'
 import { CourseItem } from "../../components/CourseItem";
 import { Input } from "../../../../shared/components/Input";
 /*import { Button } from "../../../../shared/components/Button/Button.component";
 import { Card } from "../../../../shared/components/Card/Card.component";*/
+import team2_colored from "../../../../assets/images/team2_colored.png";
+
+import styles from './SearchCoursesPage.module.css'
 import searchIcon from "../../../../assets/images/search2.png"
 
 export const SearchCoursesPage = () => {
@@ -46,12 +48,26 @@ export const SearchCoursesPage = () => {
     <AppLayout page="courses" variant="white">
             <div className={styles.contentWrapper}>
                 <CenterContent> 
-                <Input icon={searchIcon} onIconClick={handleSearch} value={searchText} onChange={(i) => setSearchtext(i.target.value)}></Input>
+                <div className={styles.content}>
+              <div className={styles.text}>
+                <center>
+                  <h1>BUSCA:</h1>
+                  <img src={team2_colored} className={styles.textimg} alt="" />
+                  <Input icon={searchIcon} onIconClick={handleSearch} value={searchText} onChange={(i) => setSearchtext(i.target.value)}></Input>
+                </center>
+                <div  className={styles.space}></div>
+                <b>Resultados para '{search}'':</b> 
+              </div>
+              <div className={styles.cards}>  
+              
                     {
                         courses?.map(
                             (i) => ( 
                                 <CourseItem course={i}/> )
                         ) }
+              </div>
+            </div>
+                
                 </CenterContent>
             </div>
         </AppLayout>

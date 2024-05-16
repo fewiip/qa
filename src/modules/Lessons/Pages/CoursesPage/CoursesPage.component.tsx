@@ -27,7 +27,7 @@ export const CoursesPage = () => {
   const [createdCourses, setCreatedCourses] = useState<Course[]>();
   const [courses, setCourses] = useState<Course[]>();
   const { user } = useAuthStore();
- 
+  const navigate = useNavigate();
 
   async function fetchCourses() {
     try {
@@ -38,7 +38,7 @@ export const CoursesPage = () => {
         const response2 = await getCoursesByOwner(user.id);
         setCreatedCourses(response2.data);
         const response3 = await getCourses();
-        setCourses(response3.data); 
+        setCourses(response3.data);
       }
     } catch {
       toast.error("Alguma coisa deu errad!");
@@ -49,7 +49,6 @@ export const CoursesPage = () => {
     fetchCourses();
   }, []);
 
-  const navigate = useNavigate();
   function handleClick() {
     navigate("/courses/add");
   }
@@ -59,15 +58,14 @@ export const CoursesPage = () => {
       navigate("/courses/search/" + search);
     }
   }
-
+  /*
   function aboveOne (x: number) {
     if (x >= 1) {
         return true
     }
     return false
     
-  }
-
+  }*/
 
   return (
     <AppLayout page="courses" variant="white">
@@ -76,7 +74,7 @@ export const CoursesPage = () => {
           <div className={styles.content}>
             <div className={styles.text}>
               <center>
-                <h1>Turmas</h1>
+                <h1>TURMAS</h1>
                 <img src={group2_colored} alt="" />
                 <p>Aprenda e ensine o quanto você quiser!</p>
               </center>
@@ -103,7 +101,7 @@ export const CoursesPage = () => {
                   turma!
                 </li>
               </ul>
-                {/*
+              {/*
               <center>
                 <Button onClick={handleClick}>Criar Turma</Button>
               </center>
@@ -117,10 +115,12 @@ export const CoursesPage = () => {
                   <div>
                     <img src={team5_colored} alt="" />
                   </div>
-                  {createdCourses && Boolean(createdCourses?.length) && (
-                    <MiniCourseItem
-                      course={createdCourses[0]}
-                    />
+                  {createdCourses && Boolean(createdCourses?.length) ? (
+                    <MiniCourseItem course={createdCourses[0]} />
+                  ) : (
+                    <div className={styles.column}>
+                      <div className={styles.teacher}>Nenhum curso criado</div>
+                    </div>
                   )}
                 </div>
                 <div className={styles.seeMore}>
@@ -135,14 +135,13 @@ export const CoursesPage = () => {
                   <div>
                     <img src={team1_colored} alt="" />
                   </div>
-                  {subscriptions && Boolean(subscriptions.length) &&
-                    <MiniCourseItem
-                      course={subscriptions[0].course}
-                    />
-                  }
-                  {!subscriptions  && <div className={styles.teacher}>
-                    Nenhuma incrição
-                    </div>}
+                  {subscriptions && Boolean(subscriptions.length) ? (
+                    <MiniCourseItem course={subscriptions[0].course} />
+                  ) : (
+                    <div className={styles.column}>
+                      <div className={styles.teacher}>Nenhuma incrição</div>
+                    </div>
+                  )}
                 </div>
                 <div className={styles.seeMore}>
                   <a href="/courses/subscriptions">Ver inscrições</a>{" "}
@@ -162,11 +161,13 @@ export const CoursesPage = () => {
                   <div>
                     <img src={team2_colored} alt="" />
                   </div>
-                  {courses && Boolean(courses.length) && 
-                    <MiniCourseItem
-                      course={courses[0]}
-                    />
-                  }
+                  {courses && Boolean(courses.length) ? (
+                    <MiniCourseItem course={courses[0]} />
+                  ) : (
+                    <div className={styles.column}>
+                      <div className={styles.teacher}>Nenhuma curso criado</div>
+                    </div>
+                  )}
                 </div>
                 <div className={styles.seeMore}>
                   <a href="/courses/all">Ver todas as turmas</a>

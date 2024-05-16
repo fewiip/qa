@@ -27,6 +27,7 @@ import { CourseLessonsPage } from "../modules/Lessons/Pages/CourseLessonsPage"
 import { EditUserNamePage } from "../modules/Lessons/Pages/EditUserNamePage"
 import { EditUserEmailPage } from "../modules/Lessons/Pages/EditUserEmailPage"
 import { EditUserPasswordPage } from "../modules/Lessons/Pages/EditUserPasswordPage"
+import { HomePage } from "../modules/Lessons/Pages/HomePage"
 
 
 export const RouteList = {
@@ -60,6 +61,7 @@ export const RouteList = {
   EDIT_USER_NAME: '/user/name/edit',
   EDIT_USER_PASSWORD: '/user/password/edit',
   EDIT_USER_EMAIL: '/user/email/edit',
+  TEST: '/test'
 }
 
 const privateRoutes = [
@@ -68,7 +70,11 @@ const privateRoutes = [
     children: [
       {
         path: '/',
-        element: <LessonsPage />
+        element: <HomePage />
+      },
+      {
+        path:  RouteList.TEST,
+        element: <HomePage />
       },
       {
         path: RouteList.USER,
@@ -76,7 +82,7 @@ const privateRoutes = [
       },
       {
         path: RouteList.LESSONS,
-        element: <LessonsPage />
+        element: <HomePage />
       },
       {
         path: RouteList.COURSE_ID,

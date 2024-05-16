@@ -1,32 +1,56 @@
+.contentWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
 .chaptersCardsBar {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  height: 160px;
+}
+
+.teacher {
+    color: #666;
+}
+
+
+.chaptersWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 20px;
+}
+
+.lessonContent {
+  height: 100%;
+  padding-top: 50px;
+}
+.line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 980px) {
+  .line {
+    align-items: center; 
+    flex-direction: column;
+  }
+  .chaptersCardsBar {
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 16px;
-  
-    height: 160px;
+    height: fit-content;
   }
-  
-  .chaptersWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-  
-    margin-top: 20px;
-  }
-  
-  .lessonContent {
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  
-  @media (max-width: 1070px) {
-    .chaptersCardsBar {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      height: fit-content;
-    }
-  }
+}

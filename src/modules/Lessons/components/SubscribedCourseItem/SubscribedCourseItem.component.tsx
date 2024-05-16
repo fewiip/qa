@@ -1,26 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { FunctionComponent } from "react"; 
-import { Card } from "../../../../shared/components/Card/Card.component"; 
+import { FunctionComponent } from "react";
+import { Card } from "../../../../shared/components/Card/Card.component";
 import { Button } from "../../../../shared/components/Button/Button.component";
-import team1_colored from "../../../../assets/images/team1_colored.png"
- 
+import team1_colored from "../../../../assets/images/team1_colored.png";
+
 import { Course } from "../../api";
-import styles from './SubscribedCoursesItem.module.css'
+import styles from "./SubscribedCoursesItem.module.css";
 interface SubscribedCoursesItemProps {
-    course: Course;
+  course: Course;
 }
 
-export const SubscribedCoursesItem: FunctionComponent<SubscribedCoursesItemProps> = (props) => {
-    const { course } = props;
-    const navigate = useNavigate();
-  
-    function seeCourse(courseID: number) {
-      navigate("/courses/" + courseID + "/lessons");
-    }
-  
+export const SubscribedCoursesItem: FunctionComponent<
+  SubscribedCoursesItemProps
+> = (props) => {
+  const { course } = props;
+  const navigate = useNavigate();
 
-    return <>
-    <Card>
+  function seeCourse(courseID: number) {
+    navigate("/courses/" + courseID + "/lessons");
+  }
+
+  return (
+    <>
+     <Card>
       <div className={styles.cardTitle}>
         <b>{course.name}</b>
       </div>
@@ -31,10 +33,12 @@ export const SubscribedCoursesItem: FunctionComponent<SubscribedCoursesItemProps
       <div className={styles.teacher}>
         Por: {course.ownerName} {course.ownerLastName}
       </div>
-      <div className={styles.teacher}>{course.description} </div>
-      <Button onClick={() => seeCourse(course.id)}>Ver turma</Button>
+      <div  >{course.description} </div>
+      <Button onClick={() => seeCourse(course.id)}>Ver turma</Button> 
         </div>
       </div>
     </Card>
     </>
-}
+  );
+};
+

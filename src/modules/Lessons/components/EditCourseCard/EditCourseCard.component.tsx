@@ -17,7 +17,7 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
   const { getCourse, createChapter } = useLessons();
   const [course, setCourse] = useState<Course>();
   const [chapterName, setChapterName] = useState("");
-  const [courseDescription, setcourseDescription] = useState('');
+  
   
   const [isCreatingChapter, setIsCreatingChapter] = useState(false);
 
