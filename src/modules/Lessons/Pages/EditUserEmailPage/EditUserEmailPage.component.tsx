@@ -1,10 +1,15 @@
+import { toast } from "react-toastify";
 import { AppLayout } from "../../../../shared/components/AppLayout";
+import { Button } from "../../../../shared/components/Button/Button.component";
+import { Input } from "../../../../shared/components/Input";
 import { NavigationBar } from "../../../../shared/components/NavigationBar/NavigationBar.component";
 import { CenterCard } from "../../components/CenterCard";
 
 import styles from './EditUserEmailPage.module.css'
+import { useState } from "react";
 
 export const EditUserEmailPage = () => {
+  const [email, setEmail] = useState('');
 
     /*
     {
@@ -30,6 +35,12 @@ export const EditUserEmailPage = () => {
         "credentialsNonExpired": true
       }
     */
+   function handleSubmit () {
+    if(email === '') {
+      toast.error("Email com campo nulo");
+    }
+
+   }
       return (
         <AppLayout>
           <div>
@@ -38,13 +49,13 @@ export const EditUserEmailPage = () => {
           <div className={styles.contentWrapper}>
             <CenterCard>
               <div>
-                <a href="">Editar Nome</a>
+                Insira o novo email:
               </div>
               <div>
-                <a href="">Editar Email</a>
+                <Input placeholder="Novo email" value={email} onChange={(i) => setEmail(i.target.value)}/>
               </div>
               <div>
-                <a href="">Editar Senha</a>
+                <Button>Confirmar</Button>
               </div>
             </CenterCard>
           </div>

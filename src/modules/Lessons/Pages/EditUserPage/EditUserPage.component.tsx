@@ -2,7 +2,7 @@ import { AppLayout } from "../../../../shared/components/AppLayout";
 import { NavigationBar } from "../../../../shared/components/NavigationBar/NavigationBar.component";
 import { CenterCard } from "../../components/CenterCard";
 
-import styles from "./EditUserPage.module.css";
+import styles from './EditUserPage.module.css';
 
 export const EditUserPage = () => {
   return (
