@@ -4,14 +4,15 @@ import { useState, useEffect } from "react";
 import { Lesson, useLessons } from "../../api/useLessons.hook";
 import styles from './EditLessonPage.module.css'
 import { EditLessonCard } from "../../components/EditLessonCard";
+import { CenterContent } from "../../components/CenterContent";
 export const EditLessonPage = () => {
-  const { id } = useParams()
+  const { courseid, lessonid } = useParams()
 
   const { getLesson } = useLessons();
   const [lesson, setLesson] = useState<Lesson>();
 
   async function fetchlesson() {
-    const response = await getLesson(parseInt(id as string));
+    const response = await getLesson(parseInt(lessonid as string));
     setLesson(response.data)
   }
 
@@ -22,7 +23,9 @@ export const EditLessonPage = () => {
   return <>
     <AppLayout variant='grey'>
       <div className={styles.contentWrapper}>
-        {lesson && <EditLessonCard lesson={lesson} />}
+        <CenterContent>
+        {lesson && courseid && <EditLessonCard courseid={parseInt(courseid)} lesson={lesson} />}
+        </CenterContent>
       </div>
     </AppLayout>
   </>

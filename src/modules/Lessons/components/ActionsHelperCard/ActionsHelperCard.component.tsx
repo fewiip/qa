@@ -10,7 +10,7 @@ import delete1 from "../../../../assets/images/delete.png"
 
 export const ActionsHelperCard: FunctionComponent = () => {
     return <>
-        <CenterCard>
+        <CenterCard variant="withoutOverflow">
             <div className={styles.title}>Ações</div>
             <div className={styles.line}>
                 <div className={styles.item}>

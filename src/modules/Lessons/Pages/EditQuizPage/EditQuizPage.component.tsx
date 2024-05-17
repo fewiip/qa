@@ -7,7 +7,7 @@ import { EditQuizCard } from '../../components/EditQuizCard/EditQuizCard.compone
 import { useState, useEffect } from "react";
 
 export const EditQuizPage = () => {
-    const { quizid } = useParams()
+    const { quizid, courseid } = useParams()
     let { lessonid } = useParams()
 
     const { getQuiz } = useLessons();
@@ -26,7 +26,7 @@ export const EditQuizPage = () => {
     return <AppLayout variant='grey'>
         <div className={styles.contentWrapper}>
         <CenterCard>
-            {lessonid && quiz && <EditQuizCard quiz={quiz} lessonID={parseInt(lessonid)}/>}
+            {lessonid && courseid && quiz && <EditQuizCard courseid={parseInt(courseid)} quiz={quiz} lessonID={parseInt(lessonid)}/>}
         </CenterCard>
         </div>
         

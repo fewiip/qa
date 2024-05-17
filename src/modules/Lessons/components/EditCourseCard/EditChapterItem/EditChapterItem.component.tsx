@@ -1,31 +1,31 @@
 import { FunctionComponent, useState } from "react";
-import { Chapter, ChapterPOST, LessonPOST, useLessons } from "../../../api"; 
+import { Chapter, ChapterPOST, useLessons } from "../../../api";
 import { Input } from "../../../../../shared/components/Input";
 import { Button } from "../../../../../shared/components/Button/Button.component";
 import { toast } from "react-toastify";
 import styles from "./EditChapterItem.module.css";
  
-import add3 from "../../../../../assets/images/add3.png"; 
-import edit from "../../../../../assets/images/edit.png";
-import delete1 from "../../../../../assets/images/delete.png";
 import { EditLessonItem } from "../EditLessonItem";
+import { useNavigate } from "react-router-dom";
 
 interface EditChapterItemProps {
+  courseid: number;
   chapterProps: Chapter;
   index: number;
-  fetchCourse: () => void 
+  fetchCourse: () => void;
 }
 
 export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
   props
 ) => {
-  const { chapterProps, fetchCourse, index } = props;
-  const { getChapter, editChapter, deleteChapter, createLesson,  } = useLessons(); 
+  const { courseid, chapterProps, fetchCourse, index } = props;
+  const { getChapter, editChapter, deleteChapter } = useLessons();
   const [chapter, setChapter] = useState<Chapter>(chapterProps);
   const [chapterName, setChapterName] = useState(chapter.name);
   const [lessonName, setLessonName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isCreatingLesson, setIsCreatingLesson] = useState(false);
+  const navigate = useNavigate()
 
   async function fetchChapter() {
     try {
@@ -56,20 +56,23 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
   }
 
   async function handleDeleteChapter() {
-    try{
-      await deleteChapter(chapter.id)
-      fetchCourse()
-    }catch (error) {
-      toast.error('Alguma coisa deu errado!')
+    try {
+      await deleteChapter(chapter.id);
+      fetchCourse();
+    } catch (error) {
+      toast.error("Alguma coisa deu errado!");
     }
   }
 
   function handleCreateLessonClick() {
-    setIsCreatingLesson(true);
+    navigate(`/course/${courseid}/chapter/${chapterProps.id}/lesson/add`)
+    //setIsCreatingLesson(true);
   }
   async function handleCreateLesson() {
+    /*
+    navigate(`/course/${courseid}/chapter/${chapterProps.id}/lesson/add`)
     setIsCreatingLesson(false);
-    setLessonName('')
+    setLessonName("");
     try {
       let lesson: LessonPOST = {
         name: lessonName,
@@ -81,6 +84,7 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
     }
+    */
   }
   function handleCancelCreateLesson() {
     setIsCreatingLesson(false);
@@ -103,68 +107,109 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
                   value={chapterName}
                   onChange={(i) => setChapterName(i.target.value)}
                 />
-                <div>
-                  <Button size="small" onClick={handleSaveClick}>
-                    Salvar
-                  </Button>
-                </div>
-                <div>
-                  <Button size="small" onClick={handleCancelEditingClick}>
-                    Cancelar
-                  </Button>
-                </div>
               </>
             )}
           </div>
           <div>
-          {!isEditing && (
-              <button className={styles.actionButton} onClick={handleEditNameClick}>
-                <img src={edit} alt="editar o capitulo" />
-              </button>
+            <div>
+              {isEditing && (
+                <>
+                  <div className={styles.row}>
+                    <div>
+                      <Button size="small" 
+                      style={{color: '#3b7882'}}
+                      onClick={handleSaveClick}>
+                        Salvar
+                      </Button>
+                    </div>
+                    <div>
+                      <Button 
+                      size="small" 
+                      style={{color: '#65aeba'}}
+                      onClick={handleCancelEditingClick}>
+                        Cancelar
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {!isEditing && (
+              <>
+                <div className={styles.row}>
+                <div>
+                <Button size="small" 
+                  onClick={handleEditNameClick}
+                >
+                  Renomear
+                </Button>
+
+                </div>
+                <div>
+                <Button size="small" 
+                style={{color: 'green'}}
+                  onClick={handleCreateLessonClick}
+                >
+                  Criar lição
+                </Button>
+                </div>
+                <div>
+                <Button  size="small" 
+                style={{color: 'red'}}
+                  onClick={handleDeleteChapter}
+                >
+                  Excluir
+                </Button>
+                </div>
+                </div>
+              </>
             )}
-            <button
-              className={styles.actionButton}
-              onClick={handleCreateLessonClick}
-            >
-              <img src={add3} alt="criar uma lição" />
-            </button>
-            <button
-              className={styles.actionButton}
-              onClick={handleDeleteChapter}
-            >
-              <img src={delete1} alt="deletar o capitulo" />
-            </button>
-            
           </div>
         </div>
       </div>
       <ul className={styles.listBlock}>
         {chapter.lessons.map((j, index) => (
           <li>
-            <EditLessonItem lessonProps={j} index={index} key={j.id} fetchChapter={fetchChapter}/>
+            <EditLessonItem
+              lessonProps={j}
+              index={index}
+              key={j.id}
+              courseid={courseid}
+              fetchChapter={fetchChapter}
+            />
           </li>
         ))}
 
-        {isCreatingLesson && 
+        {isCreatingLesson && (
           <li>
             <div className={styles.listItemLesson}>
               <div className={styles.line}>
                 <div className={styles.row}>
-                  <div className={styles.chapterNumber}>Nova Lição:</div>
+                  <div>Nova Lição:</div>
 
-                  <Input
-                    placeholder="Nome da Lição"
-                    type="text"
-                    value={lessonName}
-                    onChange={(i) => setLessonName(i.target.value)}
-                  />
                   <div>
-                    <Button onClick={handleCreateLesson} size="small">
+                    <Input
+                      placeholder="Nome da Lição"
+                      type="text"
+                      value={lessonName}
+                      onChange={(i) => setLessonName(i.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className={styles.row}>
+                  <div>
+                    <Button onClick={handleCreateLesson}
+                    style={{color: '#3b7882'}}
+                    size="small">
                       Criar Lição
                     </Button>
                   </div>
                   <div>
-                    <Button onClick={handleCancelCreateLesson} size="small">
+                    <Button onClick={handleCancelCreateLesson} 
+                    style={{color: '#65aeba'}}
+                    
+                     size="small">
                       Cancelar
                     </Button>
                   </div>
@@ -172,7 +217,7 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
               </div>
             </div>
           </li>
-        }
+        )}
       </ul>
     </>
   );

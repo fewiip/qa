@@ -2,25 +2,24 @@ import { Input } from "../../../../shared/components/Input";
 import { FunctionComponent, useEffect, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
 import { ChapterPOST, Course, useLessons } from "../../api";
-import { toast } from "react-toastify"; 
-import styles from "./EditCourseCard.module.css"; 
+import { toast } from "react-toastify";
+import styles from "./EditCourseCard.module.css";
 
-import add1 from "../../../../assets/images/add1.png"; 
-import { EditChapterItem } from "./EditChapterItem"; 
+import { EditChapterItem } from "./EditChapterItem";
 import { Button } from "../../../../shared/components/Button/Button.component";
 
 interface EditCourseCardProps {
   courseid: number;
 }
-export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) => {
+export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (
+  props
+) => {
   const { courseid } = props;
   const { getCourse, createChapter } = useLessons();
   const [course, setCourse] = useState<Course>();
   const [chapterName, setChapterName] = useState("");
-  
-  
-  const [isCreatingChapter, setIsCreatingChapter] = useState(false);
 
+  const [isCreatingChapter, setIsCreatingChapter] = useState(false);
 
   async function fetchCourse() {
     try {
@@ -35,17 +34,16 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
     fetchCourse();
   }, []);
 
-  
-  function handleCreateChapterClick(){
-    setIsCreatingChapter(true)
+  function handleCreateChapterClick() {
+    setIsCreatingChapter(true);
   }
 
-  function handleCancelCreateChapterClick (){
-    setIsCreatingChapter(false)
+  function handleCancelCreateChapterClick() {
+    setIsCreatingChapter(false);
   }
 
   async function handleCreateChapter() {
-    setIsCreatingChapter(false)
+    setIsCreatingChapter(false);
     try {
       let chapter: ChapterPOST = {
         name: chapterName,
@@ -53,14 +51,14 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
       console.log(course);
       const response = await createChapter(chapter, courseid);
       console.log(response.data.id);
-      fetchCourse(); 
+      fetchCourse();
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
     }
   }
   return (
     <>
-      <CenterCard>
+      <CenterCard variant="withoutOverflow">
         <div className={styles.title}>Hirarquia dos conteudos</div>
         {!course && <p>ID não encontrado</p>}
         {course && (
@@ -69,39 +67,76 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (props) =>
               <div className={styles.line}>
                 <div>{course?.name}</div>
                 <div>
-                  <button className={styles.actionButton} onClick={handleCreateChapterClick}>
-                    <img src={add1} alt="" />
-                  </button>
+                <Button size="small"
+                    onClick={handleCreateChapterClick}
+                    style={{color: 'green'}}
+                  >
+                    Criar Capitulo
+                  </Button>
                 </div>
               </div>
             </div>
-            <ul className={styles.listBlock}>
-              {course.chapters.map((i, index) => (
+            <ul className={styles.listBlock}> 
+              {Boolean(course.chapters.length) ? (
+                <>
+                  {course.chapters.map((i, index) => (
+                    <li>
+                      <EditChapterItem
+                        index={index}
+                        courseid={courseid}
+                        chapterProps={i}
+                        key={i.id}
+                        fetchCourse={fetchCourse}
+                      />
+                    </li>
+                  ))}
+                </>
+              ) : (
+                 !isCreatingChapter && (<li>
+                  <div className={styles.listItemChapter}>
+                    <center>Nenhum conteudo</center>
+                  </div>
+                </li>)
+              )}
+              {isCreatingChapter && (
                 <li>
-                  
-                    <EditChapterItem index={index} chapterProps={i} key={i.id} fetchCourse={fetchCourse} />
-                  
-                  
-                </li>
-              ))}
-              <li>
-                {isCreatingChapter && 
-                    <div className={styles.listItemChapter}>
-                        <Input
+                  <div className={styles.listItemChapter}>
+                    <div className={styles.line}>
+                      <div className={styles.row}>
+                        <div>Novo Capitulo:</div>
+                        <div>
+                          <Input
                             placeholder="Nome do capitulo"
                             value={chapterName}
                             onChange={(i) => setChapterName(i.target.value)}
-                        ></Input>
-                        <Button onClick={handleCreateChapter}>Criar Capitulo</Button>
-                        <Button onClick={handleCancelCreateChapterClick}>Cancelar</Button>
+                          ></Input>
+                        </div>
+                      </div>
+                      <div className={styles.row}>
+                        <div>
+                          <Button onClick={handleCreateChapter}
+                          style={{color: '#3b7882'}}
+                           size="small">
+                            Confirmar
+                          </Button>
+                        </div>
+                        <div>
+                          <Button
+                            onClick={handleCancelCreateChapterClick}
+                            style={{color: '#65aeba'}}
+                            size="small"
+                          >
+                            Cancelar
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                }
-              </li>
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
         )}
-
-        
       </CenterCard>
     </>
   );

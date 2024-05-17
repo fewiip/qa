@@ -15,7 +15,7 @@ export const MiniCourseItem: FunctionComponent<MiniCourseItemProps> = (
   const navigate = useNavigate();
 
   function handleClickCourse() {
-    navigate("/courses/" + course.id);
+    navigate("/course/" + course.id);
   }
   return (
     <>

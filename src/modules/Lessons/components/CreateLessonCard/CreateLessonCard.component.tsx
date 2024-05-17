@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
 import { LessonPOST, useLessons } from "../../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import styles from "./CreateLessonCard.module.css";
 import MDEditor from "@uiw/react-md-editor";
@@ -15,6 +15,7 @@ interface CreateLessonCardProps {
 export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (
   props
 ) => {
+  const {courseid} = useParams();
   const { chapterID } = props;
   const { createLesson } = useLessons();
   const navigate = useNavigate();
@@ -23,23 +24,31 @@ export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (
   const [lessonText, setLessonText] = useState<string | undefined>("");
 
   async function handleSubmit() {
-    try {
-      const lesson: LessonPOST = {
-        text: "",
-        name: "",
-      };
-
-      lesson.name = lessonName;
-      lesson.text = lessonText || "";
-
-      console.log(lesson);
-      const response = await createLesson(lesson, chapterID);
-
-      console.log("id da resposta " + response.data.id);
-      navigate(`/lesson/${response.data.id}`);
-    } catch (error) {
-      toast.error("Alguma coisa deu errado!");
+    //verificando se eh nulo
+    if (lessonText !== '' && lessonName !== '') {
+      try {
+        const lesson: LessonPOST = {
+          text: lessonText as string,
+          name:  lessonName
+        };
+   
+  
+        console.log(lesson);
+        const response = await createLesson(lesson, chapterID);
+  
+        console.log("id da resposta " + response.data.id);
+        navigate(`/course/${courseid}/lesson/${response.data.id}`);
+      } catch (error) {
+        toast.error("Alguma coisa deu errado!");
+      }
+    }else{
+      toast.error("Nome e textos não podem ser nulos");
     }
+    
+  }
+
+  function handleCancel(){
+    navigate(`/course/edit/${courseid}`);
   }
 
   return (
@@ -65,6 +74,12 @@ export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (
             onClick={handleSubmit}
           >
             Salvar
+          </Button>
+          <Button
+            style={{ padding: "16px", borderRadius: "8px", fontSize: "12px" }}
+            onClick={handleCancel}
+          >
+            Cancelar
           </Button>
         </div>
       </CenterCard>

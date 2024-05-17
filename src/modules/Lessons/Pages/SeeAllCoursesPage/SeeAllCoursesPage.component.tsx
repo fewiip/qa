@@ -32,7 +32,7 @@ export const SeeAllCourses = () => {
         navigate('')
     }
     function seeCourse(courseID: number){
-        navigate('/courses/'+courseID)
+        navigate('/course/'+courseID)
     } */
   return (
     <>

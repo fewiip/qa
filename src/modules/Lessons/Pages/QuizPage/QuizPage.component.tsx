@@ -8,7 +8,7 @@ import { CenterCard } from '../../components/CenterCard/CenterCard.component';
 import { useNavigate } from 'react-router-dom'; 
 
 export const QuizPage = () => {
-    const { quizid, lessonid} = useParams()
+    const { quizid, lessonid, courseid} = useParams()
     const navigate = useNavigate()
     const { getQuiz, getLesson } = useLessons();
     const [quiz, setQuiz] = useState<Quiz>();
@@ -74,7 +74,7 @@ export const QuizPage = () => {
         const response = await getQuiz(nextQuizID() );
 
         if(response.data.id === quiz?.id) {
-            navigate('/lesson/finished/'+lessonid)
+            navigate('/course/'+courseid+'/lesson/finished/'+lessonid)
             return
         }
         setQuiz(response.data)
@@ -84,11 +84,13 @@ export const QuizPage = () => {
         <div className={styles.contentWrapper}>
         <CenterCard variant='withoutPadding' >
             {
+                courseid &&
                 quiz &&
                 lesson &&
                 lessonid &&
                     <QuizCard
-                        quiz={quiz}
+                        quiz={quiz} 
+                        courseid={parseInt(courseid)}
                         lessonID={parseInt(lessonid as string)}
                         key={quiz.id}
                         onNextQuestionClick={handleNextClick}

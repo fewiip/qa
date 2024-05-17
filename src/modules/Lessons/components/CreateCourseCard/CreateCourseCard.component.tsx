@@ -36,7 +36,7 @@ export const CreateCourseCard: FunctionComponent<CreateCourseCardProps> = (props
             console.log(payload)
             const response = await createCourse(payload)
             console.log(response.data.id)
-            navigate(`/courses/${response.data.id}`)
+            navigate(`/course/edit/${response.data.id}`)
         } catch (error) {
             toast.error('Alguma coisa deu errado!')
         }

@@ -2,15 +2,16 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { CenterCard } from "../CenterCard/CenterCard.component";
 import { Course, useLessons } from "../../api";
 import { toast } from "react-toastify";
-import styles from "./CourseCard.module.css";
+import styles from "./CourseCard.module.css"; 
 
 interface CourseCardProps {
   courseid: number;
 }
 export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
   const { courseid } = props;
-  const { getCourse } = useLessons();
+  const { getCourse} = useLessons();
   const [course, setCourse] = useState<Course>();
+  
 
   async function fetchCourse() {
     try {
@@ -27,7 +28,7 @@ export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
 
   return (
     <>
-      <CenterCard>
+      <CenterCard variant="withoutOverflow">
         <div className={styles.title}>Hirarquia dos conteudos</div>
         {!course && <p>ID não encontrado</p>}
         {course && (

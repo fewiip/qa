@@ -1,0 +1,81 @@
+.contentWrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+  
+  .text {
+    width: 50%;
+  }
+  
+  .cards {
+    margin-left: 20px;
+    width: 50%;
+    flex-direction: column;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .text img {
+    width: 150px;
+  }
+  
+  .cardTitle {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .card img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .input img {
+    height: 30px;
+    width: 30px;
+  }
+  
+  .teacher {
+    color: #666;
+  }
+  
+  .row {
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+  }
+  .column {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .seeMore {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  @media (max-width: 800px) {
+    .content {
+      flex-direction: column;
+    }
+  
+    .text {
+      width: 100%;
+    }
+  
+    .cards {
+      margin-top: 100px;
+      margin-left: 0px;
+      width: 100%;
+      align-items: center;
+    }
+  }
+  

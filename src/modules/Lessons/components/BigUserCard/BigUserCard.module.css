@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 800px;
-    width: 90%;
+    max-width: 980px;
+    width: 100%;
 }
 .imgAndInfo{
     display: flex;

@@ -15,7 +15,7 @@ export const CourseItem: FunctionComponent<CourseItemProps> = (props) => {
   const navigate = useNavigate();
 
   function seeCourse(courseID: number) {
-    navigate("/courses/" + courseID);
+    navigate("/course/" + courseID);
   } 
 
   return (

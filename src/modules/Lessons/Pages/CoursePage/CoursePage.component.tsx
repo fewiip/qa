@@ -68,7 +68,7 @@ export const CoursePage = () => {
   }, [courseid]);
 
   function handleEditCourseClick() {
-    navigate("/courses/edit/" + courseid);
+    navigate("/course/edit/" + courseid);
   }
 
   async function handleRemoveCourseClick() {
@@ -80,10 +80,11 @@ export const CoursePage = () => {
     }
     navigate("/courses/ownership/");
   }
-
-  function handleSeeCourseStatisticsClick() {
-    navigate("/courses/statistics/" + courseid);
-  }
+  /*
+function handleSeeCourseStatisticsClick() {
+  navigate("/course/statistics/" + courseid);
+}
+*/
 
   async function handleSubscribe() {
     try {
@@ -95,7 +96,8 @@ export const CoursePage = () => {
         const response = await subscribeToCourse(payload, user?.id);
         console.log(response);
         setSubscription(true);
-        navigate("/courses/" + courseid + "/lessons");
+        toast("Inscrição feita com sucesso! Bem-vindo!");
+        navigate("/course/" + courseid + "/lessons");
       }
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
@@ -104,7 +106,7 @@ export const CoursePage = () => {
   }
 
   function SeeLessons() {
-    navigate("/courses/" + courseid + "/lessons");
+    navigate("/course/" + courseid + "/lessons");
   }
 
   async function handleUnsubscribe() {
@@ -116,6 +118,7 @@ export const CoursePage = () => {
         const response = await unSubscribeToCourse(payload, user?.id);
         console.log(response);
         setSubscription(false);
+        toast("Desinscrição do curso realizada");
       }
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
@@ -155,6 +158,13 @@ export const CoursePage = () => {
                   </div>
                 )}
 
+                {(subscription || ownership) && (
+                  <>
+                    <div>
+                      <Button onClick={SeeLessons}>Ver Curso</Button>
+                    </div>
+                  </>
+                )}
                 {!subscription && (
                   <div>
                     <Button onClick={handleSubscribe}>Inscrever</Button>
@@ -162,22 +172,23 @@ export const CoursePage = () => {
                 )}
                 {/*
                 <div>
-                  <Button onClick={SeeLessons}>Visualizar</Button>
+                  <Button onClick={SeeLessons}>Ver Curso</Button>
                 </div>
                 */}
-
                 {subscription && (
-                  <div>
-                    <Button onClick={handleUnsubscribe}>Deinscrever</Button>
-                  </div>
+                  <>
+                    <div>
+                      <Button onClick={handleUnsubscribe}>Deinscrever</Button>
+                    </div>
+                  </>
                 )}
-                {ownership && (
+                {/*
                   <div>
                     <Button onClick={handleSeeCourseStatisticsClick}>
                       Ver Estatisticas
                     </Button>
                   </div>
-                )}
+                */}
               </div>
             </div>
           </div>

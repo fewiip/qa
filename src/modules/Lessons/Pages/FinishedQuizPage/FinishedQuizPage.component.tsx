@@ -8,11 +8,11 @@ import animation2 from "../../../../assets/animations/animation2.json";
 import jarTransparent from "../../../../assets/images/jar_transparent.png";
 import { Button } from "../../../../shared/components/Button/Button.component";
 export const FinishedQuizPage = () => {
-  const { lessonid } = useParams();
+  const { lessonid, courseid } = useParams();
   const navigate = useNavigate()
 
   function handleClick() { 
-    navigate('/lesson/'+lessonid)
+    navigate('/course/'+courseid+'/lesson/'+lessonid)
 
   }
   return (

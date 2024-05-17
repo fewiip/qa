@@ -39,7 +39,7 @@ export const HomePage = () => {
 
   function handleClickCourse() {
     if (subscriptions) {
-      navigate("/courses/" + subscriptions[0].course.id + "/lessons");
+      navigate("/course/" + subscriptions[0].course.id + "/lessons");
     }
   }
 

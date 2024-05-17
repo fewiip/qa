@@ -3,16 +3,17 @@ import { useState, useEffect } from "react";
 import { Lesson, useLessons } from "../../api/useLessons.hook";
 import { useParams } from "react-router-dom";
 import styles from './LessonPage.module.css'
-import { AppLayout } from "../../../../shared/components/AppLayout"; 
+import { AppLayout } from "../../../../shared/components/AppLayout";  
 
 export const LessonPage = () => {
-  const { id } = useParams()
+  const { lessonid, courseid } = useParams()
+  
 
-  const { getLesson } = useLessons();
+  const { getLesson  } = useLessons();
   const [lesson, setLesson] = useState<Lesson>(); 
 
   async function fetchLesson() {
-    const response = await getLesson(parseInt(id as string));
+    const response = await getLesson(parseInt(lessonid as string));
     setLesson(response.data)
   }
 
@@ -20,9 +21,11 @@ export const LessonPage = () => {
     fetchLesson()
   }, [])
 
+  
+
   return <AppLayout variant='grey'>
   <div className={styles.lessonWrapper}>
-    {lesson && <LessonCard lesson={lesson} />}
+    {lesson && courseid && <LessonCard courseid={parseInt(courseid)} lesson={lesson} />}
     {!lesson && <h1>Erro</h1>}
   </div>
   </AppLayout>

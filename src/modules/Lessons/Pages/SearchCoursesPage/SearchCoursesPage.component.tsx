@@ -35,7 +35,7 @@ export const SearchCoursesPage = () => {
     }, [])
 
     /*function seeCourse(courseID: number){
-        navigate('/courses/'+courseID)
+        navigate('/course/'+courseID)
     }*/
 
     function handleSearch () {

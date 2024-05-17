@@ -8,6 +8,7 @@ import { Chapter, User, useLessons } from "../../api"
 import { StatisticsCard } from "../../components/StatisticsCard/StatisticsCard.component"
 import { NextAchievementCard } from "../../components/NextAchievementCard"
 import { ChaptersCard } from "../../components/LessonsCard/LessonsCard.component"
+import { useParams } from "react-router-dom"
 
 
 
@@ -16,7 +17,7 @@ export const LessonsPage = () => {
   const { getLeaderBoard, getChapters } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
   const [chapters, setChapters] = useState<Chapter[]>([]);
-
+  const {courseid} = useParams()
   
 
   async function fetchLeaderboard() {
@@ -43,7 +44,7 @@ export const LessonsPage = () => {
     </div>
 
     <div className={styles.chaptersWrapper}>
-      <ChaptersCard chapters={chapters}/>
+      <ChaptersCard courseid={parseInt(courseid as string)}chapters={chapters}/>
     </div>
     </div>
   </AppLayout>

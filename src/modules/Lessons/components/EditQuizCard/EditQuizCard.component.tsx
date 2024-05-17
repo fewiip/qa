@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react"; 
+import { FunctionComponent, useEffect, useState } from "react";
 import { Quiz, QuizPOST, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,17 +7,39 @@ import MDEditor from "@uiw/react-md-editor";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { Input } from "../../../../shared/components/Input";
 import { Tip } from "../../../../shared/components/Tip";
+import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 
 interface EditQuizCardProps {
   quiz: Quiz;
+  courseid: number;
   lessonID: number;
 }
 
 export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
-  const { lessonID } = props;
+  const { lessonID, courseid } = props;
   const { quiz } = props;
-  const { editQuiz } = useLessons();
+  const { editQuiz, isCourseOwner } = useLessons();
   const navigate = useNavigate();
+  const [ownership, setOwnership] = useState(false); 
+  const { user } = useAuthStore();
+  
+
+  useEffect(() => { 
+    fetchOwnership();
+  }, []); 
+
+  async function fetchOwnership() {
+    setOwnership(false);
+    if (user && courseid) {
+      try {
+        const response = await isCourseOwner(user?.id, courseid);
+        setOwnership(response.data.isOwner);
+        console.log(response);
+      } catch (error) {
+        setOwnership(false);
+      }
+    }
+  }
 
   const [quizName, setlessonName] = useState(quiz.name);
   const [quizText, setlessonText] = useState<string | undefined>(quiz.text);
@@ -41,43 +63,62 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
   );
   //const [quizAnswers, setQuizAnswers] = useState(quiz.answer);
 
+  function handleCancel () {
+    navigate(`/course/${courseid}/lesson/${lessonID}/quiz/${quiz.id}`)
+  }
+
   async function handleSubmit() {
-    try {
-      const payload: QuizPOST = {
-        name: quizName,
-        text: quizText || "",
-        image: [],
-        correctAnswer: quizcorrectAnswer,
-        answerRequests: [
-          {
-            text: quizAnswer1,
-          },
-          {
-            text: quizAnswer2,
-          },
-          {
-            text: quizAnswer3,
-          },
-          {
-            text: quizAnswer4,
-          },
-          {
-            text: quizAnswer5,
-          },
-        ],
-      };
+    //verificando se eh nulo
+    if (
+      quizName !== "" &&
+      quizText !== "" &&
+      quizAnswer1 !== "" &&
+      quizAnswer2 !== "" &&
+      quizAnswer3 !== "" &&
+      quizAnswer4 !== "" &&
+      quizAnswer5 !== ""
+    ) {
+      try {
+        const payload: QuizPOST = {
+          name: quizName,
+          text: quizText || "",
+          image: [],
+          correctAnswer: quizcorrectAnswer,
+          answerRequests: [
+            {
+              text: quizAnswer1,
+            },
+            {
+              text: quizAnswer2,
+            },
+            {
+              text: quizAnswer3,
+            },
+            {
+              text: quizAnswer4,
+            },
+            {
+              text: quizAnswer5,
+            },
+          ],
+        };
 
-      console.log(payload);
-      const response = await editQuiz(payload, quiz.id);
-      console.log(response);
+        console.log(payload);
+        const response = await editQuiz(payload, quiz.id);
+        console.log(response);
 
-      navigate(`/lesson/${lessonID}/quiz/${quiz.id}`);
-    } catch (error) {
-      toast.error("Alguma coisa deu errado!" + error);
+        navigate(`/course/${courseid}/lesson/${lessonID}/quiz/${quiz.id}`);
+      } catch (error) {
+        toast.error("Alguma coisa deu errado!" + error);
+      }
+    } else {
+      toast.error("Nome e textos não podem ser nulos");
     }
   }
 
-  return (
+  return (<>
+    {ownership && (<>
+    
     <div data-color-mode="light">
       <div>
         <b>Titulo:</b>
@@ -114,7 +155,6 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         ))
         }*/}
 
-
       <div className={styles.editQuizAnswers}>
         {/*
         <div>
@@ -130,7 +170,14 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         <div>
           <p>Resposta 1:</p>
           <div className={styles.row}>
-            <input type="radio" name="correctAnswer" checked={quizcorrectAnswer == 0} onChange={() => {setquizcorrectAnswer(0)}}/> 
+            <input
+              type="radio"
+              name="correctAnswer"
+              checked={quizcorrectAnswer == 0}
+              onChange={() => {
+                setquizcorrectAnswer(0);
+              }}
+            />
             <Input
               type="text"
               value={quizAnswer1}
@@ -142,7 +189,14 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
           <p>Resposta 2:</p>
           <div className={styles.horizontalSpace}></div>
           <div className={styles.row}>
-            <input type="radio" name="correctAnswer" checked={quizcorrectAnswer == 1} onChange={() => {setquizcorrectAnswer(1)}}/>
+            <input
+              type="radio"
+              name="correctAnswer"
+              checked={quizcorrectAnswer == 1}
+              onChange={() => {
+                setquizcorrectAnswer(1);
+              }}
+            />
             <Input
               type="text"
               value={quizAnswer2}
@@ -153,7 +207,14 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         <div>
           <p>Resposta 3:</p>
           <div className={styles.row}>
-            <input type="radio" name="correctAnswer" checked={quizcorrectAnswer == 2} onChange={() => {setquizcorrectAnswer(2)}} />
+            <input
+              type="radio"
+              name="correctAnswer"
+              checked={quizcorrectAnswer == 2}
+              onChange={() => {
+                setquizcorrectAnswer(2);
+              }}
+            />
             <Input
               type="text"
               value={quizAnswer3}
@@ -164,7 +225,14 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         <div>
           <p>Resposta 4:</p>
           <div className={styles.row}>
-            <input type="radio" name="correctAnswer" checked={quizcorrectAnswer == 3} onChange={() => {setquizcorrectAnswer(3)}}/>
+            <input
+              type="radio"
+              name="correctAnswer"
+              checked={quizcorrectAnswer == 3}
+              onChange={() => {
+                setquizcorrectAnswer(3);
+              }}
+            />
             <Input
               type="text"
               value={quizAnswer4}
@@ -175,7 +243,14 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         <div>
           <p>Resposta 5:</p>
           <div className={styles.row}>
-            <input type="radio" name="correctAnswer" checked={quizcorrectAnswer == 4} onChange={() => {setquizcorrectAnswer(4)}}/>
+            <input
+              type="radio"
+              name="correctAnswer"
+              checked={quizcorrectAnswer == 4}
+              onChange={() => {
+                setquizcorrectAnswer(4);
+              }}
+            />
             <Input
               type="text"
               value={quizAnswer5}
@@ -200,8 +275,17 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
           onClick={handleSubmit}
         >
           Salvar
+        </Button><Button
+          style={{ padding: "16px", borderRadius: "8px", fontSize: "12px" }}
+          onClick={handleCancel}
+        >
+          Cancelar
         </Button>
       </div>
     </div>
+
+
+    </>)}
+  </>
   );
 };

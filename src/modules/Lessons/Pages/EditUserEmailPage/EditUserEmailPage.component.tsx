@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { Input } from "../../../../shared/components/Input";
@@ -34,13 +34,14 @@ export const EditUserEmailPage = () => {
         "accountNonLocked": true,
         "credentialsNonExpired": true
       }
+      function handleSubmit () {
+       if(email === '') {
+         toast.error("Email com campo nulo");
+       }
+       
+          }
     */
-   function handleSubmit () {
-    if(email === '') {
-      toast.error("Email com campo nulo");
-    }
-
-   }
+   
       return (
         <AppLayout>
           <div>

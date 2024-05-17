@@ -19,6 +19,7 @@ import { Course, Subscription, useLessons } from "../../api";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { toast } from "react-toastify";
 import { MiniCourseItem } from "../../components/MiniCourseItem";
+import { useAuth } from "../../../auth/api";
 
 export const CoursesPage = () => {
   const [search, setSearch] = useState("");
@@ -28,6 +29,21 @@ export const CoursesPage = () => {
   const [courses, setCourses] = useState<Course[]>();
   const { user } = useAuthStore();
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false)
+  const {  getRole } = useAuth();
+
+  async function fetchRole() {
+    setIsAdmin(false);
+    if (user ) {
+      try {
+        const response = await getRole(user?.id );
+        setIsAdmin(response.data.isAdmin);
+        console.log(response);
+      } catch (error) {
+        setIsAdmin(false);
+      }
+    }
+  }
 
   async function fetchCourses() {
     try {
@@ -47,6 +63,7 @@ export const CoursesPage = () => {
 
   useEffect(() => {
     fetchCourses();
+    fetchRole();
   }, []);
 
   function handleClick() {
@@ -108,7 +125,7 @@ export const CoursesPage = () => {
                 */}
             </div>
             <div className={styles.cards}>
-              <Card>
+              {isAdmin && <Card>
                 <div className={styles.cardTitle}>Minhas Turmas</div>
                 <Button onClick={handleClick}>Criar Turma</Button>
                 <div className={styles.row}>
@@ -126,7 +143,8 @@ export const CoursesPage = () => {
                 <div className={styles.seeMore}>
                   <a href="/courses/ownership">Ver minhas turmas</a>{" "}
                 </div>
-              </Card>
+              </Card>}
+              
               <Card>
                 <div className={styles.cardTitle}>
                   Turmas em que eu estou inscrito

@@ -17,7 +17,7 @@ export const SubscribedCoursesItem: FunctionComponent<
   const navigate = useNavigate();
 
   function seeCourse(courseID: number) {
-    navigate("/courses/" + courseID + "/lessons");
+    navigate("/course/" + courseID + "/lessons");
   }
 
   return (
