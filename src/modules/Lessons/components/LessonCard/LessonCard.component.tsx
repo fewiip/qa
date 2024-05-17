@@ -72,8 +72,13 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
 
   function handleQuizClick() {
     navigate(
+      `/course/${courseid}/lesson/${lesson?.id}/quiz/intro`
+    );
+    /*
+    navigate(
       `/course/${courseid}/lesson/${lesson?.id}/quiz/${lesson?.quizzes[0].id}`
     );
+    */
   }
 
   function handleEditLessonClick() {
@@ -103,10 +108,7 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
                 <div className={styles.lessonTitle}>
                   <h2>{lesson?.name}</h2>
                 </div>
-                <div className={styles.lessonContent} data-color-mode="light">
-                  {/* <ReactMarkdown remarkPlugins={[remarkBreaks]}>
-              {lesson?.text}
-            </ReactMarkdown> */}
+                <div className={styles.lessonContent} data-color-mode="light"> 
                   <MDEditor.Markdown
                     source={lesson?.text}
                     style={{ whiteSpace: "pre-wrap" }}
@@ -117,7 +119,7 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
 
             <div className={styles.lessonButtons}>
               {Boolean(lesson?.quizzes.length) && (
-                <Button onClick={handleQuizClick}>Desafios +10 bugs</Button>
+                <Button onClick={handleQuizClick}>Começar quiz</Button>
               )}
               {/*
                */}

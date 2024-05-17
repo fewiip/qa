@@ -28,6 +28,7 @@ import { EditUserNamePage } from "../modules/Lessons/Pages/EditUserNamePage"
 import { EditUserEmailPage } from "../modules/Lessons/Pages/EditUserEmailPage"
 import { EditUserPasswordPage } from "../modules/Lessons/Pages/EditUserPasswordPage"
 import { HomePage } from "../modules/Lessons/Pages/HomePage"
+import { IntroQuizPage } from "../modules/Lessons/Pages/IntroQuizPage"
 
 
 export const RouteList = {
@@ -40,31 +41,24 @@ export const RouteList = {
   CHAPTER: '/chapter',
   LESSON: '/lesson',
   COURSE_ID: '/course/:courseid',
-  COURSE_STATISTICS: '/courses/statistics/:courseid',
-  //LESSON_ID: '/lesson/:id',
-  LESSON_ID: '/course/:courseid/lesson/:lessonid',
-  //LESSON_ID_QUIZ_ID: '/lesson/:lessonid/quiz/:quizid',
-  LESSON_ID_QUIZ_ID:  '/course/:courseid/lesson/:lessonid/quiz/:quizid',
-  ///course/18/lesson/42/quiz/46
+  COURSE_STATISTICS: '/courses/statistics/:courseid', 
+  LESSON_ID: '/course/:courseid/lesson/:lessonid', 
+  LESSON_ID_QUIZ_ID:  '/course/:courseid/lesson/:lessonid/quiz/:quizid', 
   CREATE_COURSE: '/courses/add',
   SEARCH_COURSE: '/courses/search/:search',
   COURSE_OWNERSHIP: '/courses/ownership',
-  CREATE_CHAPTER: '',
-  //CREATE_LESSON: '/chapter/:chapterid/lesson/add',
-  CREATE_LESSON: '/course/:courseid/chapter/:chapterid/lesson/add',
-  //CREATE_QUIZ: '/lesson/:lessonid/quiz/add',
+  CREATE_CHAPTER: '', 
+  CREATE_LESSON: '/course/:courseid/chapter/:chapterid/lesson/add', 
   CREATE_QUIZ: '/course/:courseid/lesson/:lessonid/quiz/add',
   EDITCOURSE: '/course/edit/:courseid',
   SELLALLCOURSES: '/courses/all',
   COURSE_LESSONS: '/course/:courseid/lessons',
   SUBSCRIPTIONS: '/courses/subscriptions',
-  EDITCHAPTER: '',
-  //EDITORLESSON_ID: '/lesson/edit/:id',
-  EDITORLESSON_ID: '/course/:courseid/lesson/edit/:lessonid/',
-  //EDITORQUIZ_ID: '/edit/lesson/:lessonid/quiz/:quizid',
-  EDITORQUIZ_ID: '/course/:courseid/lesson/:lessonid/quiz/edit/:quizid',
-  //LESSON_FINISHED: '/lesson/finished/:lessonid/',
-  LESSON_FINISHED: '/course/:courseid/lesson/finished/:lessonid/',
+  EDITCHAPTER: '', 
+  EDITORLESSON_ID: '/course/:courseid/lesson/edit/:lessonid/', 
+  EDITORQUIZ_ID: '/course/:courseid/lesson/:lessonid/quiz/edit/:quizid', 
+  INTRO_QUIZ: '/course/:courseid/lesson/:lessonid/quiz/intro',
+  FINISHED_QUIZ: '/course/:courseid/lesson/finished/:lessonid/',
   EDIT_USER: '/user/edit',
   EDIT_USER_NAME: '/user/name/edit',
   EDIT_USER_PASSWORD: '/user/password/edit',
@@ -184,7 +178,11 @@ const privateRoutes = [
         element: <LessonsPage />
       },
       {
-        path: RouteList.LESSON_FINISHED,
+        path: RouteList.INTRO_QUIZ,
+        element: <IntroQuizPage/>
+      },
+      {
+        path: RouteList.FINISHED_QUIZ,
         element: <FinishedQuizPage/>
       },
       {

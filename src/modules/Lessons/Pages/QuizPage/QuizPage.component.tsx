@@ -88,13 +88,19 @@ export const QuizPage = () => {
                 quiz &&
                 lesson &&
                 lessonid &&
+                <>
+                
+                
                     <QuizCard
                         quiz={quiz} 
+                        quizIndex={thisQuizIndex()}
+                        quizzesSize={lesson.quizzes.length}
                         courseid={parseInt(courseid)}
                         lessonID={parseInt(lessonid as string)}
                         key={quiz.id}
                         onNextQuestionClick={handleNextClick}
                     />
+                </>
             }
             
         </CenterCard>

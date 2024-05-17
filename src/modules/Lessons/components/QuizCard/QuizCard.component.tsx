@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useMemo, useState } from "react";
 import styles from "./QuizCard.module.css";
-import { Quiz, useLessons } from "../../api";
+import { Quiz, UserStatistics, useLessons } from "../../api";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import professor1_happy from "../../../../assets/images/professor1_happy.png";
@@ -11,10 +11,14 @@ import { Button } from "../../../../shared/components/Button/Button.component";
 
 import correctIcon from "../../../../assets/images/correct-icon.png";
 import wrongIcon from "../../../../assets/images/wrong-icon.png";
+import spray_colored from "../../../../assets/images/spray_colored.png";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 
 interface QuizCardProps {
   quiz: Quiz;
+  quizIndex: number;
+  quizzesSize: number;
+
   lessonID: number;
   courseid: number;
   onNextQuestionClick: () => void;
@@ -29,12 +33,13 @@ const STATE = {
 type State = keyof typeof STATE;
 
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
-  const { lessonID, quiz, courseid, onNextQuestionClick } = props;
+  const { quizIndex, quizzesSize, lessonID, quiz, courseid, onNextQuestionClick } = props;
   const navigate = useNavigate();
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
+  const [userStatistiscs, setUserStatistics] = useState<UserStatistics>();
   const { user } = useAuthStore();
-  const { isSubscribed, isCourseOwner } = useLessons();
+  const { isSubscribed, isCourseOwner, getUserStatistics } = useLessons();
 
   const [selectedAnswer, setSelectedAnswer] = useState();
   const [currentState, setCurrentState] = useState<State>(
@@ -42,9 +47,17 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
   );
 
   useEffect(() => {
+    fetcUserStatistics();
     fetchSubscription();
     fetchOwnership();
   }, []);
+
+  async function fetcUserStatistics() {
+    if (user) {
+      const response = await getUserStatistics(user?.id);
+      setUserStatistics(response.data);
+    }
+  }
 
   async function fetchSubscription() {
     setSubscription(false);
@@ -107,14 +120,27 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
 
   return (
     <div className={styles.quizCardWrapper}>
-      {/*JSON.stringify(correctAnswer)*/}
       {(subscription || ownership) && (
         <>
           <div className={styles.content}>
             <div className={styles.imageTextWrapper}>
-              <div className={styles.profImage}>
-                <img src={professor1_happy} alt="" />
+              <div className={styles.leftSide}>
+                <div className={styles.profImage}>
+                <progress value={ ((quizIndex + 1)/ quizzesSize) * 100 } max="100"></progress>
+                <p>{quizIndex + 1} / {quizzesSize}</p>
+                  <div className={styles.refill}>
+                    <img src={spray_colored} alt="" />
+                    <b>{userStatistiscs?.refill}</b>
+                  </div>
+
+                  <img
+                    src={professor1_happy}
+                    className={styles.profImagee}
+                    alt=""
+                  />
+                </div>
               </div>
+
               <div className={styles.quizText}>
                 <div className={styles.quizTitle}>
                   <h2>{quiz.name}</h2>
@@ -124,7 +150,6 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                   <ReactMarkdown remarkPlugins={[remarkBreaks]}>
                     {quiz.text}
                   </ReactMarkdown>
-                  {/*<img src={graph} alt="" />*/}
                 </div>
               </div>
             </div>
@@ -132,7 +157,6 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
               <RadioGroup options={options} onChange={handleRadioChange} />
             </div>
 
-            {/*JSON.stringify(selectedAnswer)*/}
             <div className={styles.answers}>
               <Button
                 style={{
@@ -170,7 +194,9 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     </div>
                     <div className={styles.answerText}>
                       <h1>Ops! Resposta incorreta!</h1>
-                      <p>A resposta correta é: {quiz.answer[correctAnswer].text} </p>
+                      <p>
+                        A resposta correta é: {quiz.answer[correctAnswer].text}{" "}
+                      </p>
                     </div>
                   </div>
                   <div>
@@ -191,7 +217,9 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     </div>
                     <div className={styles.answerText}>
                       <h1 className={styles.titleMessage}>Correto!</h1>
-                      <p>A resposta correta é: {quiz.answer[correctAnswer].text}</p>
+                      <p>
+                        A resposta correta é: {quiz.answer[correctAnswer].text}
+                      </p>
                     </div>
                   </div>
                   <div>

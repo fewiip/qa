@@ -133,9 +133,31 @@ export interface SignUpProps {
   password: string
 }
 
+export interface UserStatistics {
+  id: number,
+  firstName: string,
+  lastName: string,
+  email: string,
+  role: string,
+  bug: number,
+  coin: number,
+  refill: number,
+  victory: number,
+  xp: number,
+  level: number,
+}
+
+export interface UserStatisticsResponse  {
+  data: UserStatistics
+}
+
 export const useLessons = () => {
 
   const { http } = useHttp()
+
+  const getUserStatistics =  (userID: number) : Promise<UserStatisticsResponse> => {
+    return http.get('/statistics/'+ userID)
+  }
 
   const getLeaderBoard = (): Promise<LeaderBoardResponse> => {
     return http.get('/leaderBoard')
@@ -252,6 +274,7 @@ export const useLessons = () => {
 
 
   return {
+    getUserStatistics,
     getLeaderBoard,
     getCourseLeaderBoard,
     getChapters,

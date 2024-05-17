@@ -40,7 +40,7 @@ export const LessonsPage = () => {
     <div className={styles.chaptersCardsBar} >
       <LeadershipCard users={users} />
       <NextAchievementCard />
-      <StatisticsCard />
+      <StatisticsCard courseid={parseInt(courseid as string)}/>
     </div>
 
     <div className={styles.chaptersWrapper}>

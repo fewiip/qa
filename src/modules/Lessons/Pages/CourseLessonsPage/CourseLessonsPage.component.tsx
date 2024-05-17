@@ -134,7 +134,7 @@ export const CourseLessonsPage = () => {
 
               <div className={styles.line}>
                 <CourseLeadershipCard users={users} />
-                <StatisticsCard />
+                <StatisticsCard courseid={parseInt(courseid as string)} />
               </div>
 
               <div className={styles.chaptersWrapper}>

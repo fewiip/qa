@@ -1,0 +1,35 @@
+.contentWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.image {
+  top: 0;
+  left: 55px;
+  z-index: 0;
+  position: absolute;
+}
+.image img {
+  width: 300px;
+}
+.animation {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.parent {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.header {
+  text-transform: uppercase;
+}

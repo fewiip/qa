@@ -48,7 +48,16 @@
     height: 90px;
 }
 
+.leftSide{
+    display: flex;
+    flex-direction: column;
+}
 
+.leftSide p{
+    margin-top: 0px;
+    margin-bottom: 3px;
+    color: #7a7979;
+}
 
 .profImage {
     width: 200px;
@@ -56,10 +65,23 @@
     height: 100%;
 }
 
-
-.profImage img{
-    width: 200px;
+.refill {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
 }
+
+.refill img {
+    width: 30px;
+    height: 30px;
+}
+ 
+
+.profImagee {
+    width: 200px;
+    height: 200px;
+}
+
 
 .quizText img {
     width: 100%;

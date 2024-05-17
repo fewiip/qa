@@ -6,9 +6,28 @@ import CoinsImage from "../../../../assets/images/coin_colored.png";
 import SprayImage from "../../../../assets/images/spray_colored.png";
 import styles from "./StatisticsCard.module.css";
 import { Button } from "../../../../shared/components/Button/Button.component";
+import { UserStatistics, useLessons } from "../../api";
+import { FunctionComponent, useEffect, useState } from "react";
 
-export const StatisticsCard = () => {
+interface StatisticsCardProps {
+  courseid: number
+}
+
+export const StatisticsCard : FunctionComponent<StatisticsCardProps> = (props) => {
+  const {courseid} = props
   const { user } = useAuthStore();
+  const { getUserStatistics  } = useLessons();
+  const [userStatistiscs, setUserStatistics] = useState<UserStatistics>()
+  console.log(courseid)
+  async function fetcUserStatistics() {
+    if(user) { 
+      const response = await getUserStatistics(user?.id);
+      setUserStatistics(response.data)
+    }
+  }
+  useEffect(() => {
+    fetcUserStatistics()
+  }, [])
 
   return (
     <Card>
@@ -22,7 +41,7 @@ export const StatisticsCard = () => {
             <img src={BugsBottleImage} alt="" />
           </div>
           <div className={styles.col}>
-            <b>{user?.bug}</b>
+            <b>{userStatistiscs?.bug}</b>
             <p>Bugs</p>
           </div>
         </div>
@@ -32,7 +51,7 @@ export const StatisticsCard = () => {
             <img src={CoinsImage} alt="" />
           </div>
           <div className={styles.col}>
-            <b>{user?.coin}</b>
+            <b>{userStatistiscs?.coin}</b>
             <p>Moedas</p>
           </div>
         </div>
@@ -44,7 +63,7 @@ export const StatisticsCard = () => {
             <img src={SwordsImage} alt="" />
           </div>
           <div className={styles.col}>
-            <b>{user?.victory}</b>
+            <b>{userStatistiscs?.victory}</b>
             <p>Vitórias</p>
           </div>
         </div>
@@ -53,7 +72,7 @@ export const StatisticsCard = () => {
             <img src={SprayImage} alt="" />
           </div>
           <div className={styles.col}>
-            <b>{user?.refill}</b> <br />
+            <b>{userStatistiscs?.refill}</b> <br />
             <p>Refis</p>
             <Button size="small">repor 5</Button>
           </div>

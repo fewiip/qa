@@ -1,9 +1,19 @@
-.tipWrapper {
+.tipSquare {
   padding: 10px;
   border: 1px solid lightgray;
   border-bottom: 3px solid lightgray;
   background-color: white;
   filter: drop-shadow(0px 5px 2px #cccaca);
   max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.tipRounded {
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-bottom: 3px solid lightgray;
+  background-color: white; 
+  border-radius: 8px;
+  max-width: 80%;
   margin-bottom: 20px;
 }

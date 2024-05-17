@@ -10,6 +10,7 @@ export const LessonPage = () => {
   
 
   const { getLesson  } = useLessons();
+  
   const [lesson, setLesson] = useState<Lesson>(); 
 
   async function fetchLesson() {

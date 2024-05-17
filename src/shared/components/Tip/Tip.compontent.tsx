@@ -3,13 +3,22 @@ import styles from './Tip.module.css'
 
 interface TipProps {
     children: ReactNode
+    variant?: 'square' | 'rounded'
 }
 
 export const Tip : FunctionComponent<TipProps> = (props) => {
-    const {children} = props
+    const {children,variant = 'square'} = props
+    function styleTip () {
+        if (variant === 'square'){
+          return styles.tipSquare as string 
+        } 
+        return styles.tipRounded as string
+      }
+
     return <>
-    <div className={styles.tipWrapper}>
-        <b>Dica: </b>
+    <div className={styleTip()}  >
+        {(variant === 'square') && <b>Dica: </b>}
+        
         {children}
     </div></>
-}
+} 
