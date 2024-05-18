@@ -9,7 +9,7 @@ import { EditCourseCard } from "../../components/EditCourseCard/EditCourseCard.c
 //import { ActionsHelperCard } from "../../components/ActionsHelperCard";
 
 import styles from "./EditCoursePage.module.css";
-import Image from "../../../../assets/images/image.png";
+import Image from "../../../../assets/images/bookRed_colored.png";
 import edit from "../../../../assets/images/edit.png";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { toast } from "react-toastify";

@@ -33,7 +33,14 @@ const STATE = {
 type State = keyof typeof STATE;
 
 export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
-  const { quizIndex, quizzesSize, lessonID, quiz, courseid, onNextQuestionClick } = props;
+  const {
+    quizIndex,
+    quizzesSize,
+    lessonID,
+    quiz,
+    courseid,
+    onNextQuestionClick,
+  } = props;
   const navigate = useNavigate();
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
@@ -126,8 +133,13 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
             <div className={styles.imageTextWrapper}>
               <div className={styles.leftSide}>
                 <div className={styles.profImage}>
-                <progress value={ ((quizIndex + 1)/ quizzesSize) * 100 } max="100"></progress>
-                <p>{quizIndex + 1} / {quizzesSize}</p>
+                  <progress
+                    value={((quizIndex + 1) / quizzesSize) * 100}
+                    max="100"
+                  ></progress>
+                  <p>
+                    {quizIndex + 1} / {quizzesSize}
+                  </p>
                   <div className={styles.refill}>
                     <img src={spray_colored} alt="" />
                     <b>{userStatistiscs?.refill}</b>
@@ -158,16 +170,29 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
             </div>
 
             <div className={styles.answers}>
-              <Button
-                style={{
-                  padding: "16px",
-                  borderRadius: "8px",
-                  fontSize: "12px",
-                }}
-                onClick={handleVerify}
-              >
-                Verificar
-              </Button>
+              {currentState === STATE.unanswered && (
+                <Button
+                  style={{
+                    padding: "16px",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                  }}
+                  onClick={handleVerify}
+                >
+                  Verificar
+                </Button>
+              )}
+              {currentState !== STATE.unanswered && (
+                <Button
+                  style={{
+                    padding: "16px",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                  }}
+                >
+                  Verificar
+                </Button>
+              )}
 
               {ownership && (
                 <Button
@@ -200,7 +225,9 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     </div>
                   </div>
                   <div>
-                    <Button color="red">Continuar</Button>
+                    <Button color="red" onClick={onNextQuestionClick}>
+                      Continuar
+                    </Button>
                   </div>
                 </div>
               </div>

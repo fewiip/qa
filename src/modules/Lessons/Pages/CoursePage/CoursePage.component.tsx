@@ -8,7 +8,7 @@ import { CenterContent } from "../../components/CenterContent";
 import { CourseCard } from "../../components/CourseCard/CourseCard.component";
 
 import styles from "./CoursePage.module.css";
-import Image from "../../../../assets/images/image.png";
+import Image from "../../../../assets/images/bookRed_colored.png";
 import { toast } from "react-toastify";
 
 export const CoursePage = () => {

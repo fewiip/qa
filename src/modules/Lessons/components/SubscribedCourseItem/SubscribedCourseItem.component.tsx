@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { FunctionComponent } from "react";
 import { Card } from "../../../../shared/components/Card/Card.component";
 import { Button } from "../../../../shared/components/Button/Button.component";
-import team1_colored from "../../../../assets/images/team1_colored.png";
+import team1_colored from "../../../../assets/images/bookRed_colored.png";
 
 import { Course } from "../../api";
 import styles from "./SubscribedCoursesItem.module.css";
@@ -22,23 +22,34 @@ export const SubscribedCoursesItem: FunctionComponent<
 
   return (
     <>
-     <Card>
-      <div className={styles.cardTitle}>
-        <b>{course.name}</b>
-      </div>
-      <div className={styles.row}>
-      <div><img src={team1_colored} alt="" /></div>
-        <div className={styles.column}>
-
-      <div className={styles.teacher}>
-        Por: {course.ownerName} {course.ownerLastName}
-      </div>
-      <div  >{course.description} </div>
-      <Button onClick={() => seeCourse(course.id)}>Ver turma</Button> 
+      <Card>
+        <div className={styles.cardTitle}>
+          <b>{course.name}</b>
         </div>
-      </div>
-    </Card>
+        <div className={styles.row}>
+          <div>
+            <img src={team1_colored} alt="" />
+          </div>
+          <div className={styles.column}>
+            <div className={styles.teacher}>
+              Por: {course.ownerName} {course.ownerLastName}
+            </div>
+            <div>
+              {course.description.length < 60 && (
+                <>
+                  <p>{course.description}</p>
+                </>
+              )}
+              {course.description.length >= 60 && (
+                <>
+                  <p>{course.description.substring(0, 60)}[...]</p>
+                </>
+              )}
+            </div>
+            <Button onClick={() => seeCourse(course.id)}>Ver turma</Button>
+          </div>
+        </div>
+      </Card>
     </>
   );
 };
-
