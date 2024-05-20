@@ -8,6 +8,8 @@
     padding: 8px;
     box-shadow: #EEEEEE 0px 7px 0px 0px;
     border: 2px solid #EEEEEE;
+    margin-top: 0px;
+    margin-bottom: 4px;
   }
   
   .radioWrapper input{
@@ -19,4 +21,9 @@
     border: 2px solid #4497D6;
     box-shadow: #4497D6 0px 7px 0px 0px;
     color: white;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }

@@ -34,10 +34,10 @@ export const ArenaPage = () => {
                   duelo;
                 </li>
                 <li>
-                    O competidor que finalizar o duelo com mais pontos ganha; <b>01 vitória na arena</b> + o <b>saldo de pontos</b> de bugs que acumulou durante o duelo
+                    O competidor que finalizar o duelo com mais pontos ganha: <b>01 vitória na arena</b> + o <b>saldo de pontos</b> de bugs que acumulou durante o duelo;
                 </li>
                 <li>
-                  Em caso de empate ambos os competidores ganham os benefícios
+                  Em caso de empate ambos os competidores ganham os benefícios.
                 </li>
               </ul>
             </div>

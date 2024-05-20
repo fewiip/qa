@@ -32,6 +32,10 @@
 }
 
 .imageSide {
+  display: flex;
+  flex-direction: column;
+
+
   width: 50%;
   height: 100%;
   box-sizing: border-box;
@@ -47,7 +51,54 @@
   height: 100%;
 }
 
+.parent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: row;
+  align-items: center;
+  justify-content: center;
+}
+.description {
+  margin-right: 100px;
+  width: 300px;
+  font-size: 40px;
+  color: #5e5e5e;
+}
+
+.imgform img{
+  width: 250px;
+}
+
+.imageconteiner{  
+  right: -45px;
+  z-index: 0;
+  position: absolute;
+}
+
+.imageconteiner img{
+  width: 300px;
+}
+
+
+.imgform{
+  display: none;
+}
+
 @media (max-width: 1070px) {
+  .imageconteiner {
+    display: none;
+  }
+
+  .imgform{
+    display: initial;
+  }
+
+  .loginWrapper {
+    flex-direction: column;
+  }
+
   .loginWrapper {
     flex-direction: column;
   }

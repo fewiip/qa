@@ -5,6 +5,12 @@
   justify-content: center;
 }
 
+
+.parent {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
 .image {
   top: 0;
   left: 55px;
@@ -24,12 +30,34 @@
   overflow: hidden;
 }
 
-.parent {
-  position: relative;
-  width: 400px;
-  height: 400px;
+.text {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  color: #9d9d9d;
 }
 
+.coins img {
+  height: 40px;
+  width: 40px;
+}
+.coins {
+  color: #cfa73a;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.coins p {
+  margin: 0;
+  margin-right: 15px;
+}
 .header {
   text-transform: uppercase;
 }

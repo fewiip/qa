@@ -60,7 +60,6 @@ export const CourseLessonsPage = () => {
         const response = await isSubscribed(user?.id, parseInt(courseid));
         setSubscription(response.data.isSubscribed);
         console.log(response);
-
       } catch (error) {
         setSubscription(false);
       }
@@ -95,10 +94,13 @@ export const CourseLessonsPage = () => {
       console.log(error);
     }
   }
+  function editCourse() {
+    navigate("/course/edit/" + courseid);
+  }
 
   function exit() {
     unsubscribe();
-    
+
     navigate("/course/" + courseid);
   }
 
@@ -117,23 +119,28 @@ export const CourseLessonsPage = () => {
                   </p>
                 </div>
                 <div>
-                    <Button
-                      onClick={exit}
-                      size="big"
-                      style={{
-                        width: "150px",
-                        borderRadius: "8px",
-                        fontSize: "12px",
-                        height: "50px",
-                      }}
-                    >
-                      Desinscrever
-                    </Button> 
+                  {ownership && (
+                    <Button onClick={editCourse}>Editar Curso</Button>
+                  )}
+
+                  <Button
+                    onClick={exit}
+                    size="big"
+                    style={{
+                      width: "150px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      height: "50px",
+                    }}
+                  >
+                    Desinscrever
+                  </Button>
                 </div>
               </div>
 
               <div className={styles.line}>
                 <CourseLeadershipCard users={users} />
+
                 <StatisticsCard courseid={parseInt(courseid as string)} />
               </div>
 

@@ -49,7 +49,7 @@ export const SubscriptionsPage = () => {
                     O QA+ permite que você acompanhe cursos feitos por outros gestores. 
                   </li>
                   <li>
-                    Reveja os conteudos de seu interesse e reforce os seus conhecimentos através dos nossos quizzes.
+                    Reveja os conteúdos de seu interesse e reforce os seus conhecimentos através dos nossos quizzes.
                   </li>
                 </ul>
  

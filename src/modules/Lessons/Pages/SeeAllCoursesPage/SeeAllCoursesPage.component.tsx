@@ -1,15 +1,15 @@
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterContent } from "../../components/CenterContent/CenterContent.component";
-import styles from "./SeeAllCoursesPage.module.css";
 import { Course, useLessons } from "../../api";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { CourseItem } from "../../components/CourseItem";
+import team2_colored from "../../../../assets/images/team2_colored.png";
 /*import { useNavigate } from "react-router-dom";
 import { Card } from "../../../../shared/components/Card/Card.component";
 import { Button } from "../../../../shared/components/Button/Button.component";*/
 
-import team2_colored from "../../../../assets/images/team2_colored.png";
+import styles from "./SeeAllCoursesPage.module.css";
 
 export const SeeAllCourses = () => {
   const { getCourses } = useLessons();
@@ -50,8 +50,8 @@ export const SeeAllCourses = () => {
                 <b>Sobre as turmas:</b>
                 <ul>
                   <li>
-                    O QA+ permite que você crie e participe de multiplas turmas
-                    (além da turma padrã QA+), levando o seu conhecimento além.
+                    O QA+ permite que você crie e participe de múltiplas turmas
+                    (além da turma padrão QA+), levando o seu conhecimento além.
                   </li>
                 </ul>
 
@@ -60,7 +60,7 @@ export const SeeAllCourses = () => {
                   <li>
                     Apoiamos sua autonomia para ensinar! Assim, nas turmas são
                     disponibilizados os mesmos recursos da turma padrão do QA+,
-                    mas quem define o conteúdo, exercicios e conquistas é você!
+                    mas quem define o conteúdo, exercícios e conquistas é você!
                   </li>
                   <li>
                     Conheça e apoie sua turma: para que possa apoiar o processo

@@ -24,31 +24,23 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; 
   width: 100%;  
 }
 
 .statisticCardInfo {
   margin-top: 20px;
   display: flex;
-  width: 120px;
+  width: 180px;
   justify-content: center;
 }
 
 .statisticsCardItem {
-    width: 60px;
-    float: left;
-}
-
-.statisticsCardItem {
-    width: 60px;
-    float: left;
-    flex-direction: column;
+  width: 180px;
 }
 
 .statisticsCardItem img{
-    height: 50px;
+    height: 70px;
     
 }
 
@@ -60,6 +52,7 @@
 .row {
   display: flex;
   flex-direction: row;
+  width: 180px;
 }
 
 .image {

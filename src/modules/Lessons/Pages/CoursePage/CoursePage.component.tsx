@@ -178,7 +178,7 @@ function handleSeeCourseStatisticsClick() {
                 {subscription && (
                   <>
                     <div>
-                      <Button onClick={handleUnsubscribe}>Deinscrever</Button>
+                      <Button onClick={handleUnsubscribe}>Desinscrever</Button>
                     </div>
                   </>
                 )}

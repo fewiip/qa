@@ -125,7 +125,8 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
                */}
               {ownership ? (
                 <>
-                  <Button onClick={returnToCourseOwner}>Voltar</Button>
+                  <Button onClick={returnToCourse}>Voltar para o curso</Button>
+                  <Button onClick={returnToCourseOwner}>Voltar para edição</Button>
                   <Button onClick={handleEditLessonClick}>Editar</Button>
                   <Button onClick={handleCreateQuizClick}>Criar um quiz</Button>
                 </>

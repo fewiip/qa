@@ -3,12 +3,13 @@ import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import BugsBottleImage from "../../../../assets/images/jar_colored.png";
 import SwordsImage from "../../../../assets/images/battle2_colored.png";
 import CoinsImage from "../../../../assets/images/coin_colored.png";
-import SprayImage from "../../../../assets/images/spray_colored.png";
 import styles from "./StatisticsCard.module.css";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { UserStatistics, useLessons } from "../../api";
 import { FunctionComponent, useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
+import SprayImage from "../../../../assets/images/spray_colored.png";
+import coinSolo_colored from "../../../../assets/images/coinSolo_transparent.png";
 interface StatisticsCardProps {
   courseid: number
 }
@@ -16,7 +17,7 @@ interface StatisticsCardProps {
 export const StatisticsCard : FunctionComponent<StatisticsCardProps> = (props) => {
   const {courseid} = props
   const { user } = useAuthStore();
-  const { getUserStatistics  } = useLessons();
+  const { getUserStatistics, addRefill, subtractCoin  } = useLessons();
   const [userStatistiscs, setUserStatistics] = useState<UserStatistics>()
   console.log(courseid)
   async function fetcUserStatistics() {
@@ -29,10 +30,34 @@ export const StatisticsCard : FunctionComponent<StatisticsCardProps> = (props) =
     fetcUserStatistics()
   }, [])
 
+  async function fetchaAddRefill() {
+    if(user) { 
+      await subtractCoin(user?.id);
+      const response2 = await addRefill(user?.id);
+      setUserStatistics(response2.data)
+    }
+  }
+
+
+  function handleRefill() {
+    if(userStatistiscs){
+      console.log('coins '+userStatistiscs?.coin)
+      if(userStatistiscs?.coin > 0){
+        console.log('coins maior que zero')
+  
+        fetchaAddRefill()
+        //fetchaSubtractCoin()
+        toast("Refil +1");
+      }else if(userStatistiscs.coin === 0){
+        toast("Precisa de moedas pra comprar o refil");
+      }
+    }
+  }
+
   return (
     <Card>
       <div className={styles.line}>
-        <b>MINHAS ESTATISTICAS</b>
+        <b>MINHAS ESTATÍSTICAS</b>
       </div>
 
       <div className={styles.line}>
@@ -73,8 +98,11 @@ export const StatisticsCard : FunctionComponent<StatisticsCardProps> = (props) =
           </div>
           <div className={styles.col}>
             <b>{userStatistiscs?.refill}</b> <br />
-            <p>Refis</p>
-            <Button size="small">repor 5</Button>
+            <p >Refis</p>
+            <Button size="small" onClick={handleRefill}>
+            repor 1
+              <img src={coinSolo_colored} style={{marginTop: "0px",width: "10px", height: "10px"}} alt="" />
+              </Button>
           </div>
         </div>
       </div> 

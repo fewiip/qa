@@ -14,7 +14,7 @@
 
   min-width: 60px;
 
-  cursor: pointer;
+  cursor: pointer; 
 }
 .buttonWrapper:hover {
   background-color: #eee;

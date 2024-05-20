@@ -15,25 +15,26 @@ export const CourseLeadershipCard : FunctionComponent<CourseLeadershipCardProps>
       }, [users])
       
       return <Card>
-      <div>QUADRO DE LIDERES</div>
+      <div><b>QUADRO DE LIDERES</b></div>
   
       <div>
         {firstThreeUsers.map((user, index) => (
           <div className={styles.userItem} key={user.id}>
             <div className={styles.info}>
-              <span>{index + 1}</span>
+              <span>{index + 1}º</span>
               <img src={ProfileColoredImage} alt="" />
-              <span>{user?.firstName} {user?.lastName}</span>
+              <span style={{color: "#999"}}>{user?.firstName} {user?.lastName}</span>
             </div>
-            <span className={styles.score}>{user?.bug} Bugs</span>
+            <span className={styles.score} style={{color: "#999"}}>{user?.bug} Bugs</span>
           </div>
         ))}
       </div>
-  
+  {/*
       <div className={styles.button}>
           Ver quadro completo
       </div>
       
+  */}
       
     </Card>
 }

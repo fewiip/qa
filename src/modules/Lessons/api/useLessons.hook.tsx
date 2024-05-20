@@ -159,6 +159,28 @@ export const useLessons = () => {
     return http.get('/statistics/'+ userID)
   }
 
+  
+
+  const addRefill = (userID: number) : Promise<UserStatisticsResponse> => {
+    return http.get('/statistics/add/refill/'+userID)
+  }
+
+  const addCoin = (userID: number) : Promise<UserStatisticsResponse> => {
+    return http.get('/statistics/add/coin/'+userID)
+  }
+
+  const addBug = (userID: number) : Promise<UserStatisticsResponse> => {
+    return http.get('/statistics/add/bug/'+userID)
+  }
+
+  const subtractRefill = (userID: number) : Promise<UserStatisticsResponse> => {
+    return http.get('/statistics/remove/refill/'+userID)
+  }
+
+  const subtractCoin = (userID: number) : Promise<UserStatisticsResponse> => {
+    return http.get('/statistics/remove/coin/'+userID)
+  }
+
   const getLeaderBoard = (): Promise<LeaderBoardResponse> => {
     return http.get('/leaderBoard')
   }
@@ -209,9 +231,8 @@ export const useLessons = () => {
   
   const getChapters = (): Promise<ChaptersResponse> => {
     return http.get('/chapter/all')
-  }
+  } 
 
-  //http://193.123.119.217:8080/api/v1/course/?name=Teste
   const searchCourses = (search: string) : Promise<CoursesResponse> => {
     return http.get('/course/?name='+search)
   }
@@ -274,6 +295,11 @@ export const useLessons = () => {
 
 
   return {
+    addBug,
+    addRefill,
+    addCoin,
+    subtractRefill,
+    subtractCoin,
     getUserStatistics,
     getLeaderBoard,
     getCourseLeaderBoard,

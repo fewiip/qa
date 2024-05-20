@@ -18,7 +18,7 @@ export const LeadershipCard: FunctionComponent<LeadershipCardProps> = (props) =>
 
 
   return <Card>
-    <div>QUADRO DE LIDERES</div>
+    <div><b>QUADRO DE LIDERES</b></div>
 
     <div>
       {firstThreeUsers.map((user, index) => (
@@ -32,10 +32,11 @@ export const LeadershipCard: FunctionComponent<LeadershipCardProps> = (props) =>
         </div>
       ))}
     </div>
-
+{/*
     <div className={styles.button}>
         Ver quadro completo
     </div>
+*/}
     
     
   </Card>

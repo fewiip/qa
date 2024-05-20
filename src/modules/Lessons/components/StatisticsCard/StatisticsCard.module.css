@@ -1,16 +1,17 @@
-
-
 .col {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column; 
   margin-left: 8px;
+}
+
+.col p {
+  color: #999;
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  width: 180px;
 }
  
 .line {
@@ -47,4 +48,9 @@
 
 .item{
   width: 110px;
+}
+
+.smallImg {
+  height: 10px;
+  width: 10px;
 }

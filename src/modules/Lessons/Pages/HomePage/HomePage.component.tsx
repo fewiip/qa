@@ -44,7 +44,7 @@ export const HomePage = () => {
   }
 
   function seeAllCoursesClick () {
-    navigate('/courses/all')
+    navigate('/courses/open/all')
   }
 
   return (
@@ -84,10 +84,7 @@ export const HomePage = () => {
               <Card>
                 <div className={styles.cardTitle}>Bem-vindo!!!</div>
                 <div>
-                  Parece que essa é a sua primeira vez acessando o QA+, como
-                  primeiro passo, nós recomendamos entrar na seguinte turma,
-                  você tembém pode pesquisar ou ver todas as turmas abertas no
-                  QA+.
+                    Parece que essa é a sua primeira vez acessando o QA+. Como primeiro passo, recomendamos que acesse a turma abaixo.
                 </div>
                 <div>
                   <div className={styles.row}>

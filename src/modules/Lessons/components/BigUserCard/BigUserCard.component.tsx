@@ -30,7 +30,9 @@ export const BigUserCard = () => {
 
             <div className={styles.userInfo}>
                 <div className={styles.userName}>{user?.firstName} {user?.lastName} </div>
+                {/*
                 <div className={styles.userRole}>QA Master</div>
+                */}
                 <div className={styles.buttons}>
                     <Button onClick={editUser}  >Atualizar dados</Button>
                     <Button onClick={deleteUser}>Excluir conta</Button>

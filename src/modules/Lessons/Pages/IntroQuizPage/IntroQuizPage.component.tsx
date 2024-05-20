@@ -10,8 +10,10 @@ import { useEffect, useState } from "react";
 import { Lesson, useLessons } from "../../api";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { Tip } from "../../../../shared/components/Tip";
+import { useQuizStore } from "../../../auth/stores/useQuizStore";
 
 export const IntroQuizPage = () => {
+  const initQuiz = useQuizStore((state) => state.initQuiz)
   const { lessonid, courseid } = useParams();
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
@@ -32,10 +34,11 @@ export const IntroQuizPage = () => {
   }, []);
 
   function handleQuizClick() {
+    initQuiz()
     navigate(
       `/course/${courseid}/lesson/${lesson?.id}/quiz/${lesson?.quizzes[0].id}`
     );
-  }
+  } 
 
   async function fetchSubscription() {
     setSubscription(false);
@@ -74,26 +77,21 @@ export const IntroQuizPage = () => {
                 <center>
                   <h1 className={styles.header}>Pronto para começar?</h1>
                   <p>Algumas dicas antes de começar o quiz:</p>
-                  <div className={styles.parent}>
                     <div className={styles.image}>
                       <img src={professor2_happy} alt="" />
                     </div>
-                  </div>
+                  
+                  
                   <Tip variant="rounded">
-                    O Quiz é composto por algumas perguntas da aula que você
+                    O quiz é composto por algumas perguntas sobre o conteúdo da lição que você
                     acabou de ler
                   </Tip>
                   <Tip variant="rounded">
-                    Você ganha um bug a resposta certa
+                    Você ganha um bug a cada resposta certa
                   </Tip>
                   <Tip variant="rounded">
-                    Se você errou nem tudo está perdido! Se você ainda possuir
-                    algum refil, ele permite que ainda ganhe o bug da pergunta
-                  </Tip>
-                  <Tip variant="rounded">
-                    Se você tiver algum refil, ele será gasto automaticamente se
-                    errar uma questão
-                  </Tip>
+                    Você perde um refil a cada resposta errada. Caso seus refis acabem, você deverá repô-los na página principal da turma ou em sua página de perfil.
+                  </Tip> 
                   <div>
                     <Button color="green" onClick={handleQuizClick}>
                       Começar!

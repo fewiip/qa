@@ -99,8 +99,8 @@ export const CoursesPage = () => {
               <b>Sobre as turmas:</b>
               <ul>
                 <li>
-                  O QA+ permite que você crie e participe de multiplas turmas
-                  (além da turma padrã QA+), levando o seu conhecimento além.
+                  O QA+ permite que você crie e participe de múltiplas turmas
+                  (além da turma padrão QA+), levando o seu conhecimento além.
                 </li>
               </ul>
 
@@ -109,7 +109,7 @@ export const CoursesPage = () => {
                 <li>
                   Apoiamos sua autonomia para ensinar! Assim, nas turmas são
                   disponibilizados os mesmos recursos da turma padrão do QA+,
-                  mas quem define o conteúdo, exercicios e conquistas é você!
+                  mas quem define o conteúdo, exercícios e conquistas é você!
                 </li>
                 <li>
                   Conheça e apoie sua turma: para que possa apoiar o processo de

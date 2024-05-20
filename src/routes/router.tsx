@@ -29,6 +29,7 @@ import { EditUserEmailPage } from "../modules/Lessons/Pages/EditUserEmailPage"
 import { EditUserPasswordPage } from "../modules/Lessons/Pages/EditUserPasswordPage"
 import { HomePage } from "../modules/Lessons/Pages/HomePage"
 import { IntroQuizPage } from "../modules/Lessons/Pages/IntroQuizPage"
+import { OpenedCoursesPage } from "../modules/Lessons/Pages/OpenedCoursesPage"
 
 
 export const RouteList = {
@@ -52,6 +53,7 @@ export const RouteList = {
   CREATE_QUIZ: '/course/:courseid/lesson/:lessonid/quiz/add',
   EDITCOURSE: '/course/edit/:courseid',
   SELLALLCOURSES: '/courses/all',
+  OPENEDCOURSES: '/courses/open/all',
   COURSE_LESSONS: '/course/:courseid/lessons',
   SUBSCRIPTIONS: '/courses/subscriptions',
   EDITCHAPTER: '', 
@@ -109,6 +111,10 @@ const privateRoutes = [
       {
         path: RouteList.SELLALLCOURSES,
         element: < SeeAllCourses />
+      },   
+      {
+        path: RouteList.OPENEDCOURSES,
+        element: < OpenedCoursesPage />
       },      
       {
         path: RouteList.COURSE_OWNERSHIP,

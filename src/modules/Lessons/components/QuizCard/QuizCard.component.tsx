@@ -13,6 +13,7 @@ import correctIcon from "../../../../assets/images/correct-icon.png";
 import wrongIcon from "../../../../assets/images/wrong-icon.png";
 import spray_colored from "../../../../assets/images/spray_colored.png";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
+import { useQuizStore } from "../../../auth/stores/useQuizStore";
 
 interface QuizCardProps {
   quiz: Quiz;
@@ -42,11 +43,13 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     onNextQuestionClick,
   } = props;
   const navigate = useNavigate();
+  const coinsIncrement = useQuizStore((state) => state.coinsIncrement)
+  const bugsIncrement = useQuizStore((state) => state.bugsIncrement)
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
   const [userStatistiscs, setUserStatistics] = useState<UserStatistics>();
   const { user } = useAuthStore();
-  const { isSubscribed, isCourseOwner, getUserStatistics } = useLessons();
+  const { isSubscribed, isCourseOwner, getUserStatistics, subtractRefill } = useLessons();
 
   const [selectedAnswer, setSelectedAnswer] = useState();
   const [currentState, setCurrentState] = useState<State>(
@@ -107,17 +110,26 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     setSelectedAnswer(event.target.value);
   }
 
-  function handleVerify() {
+  async function handleVerify() {
     if (!selectedAnswer) return;
 
     console.log(options[correctAnswer].value, selectedAnswer, "RESPOSTAS");
 
     if (options[correctAnswer].value === parseInt(selectedAnswer)) {
       setCurrentState("correctAnswer");
-      toast("resposta certa");
+      toast("Resposta certa");
+      coinsIncrement()
+      bugsIncrement()
     } else {
       setCurrentState("wrongAnswer");
-      toast("resposta errada");
+      toast("Resposta errada");
+      if(user && userStatistiscs && userStatistiscs?.refill > 0){
+        bugsIncrement()
+        const response1 = await subtractRefill(user?.id);
+        setUserStatistics(response1.data)
+        toast("Refil gasto");
+        console.log(response1)
+      }
     }
   }
 
@@ -134,11 +146,12 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
               <div className={styles.leftSide}>
                 <div className={styles.profImage}>
                   <progress
-                    value={((quizIndex + 1) / quizzesSize) * 100}
+                  
+                    value={(quizIndex / quizzesSize) * 100}
                     max="100"
                   ></progress>
                   <p>
-                    {quizIndex + 1} / {quizzesSize}
+                    {quizIndex} / {quizzesSize}
                   </p>
                   <div className={styles.refill}>
                     <img src={spray_colored} alt="" />
@@ -163,10 +176,11 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     {quiz.text}
                   </ReactMarkdown>
                 </div>
+
+                <div className={styles.answers}>
+                  <RadioGroup options={options} onChange={handleRadioChange} />
+                </div>
               </div>
-            </div>
-            <div className={styles.answers}>
-              <RadioGroup options={options} onChange={handleRadioChange} />
             </div>
 
             <div className={styles.answers}>
@@ -188,6 +202,7 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
                     padding: "16px",
                     borderRadius: "8px",
                     fontSize: "12px",
+                    color: "grey",
                   }}
                 >
                   Verificar

@@ -5,14 +5,11 @@
   justify-content: center;
 }
 
-.image {
-  top: 0;
-  left: 55px;
-  z-index: 0;
-  position: absolute;
+.image { 
+  margin-bottom: 20px;
 }
 .image img {
-  width: 300px;
+  width: 200px;
 }
 .animation {
   top: 0;

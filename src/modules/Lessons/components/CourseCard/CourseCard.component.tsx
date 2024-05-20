@@ -29,7 +29,7 @@ export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
   return (
     <>
       <CenterCard variant="withoutOverflow">
-        <div className={styles.title}>Hirarquia dos conteudos</div>
+        <div className={styles.title}>Hirarquia dos conteúdos</div>
         {!course && <p>ID não encontrado</p>}
         {course && (
           <div>

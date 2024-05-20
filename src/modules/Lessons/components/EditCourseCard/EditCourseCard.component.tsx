@@ -59,7 +59,7 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (
   return (
     <>
       <CenterCard variant="withoutOverflow">
-        <div className={styles.title}>Hirarquia dos conteudos</div>
+        <div className={styles.title}>Hirarquia dos conteúdos</div>
         {!course && <p>ID não encontrado</p>}
         {course && (
           <div>
