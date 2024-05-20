@@ -4,8 +4,8 @@ import { Course, useLessons } from "../../api";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { CourseItem } from "../../components/CourseItem";
-import team2_colored from "../../../../assets/images/team2_colored.png";
 /*import { useNavigate } from "react-router-dom";
+import team2_colored from "../../../../assets/images/team2_colored.png";
 import { Card } from "../../../../shared/components/Card/Card.component";
 import { Button } from "../../../../shared/components/Button/Button.component";*/
 
