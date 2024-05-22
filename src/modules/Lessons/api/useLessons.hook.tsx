@@ -151,6 +151,13 @@ export interface UserStatisticsResponse  {
   data: UserStatistics
 }
 
+export interface UserCourseStatistics {
+  bug: number,
+  coin: number, 
+  refill: number,
+  victory: number
+}
+
 export const useLessons = () => {
 
   const { http } = useHttp()
@@ -159,7 +166,9 @@ export const useLessons = () => {
     return http.get('/statistics/'+ userID)
   }
 
-  
+  const setUserStatistics = (userID: number, payload: UserCourseStatistics) : Promise<User> => {
+    return http.put('/statistics/'+userID, payload)
+  }
 
   const addRefill = (userID: number) : Promise<UserStatisticsResponse> => {
     return http.get('/statistics/add/refill/'+userID)
@@ -295,6 +304,7 @@ export const useLessons = () => {
 
 
   return {
+    setUserStatistics,
     addBug,
     addRefill,
     addCoin,

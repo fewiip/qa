@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import styles from "./CourseLessonsPage.module.css";
-import { Chapter, Course, User, useLessons } from "../../api";
+import { Chapter, Course, User, UserCourseStatistics, useLessons } from "../../api";
 import { StatisticsCard } from "../../components/StatisticsCard/StatisticsCard.component";
 //import { NextAchievementCard } from "../../components/NextAchievementCard";
 import { ChaptersCard } from "../../components/LessonsCard/LessonsCard.component";
@@ -22,6 +22,7 @@ export const CourseLessonsPage = () => {
     unSubscribeToCourse,
     isSubscribed,
     isCourseOwner,
+    setUserStatistics
   } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
   const [course, setCourse] = useState<Course>();
@@ -82,11 +83,19 @@ export const CourseLessonsPage = () => {
   async function unsubscribe() {
     try {
       if (user) {
-        const payload = {
+        const payload1:UserCourseStatistics =  {
+          refill: 0,
+          coin: 0,
+          bug: 0,
+          victory: 0
+        }
+        const payload2 = {
           courseId: parseInt(courseid as string),
         };
-        const response = await unSubscribeToCourse(payload, user?.id);
-        console.log(response);
+        const response1 = await setUserStatistics(user.id, payload1)
+        console.log(response1)
+        const response2 = await unSubscribeToCourse(payload2, user?.id);
+        console.log(response2);
         toast("Desinscrição do curso realizada");
       }
     } catch (error) {

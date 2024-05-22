@@ -1,6 +1,6 @@
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { useParams } from "react-router-dom";
-import { useLessons } from "../../api";
+import { UserCourseStatistics, UserStatistics, useLessons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { CenterCard } from "../../components/CenterCard";
@@ -21,27 +21,47 @@ export const FinishedQuizPage = () => {
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
   const { courseid } = useParams();
-  const { isSubscribed, isCourseOwner, addBug, addCoin } = useLessons();
+  const { isSubscribed, isCourseOwner, setUserStatistics, getUserStatistics  } = useLessons();
+  const [userStatistics, setuserStatistics] = useState<UserStatistics>();
   const { user } = useAuthStore();
   //const [isFinished, setIsFinished] = useState(false)
   const navigate = useNavigate();
   const [bugsAdd, setbugsAdd] = useState(0)
   const [coinsAdd , setcoinsAdd ]= useState(0)
+
+  async function fetchUserStatistics() {
+    if (user) {
+      const response = await getUserStatistics(user?.id);
+      setuserStatistics(response.data);
+    }
+  }
   
 
   async function handleClick() {
-    if(user){
+    if(userStatistics){
+      /*
       for (let i=0; i<bugsAdd; i++){
         await addBug(user.id)
       }
       for (let i=0; i<coinsAdd; i++){
         await addCoin(user.id)
       }
+      */
+      const payload:UserCourseStatistics = {
+        bug: userStatistics.bug + bugsAdd,
+        coin: userStatistics.coin + coinsAdd,
+        victory: userStatistics.victory,
+        refill: userStatistics.refill
+      }
+
+      const response = await setUserStatistics(userStatistics.id, payload)
+      console.log(response)
     }
     navigate("/course/" + courseid + "/lessons/");
   }
 
   useEffect(() => {
+    fetchUserStatistics();
     fetchSubscription();
     fetchOwnership();
     fetchPontuation ();

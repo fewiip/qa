@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
-import { Course, useLessons } from "../../api";
+import { Course, UserCourseStatistics, useLessons } from "../../api";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import { CenterContent } from "../../components/CenterContent";
@@ -20,6 +20,7 @@ export const CoursePage = () => {
     isSubscribed,
     isCourseOwner,
     deleteCourse,
+    setUserStatistics
   } = useLessons();
   const { user } = useAuthStore();
   const navigate = useNavigate();
@@ -92,10 +93,19 @@ function handleSeeCourseStatisticsClick() {
         const payload = {
           courseId: parseInt(courseid as string),
         };
+        const payload2:UserCourseStatistics = {
+          refill: 5,
+          coin: 5,
+          victory: 0,
+          bug: 0
+        }
         console.log(`userID: ${user.id}`);
         const response = await subscribeToCourse(payload, user?.id);
         console.log(response);
+        const response2 = await setUserStatistics(user.id, payload2)
+        console.log(response2)
         setSubscription(true);
+        
         toast("Inscrição feita com sucesso! Bem-vindo!");
         navigate("/course/" + courseid + "/lessons");
       }
@@ -191,6 +201,11 @@ function handleSeeCourseStatisticsClick() {
                 */}
               </div>
             </div>
+          </div>
+          <div>
+            <h1>
+              Sumário:
+            </h1>
           </div>
           <CourseCard courseid={parseInt(courseid as string)} />
         </CenterContent>
