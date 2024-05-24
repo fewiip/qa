@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import ProfileColoredImage from "../../../../assets/images/bug_alpha.png";
-import styles from "./LessonButton.module.css"; 
 import { FunctionComponent } from "react";
+import styles from "./LessonButton.module.css"; 
 interface LessonButtonProps {
   courseid: number;
   lessonid: number;
@@ -11,10 +11,16 @@ interface LessonButtonProps {
 export const LessonButton: FunctionComponent<LessonButtonProps> = (props) => {
   const { courseid, lessonid, name } = props;
   const navigate = useNavigate();
+
+
+  function readLesson () {
+    navigate(`/course/${courseid}/lesson/${lessonid}`)
+  }
+
   return (
     <div
       className={styles.lessonButton}
-      onClick={() => navigate(`/course/${courseid}/lesson/${lessonid}`)}
+      onClick={readLesson}
     >
       <div className={styles.image}>
         <img src={ProfileColoredImage} alt="" />

@@ -188,7 +188,10 @@ export const CoursesPage = () => {
                   )}
                 </div>
                 <div className={styles.seeMore}>
+                  {/*
                   <a href="/courses/all">Ver todas as turmas</a>
+                  */}
+                  <a href="/courses/open/all">Ver todas as turmas</a>
                 </div>
               </Card>
             </div>

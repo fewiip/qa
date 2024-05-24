@@ -22,7 +22,8 @@ export const CourseLessonsPage = () => {
     unSubscribeToCourse,
     isSubscribed,
     isCourseOwner,
-    setUserStatistics
+    setUserStatistics,
+    getCourseWithUserID
   } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
   const [course, setCourse] = useState<Course>();
@@ -37,12 +38,15 @@ export const CourseLessonsPage = () => {
   }
 
   async function fetchLessons() {
-    try {
-      const response = await getCourse(parseInt(courseid as string));
-      setChapters(response.data.chapters);
-      setCourse(response.data);
-    } catch {
-      toast.error("Alguma coisa deu errad!");
+    if(user){
+      try {
+        const response = await getCourseWithUserID(parseInt(courseid as string), user?.id);
+        console.log(response.data)
+        setChapters(response.data.chapters);
+        setCourse(response.data);
+      } catch {
+        toast.error("Alguma coisa deu errad!");
+      }
     }
   }
 

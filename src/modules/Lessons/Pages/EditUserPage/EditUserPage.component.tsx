@@ -83,7 +83,7 @@ export const EditUserPage = () => {
             <div>
               {!isAdmin && <Button onClick={handleTransformToAdmin}>Transformar em Admin</Button>}
 
-              {isAdmin && <Button onClick={handleTransformToUser}>Transformar em usuario</Button>}
+              {isAdmin && <Button onClick={handleTransformToUser}>Transformar em usuário</Button>}
             </div>
             {/*
             <div>

@@ -9,10 +9,12 @@ interface CourseLeadershipCardProps {
 }
 export const CourseLeadershipCard : FunctionComponent<CourseLeadershipCardProps> = (props) => {
     const {users} = props
-
+    console.log(users)
     const firstThreeUsers = useMemo(() => { 
-        return users.filter((_i, index) => index <= 2)
+        return users.filter((_i, index) => index <= 4)
       }, [users])
+
+      
       
       return <Card>
       <div><b>QUADRO DE LIDERES</b></div>

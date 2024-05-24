@@ -21,7 +21,7 @@ export const LoginForm: FunctionComponent<LoginFormProps> = (props) => {
   return (
     <div className={styles.loginCard}>
       <Input
-        placeholder="E-mail ou nome do usuário"
+        placeholder="E-mail"
         type="text"
         value={email}
         onChange={(i) => setEmail(i.target.value)}

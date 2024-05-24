@@ -38,6 +38,7 @@ export type Lesson = {
   id: number,
   name: string,
   text: string
+  isOpen: boolean,
   quizzes: Quiz[]
 }
 
@@ -158,6 +159,15 @@ export interface UserCourseStatistics {
   victory: number
 }
 
+export interface IsOpened {
+  isOpen: boolean
+}
+
+export interface IsOpenedResponse {
+  data: IsOpened
+}
+
+
 export const useLessons = () => {
 
   const { http } = useHttp()
@@ -204,6 +214,11 @@ export const useLessons = () => {
   
   const getCourse = (courseid: number): Promise<CourseResponse> => { 
     return http.get(`/course/${courseid}`)
+  } 
+
+  const getCourseWithUserID = (courseid: number, userID: number): Promise<CourseResponse> => { 
+    //user/1/course/21/isOpen
+    return http.get(`/user/${userID}/course/${courseid}/isOpen`)
   } 
 
   const getCoursesByOwner = (userID: number): Promise<CoursesResponse> => { 
@@ -270,6 +285,10 @@ export const useLessons = () => {
     return http.delete('/chapter/'+chapterID)
   }
 
+  const setLessonOpened = (lessonID: number, userID: number, payload: IsOpened): Promise<IsOpenedResponse> => {
+    return http.put(``, payload)
+  }
+
   const getLesson = (lessonID: number): Promise<LessonResponse> => {
     return http.get('/lesson/' + lessonID)
   }
@@ -290,6 +309,10 @@ export const useLessons = () => {
     return http.post(`lesson/${lessonid}/create/quizzes`, payload)
   }
 
+  const setQuizOpened = (quizID: number, lessonID: number, userID: number, payload: IsOpened): Promise<IsOpenedResponse> => {
+    return http.put(``, payload)
+  }
+
   const getQuiz = (quizID: number): Promise<QuizResponse> => {
     return http.get('/quiz/' + quizID)
   }
@@ -304,6 +327,8 @@ export const useLessons = () => {
 
 
   return {
+    setLessonOpened,
+    setQuizOpened,
     setUserStatistics,
     addBug,
     addRefill,
@@ -320,6 +345,7 @@ export const useLessons = () => {
     getCourseSubscribers,
     createCourse,
     getCourse,
+    getCourseWithUserID,
     editCourse,
     deleteCourse,
     subscribeToCourse,
