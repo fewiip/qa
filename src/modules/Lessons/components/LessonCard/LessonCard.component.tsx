@@ -1,7 +1,7 @@
 import styles from "./LessonCard.module.css";
 import { FunctionComponent, useEffect, useState } from "react";
-import { Lesson, useLessons } from "../../api";
-import professor1_happy from "../../../../assets/images/professor1_happy.png"; 
+import { Lesson, Quiz, useLessons } from "../../api";
+import professor1_happy from "../../../../assets/images/professor1_happy.png";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../shared/components/Button/Button.component";
 import MDEditor from "@uiw/react-md-editor";
@@ -9,21 +9,42 @@ import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 
 interface LessonCardProps {
   courseid: number;
-  lesson?: Lesson;
+  lesson: Lesson;
 }
 
 export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
   const { lesson, courseid } = props;
   const navigate = useNavigate();
-  const { isSubscribed, isCourseOwner } = useLessons();
+  const { getQuizWithUserID, isSubscribed, isCourseOwner } = useLessons();
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
   const { user } = useAuthStore();
+  const [quiz, setQuiz] = useState<Quiz>();
+  const [isQuizOpened, setisQuizOpened] = useState(false)
 
   useEffect(() => {
     fetchSubscription();
     fetchOwnership();
+    fetchQuiz();
   }, []);
+
+  async function fetchQuiz() {
+    //const response = await getQuiz(parseInt(quizid as string));
+    console.log(quiz)
+    if (user) { 
+        try{
+          const response = await getQuizWithUserID(
+            lesson.quizzes[0].id,
+            user?.id,
+            courseid
+          );
+          setQuiz(response.data);
+          setisQuizOpened(response.data.isOpen)
+        }catch(error){
+          console.log(error)
+        } 
+    }
+  }
 
   async function fetchSubscription() {
     setSubscription(false);
@@ -71,9 +92,7 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
   */
 
   function handleQuizClick() {
-    navigate(
-      `/course/${courseid}/lesson/${lesson?.id}/quiz/intro`
-    );
+    navigate(`/course/${courseid}/lesson/${lesson?.id}/quiz/intro`);
     /*
     navigate(
       `/course/${courseid}/lesson/${lesson?.id}/quiz/${lesson?.quizzes[0].id}`
@@ -108,7 +127,7 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
                 <div className={styles.lessonTitle}>
                   <h2>{lesson?.name}</h2>
                 </div>
-                <div className={styles.lessonContent} data-color-mode="light"> 
+                <div className={styles.lessonContent} data-color-mode="light">
                   <MDEditor.Markdown
                     source={lesson?.text}
                     style={{ whiteSpace: "pre-wrap" }}
@@ -119,14 +138,19 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
 
             <div className={styles.lessonButtons}>
               {Boolean(lesson?.quizzes.length) && (
-                <Button onClick={handleQuizClick}>Começar quiz</Button>
+                <>
+                  {isQuizOpened && <Button onClick={handleQuizClick}>Começar quiz ★</Button>}
+                  {!isQuizOpened && <Button onClick={handleQuizClick}>Começar quiz</Button>}
+                </>
               )}
               {/*
                */}
               {ownership ? (
                 <>
                   <Button onClick={returnToCourse}>Voltar para o curso</Button>
-                  <Button onClick={returnToCourseOwner}>Voltar para edição</Button>
+                  <Button onClick={returnToCourseOwner}>
+                    Voltar para edição
+                  </Button>
                   <Button onClick={handleEditLessonClick}>Editar</Button>
                   <Button onClick={handleCreateQuizClick}>Criar um quiz</Button>
                 </>

@@ -7,10 +7,7 @@ import { AppLayout } from "../../../../shared/components/AppLayout";
 
 export const LessonPage = () => {
   const { lessonid, courseid } = useParams()
-  
-
   const { getLesson  } = useLessons();
-  
   const [lesson, setLesson] = useState<Lesson>(); 
 
   async function fetchLesson() {

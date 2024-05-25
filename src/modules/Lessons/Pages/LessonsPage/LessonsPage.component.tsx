@@ -9,11 +9,12 @@ import { StatisticsCard } from "../../components/StatisticsCard/StatisticsCard.c
 import { NextAchievementCard } from "../../components/NextAchievementCard"
 import { ChaptersCard } from "../../components/LessonsCard/LessonsCard.component"
 import { useParams } from "react-router-dom"
+import { useAuthStore } from "../../../auth/stores/useAuthStore.hook"
 
 
 
 export const LessonsPage = () => {
-
+  const { user } = useAuthStore();
   const { getLeaderBoard, getChapters } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
   const [chapters, setChapters] = useState<Chapter[]>([]);
@@ -44,7 +45,9 @@ export const LessonsPage = () => {
     </div>
 
     <div className={styles.chaptersWrapper}>
-      <ChaptersCard courseid={parseInt(courseid as string)}chapters={chapters}/>
+      {user && 
+      <ChaptersCard userid={user.id} courseid={parseInt(courseid as string)}chapters={chapters}/>
+      }
     </div>
     </div>
   </AppLayout>

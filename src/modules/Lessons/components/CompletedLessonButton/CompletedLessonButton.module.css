@@ -1,0 +1,27 @@
+.image img {
+    width: 100px;
+    height: 100px;
+}
+
+.image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.lessonButton {
+    margin-top: 0px;
+    margin-bottom: 60px;
+    display: flex;
+    width: 150px;
+    height: 100px;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.lessonTitle{
+    text-align: center;
+}

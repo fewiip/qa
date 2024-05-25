@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useMemo, useState } from "react";
 import styles from "./QuizCard.module.css";
-import { Quiz, UserStatistics, useLessons } from "../../api";
+import { IsOpened, Quiz, UserStatistics, useLessons } from "../../api";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import professor1_happy from "../../../../assets/images/professor1_happy.png";
@@ -12,16 +12,16 @@ import { Button } from "../../../../shared/components/Button/Button.component";
 import correctIcon from "../../../../assets/images/correct-icon.png";
 import wrongIcon from "../../../../assets/images/wrong-icon.png";
 import spray_colored from "../../../../assets/images/spray_colored.png";
-import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
+//import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 import { useQuizStore } from "../../../auth/stores/useQuizStore";
 
 interface QuizCardProps {
   quiz: Quiz;
   quizIndex: number;
   quizzesSize: number;
-
+  userID: number;
   lessonID: number;
-  courseid: number;
+  courseID: number;
   onNextQuestionClick: () => void;
 }
 
@@ -38,18 +38,25 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     quizIndex,
     quizzesSize,
     lessonID,
+    userID,
     quiz,
-    courseid,
+    courseID,
     onNextQuestionClick,
   } = props;
   const navigate = useNavigate();
-  const coinsIncrement = useQuizStore((state) => state.coinsIncrement)
-  const bugsIncrement = useQuizStore((state) => state.bugsIncrement)
+  const coinsIncrement = useQuizStore((state) => state.coinsIncrement);
+  const bugsIncrement = useQuizStore((state) => state.bugsIncrement);
   const [ownership, setOwnership] = useState(false);
   const [subscription, setSubscription] = useState(false);
   const [userStatistiscs, setUserStatistics] = useState<UserStatistics>();
-  const { user } = useAuthStore();
-  const { isSubscribed, isCourseOwner, getUserStatistics, subtractRefill } = useLessons();
+  //const { user } = useAuthStore();
+  const {
+    isSubscribed,
+    isCourseOwner,
+    getUserStatistics,
+    subtractRefill,
+    setQuizOpened,
+  } = useLessons();
 
   const [selectedAnswer, setSelectedAnswer] = useState();
   const [currentState, setCurrentState] = useState<State>(
@@ -63,36 +70,31 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
   }, []);
 
   async function fetcUserStatistics() {
-    if (user) {
-      const response = await getUserStatistics(user?.id);
-      setUserStatistics(response.data);
-    }
+    const response = await getUserStatistics(userID);
+    setUserStatistics(response.data);
   }
 
   async function fetchSubscription() {
     setSubscription(false);
-    console.log(`userID: ${user?.id} ;courseID: ${courseid}`);
-    if (user && courseid) {
-      try {
-        const response = await isSubscribed(user?.id, courseid);
-        setSubscription(response.data.isSubscribed);
-        console.log(response);
-      } catch (error) {
-        setSubscription(false);
-      }
+    console.log(`userID: ${userID} ;courseID: ${courseID}`);
+
+    try {
+      const response = await isSubscribed(userID, courseID);
+      setSubscription(response.data.isSubscribed);
+      console.log(response);
+    } catch (error) {
+      setSubscription(false);
     }
   }
 
   async function fetchOwnership() {
     setOwnership(false);
-    if (user && courseid) {
-      try {
-        const response = await isCourseOwner(user?.id, courseid);
-        setOwnership(response.data.isOwner);
-        console.log(response);
-      } catch (error) {
-        setOwnership(false);
-      }
+    try {
+      const response = await isCourseOwner(userID, courseID);
+      setOwnership(response.data.isOwner);
+      console.log(response);
+    } catch (error) {
+      setOwnership(false);
     }
   }
 
@@ -110,31 +112,52 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
     setSelectedAnswer(event.target.value);
   }
 
+  async function setIsOpen() {
+    try {
+      const payload: IsOpened = {
+        isOpen: true,
+        id: quiz.id,
+      };
+      const response = setQuizOpened(courseID, userID, payload);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function handleVerify() {
     if (!selectedAnswer) return;
 
     console.log(options[correctAnswer].value, selectedAnswer, "RESPOSTAS");
 
+    
     if (options[correctAnswer].value === parseInt(selectedAnswer)) {
       setCurrentState("correctAnswer");
       toast("Resposta certa");
-      coinsIncrement()
-      bugsIncrement()
+      console.log(quiz.isOpen)
+      if (quiz.isOpen == false) {
+        coinsIncrement();
+        bugsIncrement();
+      }
     } else {
       setCurrentState("wrongAnswer");
       toast("Resposta errada");
-      if(user && userStatistiscs && userStatistiscs?.refill > 0){
-        bugsIncrement()
-        const response1 = await subtractRefill(user?.id);
-        setUserStatistics(response1.data)
+      if (userStatistiscs && userStatistiscs?.refill > 0) {
+        bugsIncrement();
+        const response1 = await subtractRefill(userID);
+        setUserStatistics(response1.data);
         toast("Refil gasto");
-        console.log(response1)
+        console.log(response1);
       }
+    }
+    if(!quiz.isOpen) {
+      console.log('deixando abrido')
+      setIsOpen();
     }
   }
 
   function handleEditClick() {
-    navigate(`/course/${courseid}/lesson/${lessonID}/quiz/edit/${quiz?.id}`);
+    navigate(`/course/${courseID}/lesson/${lessonID}/quiz/edit/${quiz?.id}`);
   }
 
   return (
@@ -146,7 +169,6 @@ export const QuizCard: FunctionComponent<QuizCardProps> = (props) => {
               <div className={styles.leftSide}>
                 <div className={styles.profImage}>
                   <progress
-                  
                     value={(quizIndex / quizzesSize) * 100}
                     max="100"
                   ></progress>

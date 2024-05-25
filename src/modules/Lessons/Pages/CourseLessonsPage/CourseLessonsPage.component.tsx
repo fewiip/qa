@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { AppLayout } from "../../../../shared/components/AppLayout";
 import styles from "./CourseLessonsPage.module.css";
-import { Chapter, Course, User, UserCourseStatistics, useLessons } from "../../api";
+import {
+  Chapter,
+  Course,
+  User,
+  UserCourseStatistics,
+  useLessons,
+} from "../../api";
 import { StatisticsCard } from "../../components/StatisticsCard/StatisticsCard.component";
 //import { NextAchievementCard } from "../../components/NextAchievementCard";
 import { ChaptersCard } from "../../components/LessonsCard/LessonsCard.component";
@@ -18,12 +24,11 @@ export const CourseLessonsPage = () => {
   const { courseid } = useParams();
   const {
     getCourseLeaderBoard,
-    getCourse,
     unSubscribeToCourse,
     isSubscribed,
     isCourseOwner,
     setUserStatistics,
-    getCourseWithUserID
+    getCourseWithUserID,
   } = useLessons();
   const [users, setUsers] = useState<User[]>([]);
   const [course, setCourse] = useState<Course>();
@@ -38,10 +43,13 @@ export const CourseLessonsPage = () => {
   }
 
   async function fetchLessons() {
-    if(user){
+    if (user) {
       try {
-        const response = await getCourseWithUserID(parseInt(courseid as string), user?.id);
-        console.log(response.data)
+        const response = await getCourseWithUserID(
+          parseInt(courseid as string),
+          user?.id
+        );
+        console.log(response.data);
         setChapters(response.data.chapters);
         setCourse(response.data);
       } catch {
@@ -87,17 +95,17 @@ export const CourseLessonsPage = () => {
   async function unsubscribe() {
     try {
       if (user) {
-        const payload1:UserCourseStatistics =  {
+        const payload1: UserCourseStatistics = {
           refill: 0,
           coin: 0,
           bug: 0,
-          victory: 0
-        }
+          victory: 0,
+        };
         const payload2 = {
           courseId: parseInt(courseid as string),
         };
-        const response1 = await setUserStatistics(user.id, payload1)
-        console.log(response1)
+        const response1 = await setUserStatistics(user.id, payload1);
+        console.log(response1);
         const response2 = await unSubscribeToCourse(payload2, user?.id);
         console.log(response2);
         toast("Desinscrição do curso realizada");
@@ -121,7 +129,7 @@ export const CourseLessonsPage = () => {
     <AppLayout>
       <div className={styles.contentWrapper}>
         <CenterContent>
-          {(subscription || ownership) && (
+          {(subscription || ownership) && user && (
             <>
               <div className={styles.line}>
                 <div>
@@ -160,6 +168,7 @@ export const CourseLessonsPage = () => {
               <div className={styles.chaptersWrapper}>
                 {courseid && (
                   <ChaptersCard
+                    userid={user?.id}
                     courseid={parseInt(courseid)}
                     chapters={chapters}
                   />

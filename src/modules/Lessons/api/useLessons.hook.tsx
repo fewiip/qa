@@ -31,6 +31,7 @@ export type Chapter = {
   id: number,
   name: string
   owner: string,
+  isLocked: boolean,
   lessons: Lesson[]
 }
 
@@ -39,6 +40,7 @@ export type Lesson = {
   name: string,
   text: string
   isOpen: boolean,
+  isComplete: boolean,
   quizzes: Quiz[]
 }
 
@@ -46,6 +48,7 @@ export type Quiz = {
   id: number,
   name: string,
   text: string,
+  isOpen: boolean,
   image: string[],
   correctAnswer: number,
   answer: {
@@ -160,7 +163,8 @@ export interface UserCourseStatistics {
 }
 
 export interface IsOpened {
-  isOpen: boolean
+  isOpen: boolean,
+  id: number
 }
 
 export interface IsOpenedResponse {
@@ -285,8 +289,8 @@ export const useLessons = () => {
     return http.delete('/chapter/'+chapterID)
   }
 
-  const setLessonOpened = (lessonID: number, userID: number, payload: IsOpened): Promise<IsOpenedResponse> => {
-    return http.put(``, payload)
+  const setLessonOpened = (courseID: number, userID: number, payload: IsOpened): Promise<IsOpenedResponse> => {
+    return http.put(`/user/${userID}/course/${courseID}/isOpen/lesson`, payload)
   }
 
   const getLesson = (lessonID: number): Promise<LessonResponse> => {
@@ -309,10 +313,13 @@ export const useLessons = () => {
     return http.post(`lesson/${lessonid}/create/quizzes`, payload)
   }
 
-  const setQuizOpened = (quizID: number, lessonID: number, userID: number, payload: IsOpened): Promise<IsOpenedResponse> => {
-    return http.put(``, payload)
+  const setQuizOpened = (courseID: number, userID: number, payload: IsOpened): Promise<IsOpenedResponse> => {
+    return http.put(`/user/${userID}/course/${courseID}/isOpen/quiz`, payload)
   }
 
+  const getQuizWithUserID = (quizID: number, userID: number, courseID: number): Promise<QuizResponse> => {
+    return http.get(`/user/${userID}/course/${courseID}/quiz/${quizID}`)
+  }
   const getQuiz = (quizID: number): Promise<QuizResponse> => {
     return http.get('/quiz/' + quizID)
   }
@@ -329,6 +336,7 @@ export const useLessons = () => {
   return {
     setLessonOpened,
     setQuizOpened,
+    getQuizWithUserID,
     setUserStatistics,
     addBug,
     addRefill,
