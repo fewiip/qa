@@ -43,7 +43,7 @@ export const CourseCard: FunctionComponent<CourseCardProps> = (props) => {
                 <li key={i.id}>
                   <div className={styles.listItemChapter}>
                     <div className={styles.line}>
-                      Capitulo {index + 1}: {i.name}
+                      Capítulo {index + 1}: {i.name}
                     </div>
                   </div>
                   <ul className={styles.listBlock}>

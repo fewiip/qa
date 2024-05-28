@@ -36,7 +36,6 @@ export const CreatedCoursesPage = () => {
     navigate("/courses/add");
   }
 
-  
   return (
     <>
       <AppLayout page="courses" variant="white">
@@ -47,18 +46,21 @@ export const CreatedCoursesPage = () => {
                 <center>
                   <h1>MINHAS TURMAS</h1>
                   <img src={team5_colored} alt="" />
-                  <p>Turmas que você criou!</p>
+                  <p>Aqui são listadas as turmas que você criou!</p>
                 </center>
 
                 <b>Sobre as minhas turmas:</b>
                 <ul>
-                  <li>Gerencie todoas as turmas que você criou.</li>
-                  <li>Você pode criar cursos, editar e excluir.</li>
-                  <li>Além disso você pode criar quizzes para exercitar os conhecimentos de seus estudantes.</li>
-                </ul> 
-              <center>
-                <Button onClick={handleClick}>Criar Turma</Button>
-              </center> 
+                  <li>Gerencie todas as turmas que você criou.</li>
+                  <li>Você pode manter turmas e lições.</li>
+                  <li>
+                    Além disso, você pode manter quizzes para exercitar os
+                    conhecimentos de seus estudantes.
+                  </li>
+                </ul>
+                <center>
+                  <Button onClick={handleClick}>Criar Turma</Button>
+                </center>
               </div>
               <div className={styles.cards}>
                 {courses?.map((i) => (

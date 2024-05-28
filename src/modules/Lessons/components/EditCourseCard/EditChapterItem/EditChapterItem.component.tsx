@@ -96,13 +96,13 @@ export const EditChapterItem: FunctionComponent<EditChapterItemProps> = (
         <div className={styles.line}>
           <div className={styles.row}>
             <div className={styles.chapterNumber}>
-              Capitulo {index + 1}: {!isEditing && chapterName}
+              Capítulo {index + 1}: {!isEditing && chapterName}
             </div>
 
             {isEditing && (
               <>
                 <Input
-                  placeholder="Nome do capitulo"
+                  placeholder="Nome do capítulo"
                   type="text"
                   value={chapterName}
                   onChange={(i) => setChapterName(i.target.value)}

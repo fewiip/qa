@@ -128,7 +128,7 @@ function handleSeeCourseStatisticsClick() {
         const response = await unSubscribeToCourse(payload, user?.id);
         console.log(response);
         setSubscription(false);
-        toast("Desinscrição do curso realizada");
+        toast("Desinscrição do Turma realizada");
       }
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
@@ -160,10 +160,10 @@ function handleSeeCourseStatisticsClick() {
                 {ownership && (
                   <div>
                     <Button onClick={handleEditCourseClick}>
-                      Editar Curso
+                      Editar Turma
                     </Button>
                     <Button onClick={handleRemoveCourseClick}>
-                      Excluir Curso
+                      Excluir Turma
                     </Button>
                   </div>
                 )}
@@ -171,21 +171,21 @@ function handleSeeCourseStatisticsClick() {
                 {(subscription || ownership) && (
                   <>
                     <div>
-                      <Button onClick={SeeLessons}>Ver Curso</Button>
+                      <Button onClick={SeeLessons}>Ver Turma</Button>
                     </div>
                   </>
                 )}
-                {!subscription && (
+                {!subscription && !ownership && (
                   <div>
                     <Button onClick={handleSubscribe}>Inscrever</Button>
                   </div>
                 )}
                 {/*
                 <div>
-                  <Button onClick={SeeLessons}>Ver Curso</Button>
+                  <Button onClick={SeeLessons}>Ver Turma</Button>
                 </div>
                 */}
-                {subscription && (
+                {subscription && !ownership && (
                   <>
                     <div>
                       <Button onClick={handleUnsubscribe}>Desinscrever</Button>

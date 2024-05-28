@@ -58,7 +58,7 @@ export const HomePage = () => {
               <Card>
                 <div className={styles.cardTitle}>Continue estudando</div>
                 <div>
-                 Continue estudando e praticando os conteúdos de um dos cursos que você está inscrito.
+                 Continue estudando e praticando os conteúdos de uma das turmas em que você está inscrito.
                 </div>
                 <div  className={styles.space}></div>
                 <div>

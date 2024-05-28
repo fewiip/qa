@@ -71,7 +71,7 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (
                     onClick={handleCreateChapterClick}
                     style={{color: 'green'}}
                   >
-                    Criar Capitulo
+                    Criar capítulo
                   </Button>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (
               ) : (
                  !isCreatingChapter && (<li>
                   <div className={styles.listItemChapter}>
-                    <center>Nenhum conteudo</center>
+                    <center>Nenhum conteúdo</center>
                   </div>
                 </li>)
               )}
@@ -103,10 +103,10 @@ export const EditCourseCard: FunctionComponent<EditCourseCardProps> = (
                   <div className={styles.listItemChapter}>
                     <div className={styles.line}>
                       <div className={styles.row}>
-                        <div>Novo Capitulo:</div>
+                        <div>Novo Capítulo:</div>
                         <div>
                           <Input
-                            placeholder="Nome do capitulo"
+                            placeholder="Nome do capítulo"
                             value={chapterName}
                             onChange={(i) => setChapterName(i.target.value)}
                           ></Input>

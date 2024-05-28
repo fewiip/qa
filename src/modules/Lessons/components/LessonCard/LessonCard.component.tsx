@@ -20,7 +20,7 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
   const [subscription, setSubscription] = useState(false);
   const { user } = useAuthStore();
   const [quiz, setQuiz] = useState<Quiz>();
-  const [isQuizOpened, setisQuizOpened] = useState(false)
+  const [isQuizOpened, setisQuizOpened] = useState(false);
 
   useEffect(() => {
     fetchSubscription();
@@ -30,19 +30,19 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
 
   async function fetchQuiz() {
     //const response = await getQuiz(parseInt(quizid as string));
-    console.log(quiz)
-    if (user) { 
-        try{
-          const response = await getQuizWithUserID(
-            lesson.quizzes[0].id,
-            user?.id,
-            courseid
-          );
-          setQuiz(response.data);
-          setisQuizOpened(response.data.isOpen)
-        }catch(error){
-          console.log(error)
-        } 
+    console.log(quiz);
+    if (user) {
+      try {
+        const response = await getQuizWithUserID(
+          lesson.quizzes[0].id,
+          user?.id,
+          courseid
+        );
+        setQuiz(response.data);
+        setisQuizOpened(response.data.isOpen);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -139,20 +139,22 @@ export const LessonCard: FunctionComponent<LessonCardProps> = (props) => {
             <div className={styles.lessonButtons}>
               {Boolean(lesson?.quizzes.length) && (
                 <>
-                  {isQuizOpened && <Button onClick={handleQuizClick}>Começar quiz ★</Button>}
-                  {!isQuizOpened && <Button onClick={handleQuizClick}>Começar quiz</Button>}
+                  {isQuizOpened && (
+                    <Button onClick={handleQuizClick}>Começar quiz ★</Button>
+                  )}
+                  {!isQuizOpened && (
+                    <Button onClick={handleQuizClick}>Começar quiz</Button>
+                  )}
                 </>
               )}
               {/*
                */}
               {ownership ? (
                 <>
-                  <Button onClick={returnToCourse}>Voltar para o curso</Button>
-                  <Button onClick={returnToCourseOwner}>
-                    Voltar para edição
-                  </Button>
-                  <Button onClick={handleEditLessonClick}>Editar</Button>
-                  <Button onClick={handleCreateQuizClick}>Criar um quiz</Button>
+                  <Button onClick={returnToCourse}>Voltar para a Turma</Button>
+                  <Button onClick={returnToCourseOwner}>Editar Turma</Button>
+                  <Button onClick={handleEditLessonClick}>Editar Lição</Button>
+                  <Button onClick={handleCreateQuizClick}>Criar quiz</Button>
                 </>
               ) : (
                 <Button onClick={returnToCourse}>Voltar</Button>

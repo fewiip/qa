@@ -332,6 +332,10 @@ export const useLessons = () => {
     return http.delete('/quiz/'+quizID)
   }
 
+  const deleteUser = (userID: number): Promise<string> => {
+    return http.delete(`/user/${userID}`)
+  } 
+
 
   return {
     setLessonOpened,
@@ -372,6 +376,7 @@ export const useLessons = () => {
     getQuiz,
     editQuiz,
     createQuiz,
-    deleteQuiz
+    deleteQuiz,
+    deleteUser
   }
 }

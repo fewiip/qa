@@ -136,7 +136,7 @@ export const CoursesPage = () => {
                     <MiniCourseItem course={createdCourses[0]} />
                   ) : (
                     <div className={styles.column}>
-                      <div className={styles.teacher}>Nenhum curso criado</div>
+                      <div className={styles.teacher}>Nenhuma turma criado</div>
                     </div>
                   )}
                 </div>
@@ -183,7 +183,7 @@ export const CoursesPage = () => {
                     <MiniCourseItem course={courses[0]} />
                   ) : (
                     <div className={styles.column}>
-                      <div className={styles.teacher}>Nenhuma curso criado</div>
+                      <div className={styles.teacher}>Nenhuma turma criada</div>
                     </div>
                   )}
                 </div>

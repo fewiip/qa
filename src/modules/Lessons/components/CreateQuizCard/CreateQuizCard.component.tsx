@@ -30,6 +30,9 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (
   const [quizAnswer4, setquizAnswer4] = useState("");
   const [quizAnswer5, setquizAnswer5] = useState("");
 
+  function handleCancel(){
+    navigate(`/course/edit/${courseID}`);
+  }
   async function handleSubmit() {
     //verificando se eh nulo
     if (
@@ -72,6 +75,7 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (
         navigate(
           `/course/${courseID}/lesson/${lessonID}/quiz/${response.data.id}`
         );
+        //navigate(`/course/${courseid}/lesson/${lessonID}/quiz/${quiz.id}`)
       } catch (error) {
         toast.error("Alguma coisa deu errado!");
       }
@@ -84,7 +88,7 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (
     <div data-color-mode="light" className={styles.createQuizBody}>
       <div className={styles.createQuizTitle}>
         <Input
-          placeholder="Titulo"
+          placeholder="Título"
           type="text"
           value={quizName}
           onChange={(i) => setlessonName(i.target.value)}
@@ -219,6 +223,12 @@ export const CreateQuizCard: FunctionComponent<CreateQuizCardProps> = (
           onClick={handleSubmit}
         >
           Salvar
+        </Button>
+        <Button
+          style={{ padding: "16px", borderRadius: "8px", fontSize: "12px" }}
+          onClick={handleCancel}
+        >
+          Cancelar
         </Button>
       </div>
     </div>

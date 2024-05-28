@@ -24,7 +24,7 @@ export const LessonPage = () => {
   return <AppLayout variant='grey'>
   <div className={styles.lessonWrapper}>
     {lesson && courseid && <LessonCard courseid={parseInt(courseid)} lesson={lesson} />}
-    {!lesson && <h1>Erro</h1>}
+    {!lesson && <h1></h1>}
   </div>
   </AppLayout>
   

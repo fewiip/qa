@@ -64,8 +64,6 @@ export const CreateLessonCard: FunctionComponent<CreateLessonCardProps> = (
 
         <div className={styles.lessonText}>
           <MDEditor value={lessonText} onChange={setLessonText} height="100%" />
-
-          {/* {quiz.map(i => <div>i</div>)} */}
         </div>
 
         <div className={styles.options}>

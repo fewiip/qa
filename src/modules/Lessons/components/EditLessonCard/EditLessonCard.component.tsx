@@ -7,7 +7,7 @@ import styles from "./EditLessonCard.module.css";
 import MDEditor from "@uiw/react-md-editor";
 import { Input } from "../../../../shared/components/Input";
 import { Button } from "../../../../shared/components/Button/Button.component";
-import { Tip } from "../../../../shared/components/Tip";
+//import { Tip } from "../../../../shared/components/Tip";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
 
 interface EditLessonCardProps {
@@ -96,9 +96,7 @@ export const EditLessonCard: FunctionComponent<EditLessonCardProps> = (
                 {/* {quiz.map(i => <div>i</div>)} */}
               </div>
               <div className={styles.space}></div>
-              <Tip>
-                Use a linguagem de markdown para escrever o corpo do quiz
-              </Tip>
+              
 
               <div className={styles.options}>
                 <Button

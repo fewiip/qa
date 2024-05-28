@@ -17,7 +17,7 @@ export const CourseLeadershipCard : FunctionComponent<CourseLeadershipCardProps>
       
       
       return <Card>
-      <div><b>QUADRO DE LIDERES</b></div>
+      <div><b>QUADRO DE LÍDERES</b></div>
   
       <div>
         {firstThreeUsers.map((user, index) => (

@@ -108,7 +108,7 @@ export const CourseLessonsPage = () => {
         console.log(response1);
         const response2 = await unSubscribeToCourse(payload2, user?.id);
         console.log(response2);
-        toast("Desinscrição do curso realizada");
+        toast("Desinscrição da turma realizada");
       }
     } catch (error) {
       toast.error("Alguma coisa deu errado!");
@@ -141,21 +141,22 @@ export const CourseLessonsPage = () => {
                 </div>
                 <div>
                   {ownership && (
-                    <Button onClick={editCourse}>Editar Curso</Button>
+                    <Button onClick={editCourse}>Editar Turma</Button>
                   )}
-
-                  <Button
-                    onClick={exit}
-                    size="big"
-                    style={{
-                      width: "150px",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                      height: "50px",
-                    }}
-                  >
-                    Desinscrever
-                  </Button>
+                  {!ownership && (
+                    <Button
+                      onClick={exit}
+                      size="big"
+                      style={{
+                        width: "150px",
+                        borderRadius: "8px",
+                        fontSize: "12px",
+                        height: "50px",
+                      }}
+                    >
+                      Desinscrever
+                    </Button>
+                  )}
                 </div>
               </div>
 

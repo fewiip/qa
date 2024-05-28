@@ -46,7 +46,7 @@ export const SubscriptionsPage = () => {
                 <b>Sobre as minhas inscrições:</b>
                 <ul>
                   <li>
-                    O QA+ permite que você acompanhe cursos feitos por outros gestores. 
+                    O QA+ permite que você acompanhe turmas feitas por outros gestores. 
                   </li>
                   <li>
                     Reveja os conteúdos de seu interesse e reforce os seus conhecimentos através dos nossos quizzes.

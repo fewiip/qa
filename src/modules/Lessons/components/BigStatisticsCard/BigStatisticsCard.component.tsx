@@ -55,7 +55,7 @@ export const BigStatisticsCard = () => {
 
     <div className={styles.cardWrapper}>
     <div className={styles.statisticsCardLine}>
-      <div className={styles.titulo}>
+      <div className={styles.título}>
       MINHAS ESTATÍSTICAS
       </div>
        </div>

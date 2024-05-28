@@ -8,6 +8,8 @@ import { Button } from "../../../../shared/components/Button/Button.component";
 import { Input } from "../../../../shared/components/Input";
 import { Tip } from "../../../../shared/components/Tip";
 import { useAuthStore } from "../../../auth/stores/useAuthStore.hook";
+import radioButton2 from "../../../../assets/images/radioButton2.png"
+
 
 interface EditQuizCardProps {
   quiz: Quiz;
@@ -107,7 +109,8 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
         const response = await editQuiz(payload, quiz.id);
         console.log(response);
 
-        navigate(`/course/${courseid}/lesson/${lessonID}/quiz/${quiz.id}`);
+        navigate(`/course/${courseid}/lesson/${lessonID}/quiz/${quiz.id}`)
+        //navigate(`/course/${courseid}/lesson/${lessonID}/quiz/${quiz.id}`);
       } catch (error) {
         toast.error("Alguma coisa deu errado!" + error);
       }
@@ -121,7 +124,7 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
     
     <div data-color-mode="light">
       <div>
-        <b>Titulo:</b>
+        <b>Título:</b>
       </div>
       <div className={styles.editQuizTitle}>
         <Input
@@ -137,12 +140,9 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
       <div className={styles.editQuizTitle}>
         <MDEditor value={quizText} onChange={setlessonText} height="20%" />
       </div>
-      <div className={styles.space}></div>
-      <Tip>Use a linguagem de markdown para escrever o corpo do quiz</Tip>
-
+      <div className={styles.space}></div> 
       <Tip>
-        Você tem que escolher qual será a resposta correta, o botão ao lado das
-        respostas
+        defina qual é a alternativa correta marcando o círculo apresentado antes da respectiva resposta <img src={radioButton2} className={styles.smallImg} />
       </Tip>
       <div>
         <b>Respostas:</b>
@@ -275,7 +275,8 @@ export const EditQuizCard: FunctionComponent<EditQuizCardProps> = (props) => {
           onClick={handleSubmit}
         >
           Salvar
-        </Button><Button
+        </Button>
+        <Button
           style={{ padding: "16px", borderRadius: "8px", fontSize: "12px" }}
           onClick={handleCancel}
         >

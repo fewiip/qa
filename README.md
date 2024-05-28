@@ -36,7 +36,7 @@ export default {
 __20/03__
 - Cadastro (feito!)
 - Tela principal (feito!)
-- Quadro de lideres (feito!)
+- Quadro de líderes (feito!)
 - Minha estatisticas (feito!)
 
 __27/03:__
@@ -48,20 +48,19 @@ __27/03:__
 
 __03/04:__
 - tela do quiz (feito!)
-- Desafio do dia 
 
 __10/04:__
-- editor de quiz 
+- editor de quiz (feito!)
 - editor de markdown para as aulas (feito!)
-- tela de conclusao de conteudo 
+- tela de conclusao de conteúdo (feito!)
 - tela de perfil (feito!)
 
 __17/04:__
 - mostrar dados da conta (feito!)
 - minhas estatisticas (feito!)
-- troca de dados da conta 
+- troca de dados da conta (feito!)
 
-- troca de senha
+- troca de senha (feito!)
 
 - criar classe (feito!)
 - editar classe (feito!)
@@ -77,10 +76,12 @@ __24/04:__
 __01/05:__
 
 
-- criasse as turmas (cada turma tem que ter um codigo)
-
 endereço da API:
 http://193.123.119.217:8080/swagger-ui/index.html#/
+
+__Não foi possível fazer:__
+- Desafio do dia 
+- Estatisticas da turma
 
 __Ideias:__
 - previous mistake (permitir refazer uma questão que o aluno errou, do duolinguo)

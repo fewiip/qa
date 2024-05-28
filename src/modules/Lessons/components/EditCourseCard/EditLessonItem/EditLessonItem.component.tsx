@@ -130,7 +130,7 @@ export const EditLessonItem: FunctionComponent<EditLessonItemProps> = (
             {isEditing && (
               <>
                 <Input
-                  placeholder="Nome do capitulo"
+                  placeholder="Nome do capítulo"
                   type="text"
                   value={lessonName}
                   onChange={(i) => setLessonName(i.target.value)}
