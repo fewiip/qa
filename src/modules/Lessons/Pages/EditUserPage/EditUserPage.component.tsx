@@ -75,15 +75,15 @@ export const EditUserPage = () => {
               </p>
 
               <p>ID: {user?.id}</p>
-              <p>Cargo: {isAdmin && <>Admin</>} {!isAdmin && <>User</>}</p>
+              <p>Cargo: {isAdmin && <>Gestor de turma</>} {!isAdmin && <>Aluno</>}</p>
             </div>
             <div>
               <a href="/user/password/edit">Editar Senha</a>
             </div>
             <div>
-              {!isAdmin && <Button onClick={handleTransformToAdmin}>Transformar em Admin</Button>}
+              {!isAdmin && <Button onClick={handleTransformToAdmin}>Transformar em gestor de turma</Button>}
 
-              {isAdmin && <Button onClick={handleTransformToUser}>Transformar em usuário</Button>}
+              {isAdmin && <Button onClick={handleTransformToUser}>Transformar em aluno</Button>}
             </div>
             {/*
             <div>

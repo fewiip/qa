@@ -97,13 +97,13 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = (props) => {
       )}
 
       <Input
-        placeholder="E-mail"
+        placeholder="Usuário"
         type="text"
         value={email}
         onChange={(i) => setEmail(i.target.value)}
       />
       {hasEmailError && (
-        <div className={styles.errorPasswordMessage}>Email inválido</div>
+        <div className={styles.errorPasswordMessage}>Usuário inválido</div>
       )}
 
       <Input

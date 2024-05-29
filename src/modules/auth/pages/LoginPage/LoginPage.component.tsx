@@ -25,7 +25,7 @@ export const LoginPage = () => {
       navigate(RouteList.LESSONS);
     } catch (error) {
       //alert("usuario ou senha incorreto");
-      toast.error("E-mail ou senha incorretos!");
+      toast.error("Usuário ou senha incorretos!");
     }
   }
 
