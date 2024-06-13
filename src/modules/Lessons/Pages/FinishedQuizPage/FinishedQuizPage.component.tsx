@@ -134,7 +134,7 @@ export const FinishedQuizPage = () => {
               </Tip>
               <Tip variant="rounded">
                 <div className={styles.text}>
-                  <div>Moeadas dos desafios</div>
+                  <div>Moedas dos desafios</div>
                   <div className={styles.coins}>
                     <p>+ {coinsAdd}</p>
                     <img src={coins} alt="" />
