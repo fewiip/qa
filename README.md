@@ -1,4 +1,4 @@
-#QA+:
+# QA+:
 
 QA+ é um projeto que visa utilizar a gamificação para auxiliar no ensino de teste e qualidade de software. Este é o repositório do front-end do projeto QA+, escrito usando react e typescript.
 
@@ -11,6 +11,7 @@ https://nodejs.org/en
 
 
 __Como rodar o codigo localmente?__
+
 É necessario fazer um 'clone' do repositorio 
 ```
 git clone https://github.com/fewiip/qa.git
@@ -33,12 +34,15 @@ npm run dev -- --host
 ```
 
 __Como compilar?__
+
+Para compilar o projeto é só entrar na pasta do projeto e rodar o seguinte comando.
+
 ```
 npm run build
 ```
 
 
-#__To do:__
+# __To do:__
 
 __20/03__
 - Cadastro (feito!)
