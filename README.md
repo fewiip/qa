@@ -5,6 +5,7 @@ QA+ é um projeto que visa utilizar a gamificação para auxiliar no ensino de t
 Para este projeto foram utilizados:
 - __React:__ 18.2
 - __Typescript:__ 5.1.4
+- __Node.js:__ 18.18.2
 
 Para poder testar o codigo é necessario ter o Node.js instalado em sua máquina. Pagina de download do Noje.ds:
 https://nodejs.org/en
