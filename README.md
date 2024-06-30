@@ -1,4 +1,5 @@
-#QA+
+#QA+:
+
 QA+ é um projeto que visa utilizar a gamificação para auxiliar no ensino de teste e qualidade de software. Este é o repositório do front-end do projeto QA+, escrito usando react e typescript.
 
 Para este projeto foram utilizados:
