@@ -71,7 +71,7 @@ export const EditUserPage = () => {
               </p>
 
               <p>
-                <b>Email:</b> {user?.email}
+                <b>Usuário:</b> {user?.email}
               </p>
 
               <p>ID: {user?.id}</p>

@@ -1,34 +1,40 @@
-# React + TypeScript + Vite
+#QA+
+QA+ é um projeto que visa utilizar a gamificação para auxiliar no ensino de teste e qualidade de software. Este é o repositório do front-end do projeto QA+, escrito usando react e typescript.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para este projeto foram utilizados:
+- __React:__ 18.2
+- __Typescript:__ 5.1.4
 
-Currently, two official plugins are available:
+Para poder testar o codigo é necessario ter o Node.js instalado em sua máquina. Pagina de download do Noje.ds:
+https://nodejs.org/en
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+__Como rodar o codigo localmente?__
+É necessario fazer um 'clone' do repositorio 
+```
+git clone https://github.com/fewiip/qa.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Após isso, é necessário adicionar um arquivo .env a pasta local do projeto, nele está o endereço do back-end, abaixo segue um exemplo:
+```
+VITE_API_URL=http://123.123.123.123:8080/api/v1
+```
 
+Também é necessario rodar apenas uma vez este comando, ele instalará as depedencias do projeto:
+```
+npm install
+```
+
+
+Após isso, o front-end estará pronto para rodar. Toda vez que quiser testar, entre na pasta do projeto e rode o seguinte comando:
+```
+npm run dev -- --host
+```
+
+__Como compilar?__
+```
+npm run build
+```
 
 
 #__To do:__
@@ -71,15 +77,7 @@ __17/04:__
 - criar quiz (feito!)
 - editar quiz (feito!)
 
-__24/04:__
-
-__01/05:__
-
-
-endereço da API:
-http://193.123.119.217:8080/swagger-ui/index.html#/
-
-__Não foi possível fazer:__
+__Não foi possível implementar:__
 - Desafio do dia 
 - Estatisticas da turma
 
